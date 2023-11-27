@@ -36,7 +36,7 @@ while (true) {
 
 ### Live link ->
 
-Deploy live link here ->
+[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/01-if-else/)
 
 ## Acknowledgement:
 

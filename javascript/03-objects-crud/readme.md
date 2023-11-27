@@ -1,4 +1,4 @@
-# Object-crud (Javascript Challenge)
+# Objects-crud (Javascript Challenge)
 
 This challenge is part of free internship (Fullstack Engineer) offered by [CyberDude Networks Pvt. Ltd.](https://cyberdudenetworks.com) You can find all the source code and live links below.
 
@@ -54,7 +54,7 @@ console.log("delete:", personDetails);
 
 ### Live link ->
 
-Deploy live link here ->
+[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/03-object-crud/)
 
 ## Acknowledgement:
 

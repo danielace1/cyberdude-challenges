@@ -11,12 +11,12 @@ const fruits = ["apple", "banana", "grapes"];
 // Create
 fruits.push("orange", "papaya");
 fruits.unshift("gauva");
-fruits.splice(3, 0, "watermelons", "coconut");
+fruits.splice(3, 1, "watermelons", "coconut");
 console.log("create: ", fruits);
 
 // Read
 for (let fruitsName of fruits) {
-  console.log("fruitsName: ", fruitsName);
+  console.log("fruitName: ", fruitsName);
 }
 console.log("Index: ", fruits.indexOf("banana"));
 console.log("Includes: ", fruits.includes("banana"));
@@ -59,6 +59,12 @@ const delivery = items.some((value) => {
 });
 console.log("isavail", delivery);
 
+// filter method
+const delivery = items.filter((value) => {
+  return value.isDeliverable == true;
+});
+console.log("isavail using filter: ", delivery);
+
 // Update
 const recipe = items.concat(fruits);
 console.log("concate:", recipe);
@@ -72,7 +78,7 @@ items.splice(0, 4);
 console.log("delete: ", items);
 ```
 
-### Live link ->
+### Live link:
 
 [Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/04-array-crud/)
 

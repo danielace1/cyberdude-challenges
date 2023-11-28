@@ -4,12 +4,12 @@ const fruits = ["apple", "banana", "grapes"];
 // Create
 fruits.push("orange", "papaya");
 fruits.unshift("gauva");
-fruits.splice(3, 0, "watermelons", "coconut");
+fruits.splice(3, 1, "watermelons", "coconut");
 console.log("create: ", fruits);
 
 // Read
 for (let fruitsName of fruits) {
-  console.log("fruitsName: ", fruitsName);
+  console.log("fruitName: ", fruitsName);
 }
 console.log("Index: ", fruits.indexOf("banana"));
 console.log("Includes: ", fruits.includes("banana"));
@@ -27,7 +27,7 @@ fruits.pop();
 console.log("pop:", fruits);
 fruits.shift();
 console.log("shift:", fruits);
-fruits.length = 0;
+// fruits.length = 0;
 console.log("length: ", fruits);
 
 // Array of Objects
@@ -46,11 +46,16 @@ items.forEach((item) => {
   console.log("read: ", item);
 });
 
-// Update
+Update;
 const delivery = items.some((value) => {
   return value.isDeliverable == true;
 });
 console.log("isavail", delivery);
+
+// const delivery = items.filter((value) => {
+//   return value.isDeliverable == true;
+// });
+// console.log("isavail using filter: ", delivery);
 
 // Update
 const recipe = items.concat(fruits);

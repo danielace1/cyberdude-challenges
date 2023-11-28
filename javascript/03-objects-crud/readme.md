@@ -52,9 +52,9 @@ delete personDetails.contact.location;
 console.log("delete:", personDetails);
 ```
 
-### Live link ->
+### Live link:
 
-[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/03-object-crud/)
+[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/03-objects-crud/)
 
 ## Acknowledgement:
 

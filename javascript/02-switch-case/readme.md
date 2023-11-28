@@ -36,7 +36,7 @@ switch (weekDays) {
 console.log(`Today is ${day}`);
 ```
 
-### Live link ->
+### Live link:
 
 [Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/02-switch-case/)
 

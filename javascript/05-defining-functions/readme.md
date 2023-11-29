@@ -1,3 +1,15 @@
+# Defining Functions (Javascript Challenge)
+
+This challenge is part of free internship (Fullstack Engineer) offered by [CyberDude Networks Pvt. Ltd.](https://cyberdudenetworks.com) You can find all the source code and live links below.
+
+> Task #5 : Create different ways of defining functions and explain it in detail with examples.
+>
+> - expression
+> - return it
+> - pass arguments, receive parameters
+> - IIFE.
+
+```js
 // Defining Funtions
 
 // Declaration - Area of a rectangle
@@ -72,3 +84,16 @@ console.log(result2);
     displayResult(userInput, result);
   }
 })();
+```
+
+### Live link:
+
+[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/05-defining-functions/)
+
+## Acknowledgement:
+
+🎉 Special thanks to [Anbuselvan Rocky](https://github.com/anburocky3) for his valuable mentorship.
+
+## References:
+
+[![Defining-functions](https://img.youtube.com/vi/xqkGxTdVWfw/0.jpg)](https://www.youtube.com/watch?v=WebG_D9-U80 "Defining-functions")

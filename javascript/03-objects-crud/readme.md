@@ -62,4 +62,4 @@ console.log("delete:", personDetails);
 
 ## References:
 
-[![Objects-OOP](https://img.youtube.com/vi/iKD8RZoXrLQ/0.jpg)](https://www.youtube.com/watch?v=WebG_D9-U80 "Objects-OOP")
+[![Objects-OOP](https://img.youtube.com/vi/iKD8RZoXrLQ/0.jpg)](https://www.youtube.com/watch?v=iKD8RZoXrLQ "Objects-OOP")

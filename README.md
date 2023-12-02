@@ -1,4 +1,4 @@
-# cyberdude challenges
+# Cyberdude Challenges
 
 <a href="https://www.cyberdudenetworks.com/">
   <img src="https://cyberdudenetworks.com/assets/img/assets/banner.png"/>

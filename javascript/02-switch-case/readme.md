@@ -46,4 +46,4 @@ console.log(`Today is ${day}`);
 
 ## References:
 
-[![Switch-case](https://img.youtube.com/vi/xG5IUyZvbDk/0.jpg)](https://www.youtube.com/watch?v=WebG_D9-U80 "Switch-case")
+[![Switch-case](https://img.youtube.com/vi/xG5IUyZvbDk/0.jpg)](https://www.youtube.com/watch?v=xG5IUyZvbDk "Switch-case")

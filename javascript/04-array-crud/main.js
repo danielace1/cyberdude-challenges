@@ -45,8 +45,6 @@ console.log("create: ", items);
 items.forEach((item) => {
   console.log("read: ", item);
 });
-
-Update;
 const delivery = items.some((value) => {
   return value.isDeliverable == true;
 });

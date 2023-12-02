@@ -52,8 +52,6 @@ console.log("create: ", items);
 items.forEach((item) => {
   console.log("read: ", item);
 });
-
-// Update
 const delivery = items.some((value) => {
   return value.isDeliverable == true;
 });
@@ -88,4 +86,4 @@ console.log("delete: ", items);
 
 ## References:
 
-[![Array-crud](https://img.youtube.com/vi/Amu-MKgfkpk/0.jpg)](https://www.youtube.com/watch?v=WebG_D9-U80 "Array-crud")
+[![Array-crud](https://img.youtube.com/vi/Amu-MKgfkpk/0.jpg)](https://www.youtube.com/watch?v=Amu-MKgfkpk "Array-crud")

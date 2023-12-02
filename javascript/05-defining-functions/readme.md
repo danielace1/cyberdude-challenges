@@ -96,4 +96,4 @@ console.log(result2);
 
 ## References:
 
-[![Defining-functions](https://img.youtube.com/vi/xqkGxTdVWfw/0.jpg)](https://www.youtube.com/watch?v=WebG_D9-U80 "Defining-functions")
+[![Defining-functions](https://img.youtube.com/vi/xqkGxTdVWfw/0.jpg)](https://www.youtube.com/watch?v=xqkGxTdVWfw "Defining-functions")

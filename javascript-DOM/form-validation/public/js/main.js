@@ -7,6 +7,7 @@ const phoneEl = regFormEl.elements.phone;
 const termsEl = regFormEl.elements.terms;
 const submitBtn = regFormEl.querySelector("#submit-btn");
 
+// Validation
 function validateInputs() {
   userNameValidation();
 
@@ -99,6 +100,13 @@ function phoneNumberValidation() {
   }
 }
 
+const userData = {
+  userNameEl: userNameEl.value,
+  emailEl: emailEl.value,
+  genderEl: genderEl.value,
+  passwordEl: passwordEl.value,
+};
+
 const submitForm = (e) => {
   e.preventDefault();
 
@@ -106,7 +114,6 @@ const submitForm = (e) => {
   // const jsonData = JSON.stringify(Object.fromEntries(formData));
   // localStorage.setItem(formData, jsonData);
   // console.log(jsonData);
-  // document.addEventListener("DOMContentLoaded", jsonData);
 
   const userData = {
     userNameEl: userNameEl.value,
@@ -125,10 +132,7 @@ const submitForm = (e) => {
     .then((data) => {
       console.log("Data sent to the server:", data);
       // You can handle the response from the server here
-    })
-    .catch((error) =>
-      console.error("Error sending data to the server:", error)
-    );
+    });
 
   //   const inputsEl = regFormEl.querySelectorAll("input");
 
@@ -141,9 +145,10 @@ const submitForm = (e) => {
 
 function thankMessage() {
   const newDiv = document.createElement("div");
-  newDiv.innerText = "Thank you for registering";
+  newDiv.innerText = "Thank you for registering !";
   newDiv.classList.add("thankMessage");
-  regFormEl.append(newDiv);
+  document.querySelector("body").append(newDiv);
+  regFormEl.remove("form");
 }
 
-submitBtn.addEventListener("click", submitForm);
+regFormEl.addEventListener("submit", submitForm);

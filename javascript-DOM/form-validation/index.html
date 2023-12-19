@@ -13,7 +13,7 @@
     ></script>
 
     <!-- Tailwind CSS  -->
-    <link rel="stylesheet" href="./public/style.css" />
+    <link rel="stylesheet" href="./public/css/style.css" />
   </head>
   <body class="bg-slate-300">
     <form
@@ -34,6 +34,17 @@
           />
           <div id="errMsgName"></div>
         </label>
+      </div>
+      <div>
+        <label for="male">
+          <input type="radio" id="male" name="gender" />
+          Male
+        </label>
+        <label for="female">
+          <input type="radio" id="female" name="gender" class="ml-3" />
+          Female
+        </label>
+        <div id="errMsgGender"></div>
       </div>
       <div class="">
         <label for="email"
@@ -68,9 +79,23 @@
             type="number"
             id="phone"
             name="phone"
+            min="0"
             class="outline-none border bg-blue-200 rounded w-full my-1 px-2 py-1"
           />
           <div id="errMsgPhone"></div>
+        </label>
+      </div>
+      <div class="">
+        <label for="address"
+          >Address
+          <textarea
+            name="address"
+            id="address"
+            cols="30"
+            rows="5"
+            placeholder="Enter your address"
+            class="outline-none border bg-blue-200 rounded w-full my-1 px-2 py-1"
+          ></textarea>
         </label>
       </div>
       <div class="">
@@ -81,6 +106,7 @@
       </div>
       <div>
         <button
+          type="submit"
           class="w-full bg-blue-500 rounded text-white text-center px-3 py-2 hover:bg-blue-600"
           id="submit-btn"
         >
@@ -94,6 +120,6 @@
         >
       </div>
     </form>
-    <script src="./main.js"></script>
+    <script src="./public/js/main.js"></script>
   </body>
 </html>

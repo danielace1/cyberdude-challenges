@@ -5,3 +5,7 @@
 .errorMessage {
   @apply border-red-500 text-red-500 text-sm;
 }
+
+.thankMessage {
+  @apply text-green-500 font-semibold text-center;
+}

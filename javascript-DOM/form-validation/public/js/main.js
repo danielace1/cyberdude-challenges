@@ -22,6 +22,8 @@ function validateInputs() {
     alert("Agree to the terms and conditions");
     return true;
   }
+
+  thankMessage();
 }
 
 function userNameValidation() {
@@ -113,7 +115,7 @@ const submitForm = (e) => {
     passwordEl: passwordEl.value,
   };
   fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
@@ -136,5 +138,12 @@ const submitForm = (e) => {
 
   validateInputs();
 };
+
+function thankMessage() {
+  const newDiv = document.createElement("div");
+  newDiv.innerText = "Thank you for registering";
+  newDiv.classList.add("thankMessage");
+  regFormEl.append(newDiv);
+}
 
 submitBtn.addEventListener("click", submitForm);

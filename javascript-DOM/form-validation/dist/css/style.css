@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.errorMessage {
+  @apply border-red-500 text-red-500 text-sm;
+}

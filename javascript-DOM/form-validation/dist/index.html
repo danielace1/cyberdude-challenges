@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01-Form-validation</title>
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/a9cdbedf57.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Tailwind CSS  -->
+    <link rel="stylesheet" crossorigin href="/assets/index-9DYAS-k6.css">
+  </head>
+  <body class="bg-slate-300">
+    <form
+      name="registration-form"
+      action=""
+      class="max-w-md mx-auto m-10 space-y-6 space-x-2 p-5 bg-blue-100 rounded shadow-md"
+    >
+      <h1 class="font-semibold text-xl text-center">Registration Form</h1>
+      <div class="">
+        <label for="username"
+          >Username
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Your Name"
+            class="outline-none border bg-blue-200 rounded w-full my-1 px-2 py-1"
+          />
+          <div id="errMsgName"></div>
+        </label>
+      </div>
+      <div>
+        <label for="male">
+          <input type="radio" id="male" name="gender" />
+          Male
+        </label>
+        <label for="female">
+          <input type="radio" id="female" name="gender" class="ml-3" />
+          Female
+        </label>
+        <div id="errMsgGender"></div>
+      </div>
+      <div class="">
+        <label for="email"
+          >Email
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your Email"
+            class="outline-none border bg-blue-200 rounded w-full my-1 px-2 py-1"
+          />
+          <div id="errMsgEmail"></div>
+        </label>
+      </div>
+      <div class="">
+        <label for="password"
+          >Password
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter 6-8 characters"
+            class="outline-none border bg-blue-200 rounded w-full my-1 px-2 py-1"
+          />
+          <div id="errMsgPassword"></div>
+        </label>
+      </div>
+      <div class="">
+        <label for="phone"
+          >Phone
+          <input
+            type="number"
+            id="phone"
+            name="phone"
+            min="0"
+            class="outline-none border bg-blue-200 rounded w-full my-1 px-2 py-1"
+          />
+          <div id="errMsgPhone"></div>
+        </label>
+      </div>
+      <div class="">
+        <label for="address"
+          >Address
+          <textarea
+            name="address"
+            id="address"
+            cols="30"
+            rows="5"
+            placeholder="Enter your address"
+            class="outline-none border bg-blue-200 rounded w-full my-1 px-2 py-1"
+          ></textarea>
+        </label>
+      </div>
+      <div class="">
+        <label for="terms" class="flex">
+          <input type="checkbox" id="terms" name="terms" />
+          <span class="ml-2"> I accept the terms and conditions</span>
+        </label>
+      </div>
+      <div>
+        <button
+          type="submit"
+          class="w-full bg-blue-500 rounded text-white text-center px-3 py-2 hover:bg-blue-600"
+          id="submit-btn"
+        >
+          Submit
+        </button>
+      </div>
+      <div class="text-center">
+        <span class="text-gray-600"
+          >Already have an account?
+          <a href="#" class="underline text-blue-600">Sign in</a></span
+        >
+      </div>
+    </form>
+    <script src="./public/js/main.js"></script>
+  </body>
+</html>

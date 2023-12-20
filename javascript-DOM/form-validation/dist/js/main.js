@@ -7,6 +7,7 @@ const phoneEl = regFormEl.elements.phone;
 const termsEl = regFormEl.elements.terms;
 const submitBtn = regFormEl.querySelector("#submit-btn");
 
+// Validation
 function validateInputs() {
   userNameValidation();
 
@@ -22,6 +23,8 @@ function validateInputs() {
     alert("Agree to the terms and conditions");
     return true;
   }
+
+  thankMessage();
 }
 
 function userNameValidation() {
@@ -97,6 +100,13 @@ function phoneNumberValidation() {
   }
 }
 
+const userData = {
+  userNameEl: userNameEl.value,
+  emailEl: emailEl.value,
+  genderEl: genderEl.value,
+  passwordEl: passwordEl.value,
+};
+
 const submitForm = (e) => {
   e.preventDefault();
 
@@ -104,7 +114,6 @@ const submitForm = (e) => {
   // const jsonData = JSON.stringify(Object.fromEntries(formData));
   // localStorage.setItem(formData, jsonData);
   // console.log(jsonData);
-  // document.addEventListener("DOMContentLoaded", jsonData);
 
   const userData = {
     userNameEl: userNameEl.value,
@@ -113,7 +122,7 @@ const submitForm = (e) => {
     passwordEl: passwordEl.value,
   };
   fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
@@ -123,10 +132,7 @@ const submitForm = (e) => {
     .then((data) => {
       console.log("Data sent to the server:", data);
       // You can handle the response from the server here
-    })
-    .catch((error) =>
-      console.error("Error sending data to the server:", error)
-    );
+    });
 
   //   const inputsEl = regFormEl.querySelectorAll("input");
 
@@ -137,4 +143,12 @@ const submitForm = (e) => {
   validateInputs();
 };
 
-submitBtn.addEventListener("click", submitForm);
+function thankMessage() {
+  const newDiv = document.createElement("div");
+  newDiv.innerText = "Thank you for registering !";
+  newDiv.classList.add("thankMessage");
+  document.querySelector("body").append(newDiv);
+  regFormEl.remove("form");
+}
+
+regFormEl.addEventListener("submit", submitForm);

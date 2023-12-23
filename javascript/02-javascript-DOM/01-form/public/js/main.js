@@ -100,45 +100,16 @@ function phoneNumberValidation() {
   }
 }
 
-const userData = {
-  userNameEl: userNameEl.value,
-  emailEl: emailEl.value,
-  genderEl: genderEl.value,
-  passwordEl: passwordEl.value,
-};
-
 const submitForm = (e) => {
   e.preventDefault();
 
-  // const formData = new FormData(regFormEl);
-  // const jsonData = JSON.stringify(Object.fromEntries(formData));
-  // localStorage.setItem(formData, jsonData);
-  // console.log(jsonData);
+  const formData = new FormData(regFormEl);
+  const jsonData = Object.fromEntries(formData.entries());
+  const existingData =
+    JSON.parse(localStorage.getItem("userRegistration")) || [];
+  existingData.push(jsonData);
 
-  const userData = {
-    userNameEl: userNameEl.value,
-    emailEl: emailEl.value,
-    genderEl: genderEl.value,
-    passwordEl: passwordEl.value,
-  };
-  fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Data sent to the server:", data);
-      // You can handle the response from the server here
-    });
-
-  //   const inputsEl = regFormEl.querySelectorAll("input");
-
-  //   inputsEl.forEach((field) => {
-  //     field.required = true;
-  //   });
+  localStorage.setItem("userRegistration", JSON.stringify(existingData));
 
   validateInputs();
 };

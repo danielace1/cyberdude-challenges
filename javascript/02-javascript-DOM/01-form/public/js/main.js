@@ -18,13 +18,6 @@ function validateInputs() {
   passwordValidation();
 
   phoneNumberValidation();
-
-  if (!termsEl.checked) {
-    alert("Agree to the terms and conditions");
-    return true;
-  }
-
-  thankMessage();
 }
 
 function userNameValidation() {
@@ -105,6 +98,17 @@ const submitForm = (e) => {
 
   const formData = new FormData(regFormEl);
   const jsonData = Object.fromEntries(formData.entries());
+
+  if (!termsEl.checked) {
+    alert("Please agree to the terms and conditions");
+    return;
+  }
+
+  if (Object.values(jsonData).some((value) => value === "")) {
+    alert("Please fill in all required fields");
+    return;
+  }
+
   const existingData =
     JSON.parse(localStorage.getItem("userRegistration")) || [];
   existingData.push(jsonData);
@@ -112,14 +116,47 @@ const submitForm = (e) => {
   localStorage.setItem("userRegistration", JSON.stringify(existingData));
 
   validateInputs();
+  getRegistrationData();
 };
 
-function thankMessage() {
-  const newDiv = document.createElement("div");
-  newDiv.innerText = "Thank you for registering !";
-  newDiv.classList.add("thankMessage");
-  document.querySelector("body").append(newDiv);
-  regFormEl.remove("form");
+function getRegistrationData() {
+  const registrationData = localStorage.getItem("userRegistration");
+  const registrationDataArr = JSON.parse(registrationData);
+
+  if (registrationDataArr !== null) {
+    const regDataEl = document.getElementById("Registration-Data");
+
+    const finalData = registrationDataArr
+      .map((registeredData) => {
+        const newData = `
+    <div>
+    <div class="flex space-x-2 items-center">
+      <h4 class="font-bold">Username:</h4>
+      <span>${registeredData.username}</span>
+    </div>
+    <div class="flex space-x-2 items-center">
+      <h4 class="font-bold">Email:</h4>
+      <span>${registeredData.email}</span>
+    </div>
+    <div class="flex space-x-2 items-center">
+      <h4 class="font-bold">Phone:</h4>
+      <span>${registeredData.phone}</span>
+    </div>
+    <div class="flex space-x-2 items-center">
+      <h4 class="font-bold">Address:</h4>
+      <span>${registeredData.address}</span>
+    </div>
+    <div class="thankMessage">Thank you for registering!</div>
+  </div>
+    `;
+        return newData;
+      })
+      .join(" ");
+
+    regDataEl.innerHTML += finalData;
+  } else {
+    console.log("No registration data found in localStorage");
+  }
 }
 
 regFormEl.addEventListener("submit", submitForm);

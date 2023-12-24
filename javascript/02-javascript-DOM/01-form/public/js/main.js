@@ -7,6 +7,8 @@ const phoneEl = regFormEl.elements.phone;
 const termsEl = regFormEl.elements.terms;
 const submitBtn = regFormEl.querySelector("#submit-btn");
 
+let displayedData = [];
+
 // Validation
 function validateInputs() {
   userNameValidation();
@@ -123,12 +125,15 @@ function getRegistrationData() {
   const registrationData = localStorage.getItem("userRegistration");
   const registrationDataArr = JSON.parse(registrationData);
 
-  if (registrationDataArr !== null) {
-    const regDataEl = document.getElementById("Registration-Data");
+  const regDataEl = document.getElementById("Registration-Data");
 
-    const finalData = registrationDataArr
-      .map((registeredData) => {
-        const newData = `
+  const newDataArr = registrationDataArr.filter(
+    (data) => !isDataDisplayed(data)
+  );
+
+  const finalData = newDataArr
+    .map((registeredData) => {
+      const newData = `
     <div>
     <div class="flex space-x-2 items-center">
       <h4 class="font-bold">Username:</h4>
@@ -149,14 +154,23 @@ function getRegistrationData() {
     <div class="thankMessage">Thank you for registering!</div>
   </div>
     `;
-        return newData;
-      })
-      .join(" ");
+      return newData;
+    })
+    .join(" ");
 
-    regDataEl.innerHTML += finalData;
-  } else {
-    console.log("No registration data found in localStorage");
-  }
+  regDataEl.innerHTML += finalData;
+  displayedData = [...displayedData, ...newDataArr];
+}
+
+// Check if the data has already been displayed
+function isDataDisplayed(data) {
+  return displayedData.some(
+    (displayed) =>
+      displayed.username === data.username &&
+      displayed.email === data.email &&
+      displayed.phone === data.phone &&
+      displayed.address === data.address
+  );
 }
 
 regFormEl.addEventListener("submit", submitForm);

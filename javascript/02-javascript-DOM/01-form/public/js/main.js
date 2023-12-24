@@ -131,9 +131,12 @@ function getRegistrationData() {
     (data) => !isDataDisplayed(data)
   );
 
-  const finalData = newDataArr
-    .map((registeredData) => {
-      const newData = `
+  if (newDataArr) {
+    regDataEl.classList.remove("hidden");
+
+    const finalData = newDataArr
+      .map((registeredData) => {
+        const newData = `
     <div>
     <div class="flex space-x-2 items-center">
       <h4 class="font-bold">Username:</h4>
@@ -154,11 +157,12 @@ function getRegistrationData() {
     <div class="thankMessage">Thank you for registering!</div>
   </div>
     `;
-      return newData;
-    })
-    .join(" ");
+        return newData;
+      })
+      .join(" ");
 
-  regDataEl.innerHTML += finalData;
+    regDataEl.innerHTML += finalData;
+  }
   displayedData = [...displayedData, ...newDataArr];
 }
 

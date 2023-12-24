@@ -7,6 +7,8 @@ const phoneEl = regFormEl.elements.phone;
 const termsEl = regFormEl.elements.terms;
 const submitBtn = regFormEl.querySelector("#submit-btn");
 
+let displayedData = [];
+
 // Validation
 function validateInputs() {
   userNameValidation();
@@ -18,13 +20,6 @@ function validateInputs() {
   passwordValidation();
 
   phoneNumberValidation();
-
-  if (!termsEl.checked) {
-    alert("Agree to the terms and conditions");
-    return true;
-  }
-
-  thankMessage();
 }
 
 function userNameValidation() {
@@ -100,55 +95,86 @@ function phoneNumberValidation() {
   }
 }
 
-const userData = {
-  userNameEl: userNameEl.value,
-  emailEl: emailEl.value,
-  genderEl: genderEl.value,
-  passwordEl: passwordEl.value,
-};
-
 const submitForm = (e) => {
   e.preventDefault();
 
-  // const formData = new FormData(regFormEl);
-  // const jsonData = JSON.stringify(Object.fromEntries(formData));
-  // localStorage.setItem(formData, jsonData);
-  // console.log(jsonData);
+  const formData = new FormData(regFormEl);
+  const jsonData = Object.fromEntries(formData.entries());
 
-  const userData = {
-    userNameEl: userNameEl.value,
-    emailEl: emailEl.value,
-    genderEl: genderEl.value,
-    passwordEl: passwordEl.value,
-  };
-  fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Data sent to the server:", data);
-      // You can handle the response from the server here
-    });
+  if (!termsEl.checked) {
+    alert("Please agree to the terms and conditions");
+    return;
+  }
 
-  //   const inputsEl = regFormEl.querySelectorAll("input");
+  if (Object.values(jsonData).some((value) => value === "")) {
+    alert("Please fill in all required fields");
+    return;
+  }
 
-  //   inputsEl.forEach((field) => {
-  //     field.required = true;
-  //   });
+  const existingData =
+    JSON.parse(localStorage.getItem("userRegistration")) || [];
+  existingData.push(jsonData);
+
+  localStorage.setItem("userRegistration", JSON.stringify(existingData));
 
   validateInputs();
+  getRegistrationData();
 };
 
-function thankMessage() {
-  const newDiv = document.createElement("div");
-  newDiv.innerText = "Thank you for registering !";
-  newDiv.classList.add("thankMessage");
-  document.querySelector("body").append(newDiv);
-  regFormEl.remove("form");
+function getRegistrationData() {
+  const registrationData = localStorage.getItem("userRegistration");
+  const registrationDataArr = JSON.parse(registrationData);
+
+  const regDataEl = document.getElementById("Registration-Data");
+
+  const newDataArr = registrationDataArr.filter(
+    (data) => !isDataDisplayed(data)
+  );
+
+  if (newDataArr) {
+    regDataEl.classList.remove("hidden");
+
+    const finalData = newDataArr
+      .map((registeredData) => {
+        const newData = `
+    <div>
+    <div class="flex space-x-2 items-center">
+      <h4 class="font-bold">Username:</h4>
+      <span>${registeredData.username}</span>
+    </div>
+    <div class="flex space-x-2 items-center">
+      <h4 class="font-bold">Email:</h4>
+      <span>${registeredData.email}</span>
+    </div>
+    <div class="flex space-x-2 items-center">
+      <h4 class="font-bold">Phone:</h4>
+      <span>${registeredData.phone}</span>
+    </div>
+    <div class="flex space-x-2 items-center">
+      <h4 class="font-bold">Address:</h4>
+      <span>${registeredData.address}</span>
+    </div>
+    <div class="thankMessage">Thank you for registering!</div>
+  </div>
+    `;
+        return newData;
+      })
+      .join(" ");
+
+    regDataEl.innerHTML += finalData;
+  }
+  displayedData = [...displayedData, ...newDataArr];
+}
+
+// Check if the data has already been displayed
+function isDataDisplayed(data) {
+  return displayedData.some(
+    (displayed) =>
+      displayed.username === data.username &&
+      displayed.email === data.email &&
+      displayed.phone === data.phone &&
+      displayed.address === data.address
+  );
 }
 
 regFormEl.addEventListener("submit", submitForm);

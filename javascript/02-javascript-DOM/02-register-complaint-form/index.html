@@ -11,10 +11,183 @@
   </head>
   <body>
     <div
-      class="text-red-500 text-center bg-gray-100 font-semibold py-4 text-xl"
+      class="text-zinc-700 text-center bg-gray-100 font-semibold py-10 text-3xl"
     >
-      <h1>Register Complaint</h1>
+      <div class="relative">
+        <h1>REGISTER COMPLAINT</h1>
+        <div class="w-16 h-1 bg-red-500 absolute left-[650px] top-14"></div>
+      </div>
     </div>
-    <script type="module" src="/main.js"></script>
+    <div>
+      <div class="my-5 text-red-500 font-semibold text-center text-xl">
+        <h2>Register Your Complaint Here</h2>
+      </div>
+
+      <form
+        action=""
+        class="mx-20 my-10 px-10 py-10 space-y-8 bg-gray-50 rounded shadow-md"
+        id="complaint-form"
+      >
+        <div>
+          <label for="complain-category">
+            Complain Category<span class="text-red-500 text-lg">*</span>
+            <input
+              type="text"
+              id="complain-category"
+              placeholder="Ragging, Sexual Harassment, Torture ..."
+              name="complain-category"
+              class="w-full my-2 px-3 py-2 outline-none border rounded focus-visible:border-gray-500"
+            />
+          </label>
+        </div>
+        <div class="flex space-x-10">
+          <div class="w-full">
+            <label for="victim-name">
+              Victim Name<span class="text-red-500 text-lg">*</span>
+              <input
+                type="text"
+                id="victim-name"
+                placeholder="Victim Name"
+                name="victim-name"
+                class="w-full my-2 px-3 py-2 outline-none border rounded focus-visible:border-gray-500"
+              />
+            </label>
+          </div>
+          <div class="w-full">
+            <label for="victim-mobile-number">
+              Victim's Mobile No.<span class="text-red-500 text-lg">*</span>
+              <input
+                type="text"
+                id="victim-mobile-number"
+                placeholder="Victim's Mobile Number"
+                name="victim-mobile-number"
+                class="w-full my-2 px-3 py-2 outline-none border rounded focus-visible:border-gray-500"
+              />
+            </label>
+          </div>
+        </div>
+        <div class="flex items-center space-x-10">
+          <div class="" id="gender">Victim's Gender :</div>
+          <div class="flex space-x-20 items-center">
+            <div>
+              <label for="male">
+                <input type="radio" id="male" name="gender" />
+                Male
+              </label>
+            </div>
+            <div>
+              <label for="female">
+                <input type="radio" id="female" name="gender" />
+                Female
+              </label>
+            </div>
+            <div>
+              <label for="transgender">
+                <input type="radio" id="transgender" name="gender" />
+                Transgender
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="flex space-x-10">
+          <div class="w-full">
+            <label for="victim-email">
+              Victim Email
+              <input
+                type="email"
+                id="victim-email"
+                placeholder="Victim's Email"
+                name="victim-name"
+                class="w-full my-2 px-3 py-2 outline-none border rounded focus-visible:border-gray-500"
+              />
+            </label>
+          </div>
+          <div class="w-full">
+            <label for="victim-caste">
+              Victim's Caste
+              <select
+                name="caste"
+                id="victim-caste"
+                class="w-full my-2 px-3 py-2 outline-none border rounded focus-visible:border-gray-500"
+              >
+                <option value="Do not want to mention">
+                  Do not want to mention
+                </option>
+                <option value="General" selected>General</option>
+                <option value="OBC">OBC</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="flex space-x-10">
+          <div class="w-full">
+            <label for="victim-college-name">
+              Victim College Name<span class="text-red-500 text-lg">*</span>
+              <input
+                type="text"
+                id="victim-college-name"
+                placeholder="Victim's College Name"
+                name="victim-college-name"
+                class="w-full my-2 px-3 py-2 outline-none border rounded focus-visible:border-gray-500"
+              />
+            </label>
+          </div>
+          <div class="w-full">
+            <label for="college-code">
+              College Pin Code<span class="text-red-500 text-lg">*</span>
+              <input
+                type="text"
+                id="college-code"
+                placeholder="College Pin Code"
+                name="college-code"
+                class="w-full my-2 px-3 py-2 outline-none border rounded focus-visible:border-gray-500"
+              />
+            </label>
+          </div>
+        </div>
+        <div class="">
+          <div>Victim's Address<span class="text-red-500 text-lg">*</span></div>
+          <textarea
+            name="victim-address"
+            id="victim-address"
+            cols="30"
+            rows="3"
+            placeholder="Address"
+            class="w-full my-2 px-3 py-2 outline-none border rounded focus-visible:border-gray-500"
+          ></textarea>
+        </div>
+        <div class="">
+          <div>Ragging Details<span class="text-red-500 text-lg">*</span></div>
+          <textarea
+            name="ragging-details"
+            id="ragging-details"
+            cols="30"
+            rows="5"
+            placeholder="Ragging Details"
+            class="w-full my-2 px-3 py-2 outline-none border rounded focus-visible:border-gray-500"
+          ></textarea>
+        </div>
+        <div>
+          <p class="font-semibold text-gray-800 text-lg">
+            If You have any evidence, Kindly Mail them to
+            <a href="#" class="text-red-500">helpline@antiragging.in</a> with
+            the same email id you are using here. And Do not forget to mention
+            that you are sending the attachments in Ragging Details.
+          </p>
+        </div>
+        <div class="text-center">
+          <button
+            type="submit"
+            class="px-6 py-3 bg-red-500 text-white rounded font-semibold hover:bg-red-600"
+            id="btn"
+          >
+            Complaint
+          </button>
+        </div>
+      </form>
+    </div>
+    <script type="module" src="./assets/js/main.js"></script>
   </body>
 </html>

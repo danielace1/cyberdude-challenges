@@ -5,32 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register Complaint</title>
 
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="./public/images/logo.png"
+      type="image/x-icon"
+    />
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
     <div
-      class="flex text-zinc-700 text-center items-center bg-gray-100 pt-4 pb-5 space-x-8 sm:space-x-64 sm:pt-8 sm:pb-10"
+      class="flex text-zinc-700 text-center items-center bg-gray-100 pt-4 pb-5 space-x-8 sm:space-x-64 sm:pt-8 sm:pb-10 md:space-x-24"
     >
-      <div class="mx-8 sm:mx-28">
+      <div class="mx-8 sm:mx-28 md:mx-16">
         <a href="./index.html">
           <img
             src="./public/images/logo.png"
             alt="antiragging"
-            class="w-8 h-6 sm:w-16 sm:h-12"
+            class="w-8 h-6 sm:w-16 sm:h-12 md:w-10 md:h-8"
           />
         </a>
       </div>
       <div class="font-semibold relative">
         <div class="">
           <p
-            class="font-semibold text-gray-500 text-[10px] sm:text-[16px] sm:pb-0.5"
+            class="font-semibold text-gray-500 text-[10px] sm:text-[16px] md:text-[14px] sm:pb-0.5"
           >
             Stand Up, Speak Out, Stop Ragging.
           </p>
-          <h1 class="text-xl sm:text-3xl">REGISTER COMPLAINT</h1>
+          <h1 class="text-xl sm:text-3xl md:text-2xl">REGISTER COMPLAINT</h1>
           <span
-            class="w-10 h-0.5 sm:w-16 sm:h-1 bg-red-500 absolute left-[70px] top-12 sm:left-[110px] sm:top-20"
+            class="w-10 h-0.5 sm:w-16 sm:h-1 bg-red-500 absolute left-[70px] md:left-[80px] top-12 sm:left-[110px] sm:top-20"
           ></span>
         </div>
       </div>
@@ -89,7 +95,10 @@
           class="grid sm:flex items-center space-y-3 sm:space-x-10 sm:space-y-0"
         >
           <div class="">Victim's Gender :</div>
-          <div class="flex space-x-10 sm:space-x-20 items-center" id="gender">
+          <div
+            class="flex space-x-10 sm:space-x-20 md:space-x-5 items-center"
+            id="gender"
+          >
             <div>
               <label for="male">
                 <input type="radio" id="male" name="gender" />
@@ -219,24 +228,28 @@
     </div>
 
     <div
-      class="mx-20 my-14 px-10 py-10 space-y-8 bg-gray-50 rounded shadow-md transition hidden"
+      class="mx-2 my-10 p-5 space-y-3 sm:mx-20 sm:my-14 sm:p-10 sm:space-y-6 md:mx-4 md:p-6 bg-gray-50 rounded shadow-md transition hidden"
       id="complaintDetailsTable"
     >
-      <div class="my-2 text-red-500 font-semibold text-center text-xl">
+      <div class="text-red-500 font-semibold text-center text-xl">
         <h2>Complaint Data</h2>
       </div>
-      <table class="table table-fixed border w-full text-center">
-        <tr>
-          <th class="px-3 py-2 border w-14">S.No</th>
-          <th class="px-3 py-2 border">Complain Category</th>
-          <th class="px-3 py-2 border">Victim Name</th>
-          <th class="px-3 py-2 border">Victim Mobile no.</th>
-          <th class="px-3 py-2 border">Victim College Name</th>
-          <th class="px-3 py-2 border">College Pin Code</th>
-          <th class="px-2 py-1 border w-20"></th>
-        </tr>
-        <tbody id="complaintDataTable"></tbody>
-      </table>
+      <div class="overflow-auto rounded">
+        <table
+          class="table sm:table-fixed border w-full text-left sm:text-center"
+        >
+          <tr>
+            <th class="px-3 py-2 border tracking-wide w-14">S.No</th>
+            <th class="px-3 py-2 border tracking-wide">Complain Category</th>
+            <th class="px-3 py-2 border tracking-wide">Victim Name</th>
+            <th class="px-3 py-2 border tracking-wide">Victim Mobile no.</th>
+            <th class="px-3 py-2 border tracking-wide">Victim College Name</th>
+            <th class="px-3 py-2 border tracking-wide">College Pin Code</th>
+            <th class="px-2 py-1 border tracking-wide w-20"></th>
+          </tr>
+          <tbody id="complaintDataTable"></tbody>
+        </table>
+      </div>
     </div>
 
     <footer class="py-3 text-center text-gray-600 bg-gray-50 font-semibold">

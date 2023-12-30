@@ -211,22 +211,47 @@ function getAllComplaintDatas() {
       const td6El = document.createElement("td");
       const deleteBtnEl = document.createElement("button");
 
-      tdComplaintNo.classList.add("px-3", "py-2", "border");
+      tdComplaintNo.classList.add(
+        "px-3",
+        "py-2",
+        "border",
+        "whitespace-nowrap"
+      );
       tdComplaintNo.textContent = index + 1;
 
-      complainCategoryEl.classList.add("px-3", "py-2", "border");
+      complainCategoryEl.classList.add(
+        "px-3",
+        "py-2",
+        "border",
+        "whitespace-nowrap"
+      );
       complainCategoryEl.textContent = complaintData["complain-category"];
 
-      victimNameEl.classList.add("px-3", "py-2", "border");
+      victimNameEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
       victimNameEl.textContent = complaintData["victim-name"];
 
-      victimMobileNo.classList.add("px-3", "py-2", "border");
+      victimMobileNo.classList.add(
+        "px-3",
+        "py-2",
+        "border",
+        "whitespace-nowrap"
+      );
       victimMobileNo.textContent = complaintData["victim-mobile-number"];
 
-      victimCollegeNameEl.classList.add("px-3", "py-2", "border");
+      victimCollegeNameEl.classList.add(
+        "px-3",
+        "py-2",
+        "border",
+        "whitespace-nowrap"
+      );
       victimCollegeNameEl.textContent = complaintData["victim-college-name"];
 
-      collegeCodeEl.classList.add("px-3", "py-2", "border");
+      collegeCodeEl.classList.add(
+        "px-3",
+        "py-2",
+        "border",
+        "whitespace-nowrap"
+      );
       collegeCodeEl.textContent = complaintData["college-code"];
 
       deleteBtnEl.className =
@@ -237,7 +262,7 @@ function getAllComplaintDatas() {
         deleteComplaintData(complaintData);
       });
 
-      td6El.classList.add("px-3", "py-2", "border");
+      td6El.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
       td6El.append(deleteBtnEl);
 
       trEl.append(

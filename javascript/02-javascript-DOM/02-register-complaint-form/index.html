@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register Complaint</title>
 
@@ -11,11 +10,21 @@
   </head>
   <body>
     <div
-      class="text-zinc-700 text-center bg-gray-100 font-semibold py-10 text-3xl"
+      class="text-zinc-700 text-center bg-gray-100 pt-8 pb-10 flex justify-center items-center"
     >
-      <div class="relative">
-        <h1>REGISTER COMPLAINT</h1>
-        <div class="w-16 h-1 bg-red-500 absolute left-[650px] top-14"></div>
+      <div class="mx-28 flex-1">
+        <img
+          src="./public/images/logo.png"
+          alt="antiragging"
+          class="w-16 h-12"
+        />
+        <div class="relative font-semibold">
+          <p class="font-semibold text-gray-500">
+            Stand Up, Speak Out, Stop Ragging.
+          </p>
+          <h1 class="text-3xl">REGISTER COMPLAINT</h1>
+          <div class="w-16 h-1 bg-red-500 absolute left-[650px] top-14"></div>
+        </div>
       </div>
     </div>
     <div>
@@ -25,7 +34,7 @@
 
       <form
         action=""
-        class="mx-20 my-10 px-10 py-10 space-y-8 bg-gray-50 rounded shadow-md"
+        class="mx-20 my-14 px-10 py-10 space-y-8 bg-gray-50 rounded shadow-md"
         id="complaint-form"
       >
         <div>
@@ -57,7 +66,7 @@
             <label for="victim-mobile-number">
               Victim's Mobile No.<span class="text-red-500 text-lg">*</span>
               <input
-                type="text"
+                type="number"
                 id="victim-mobile-number"
                 placeholder="Victim's Mobile Number"
                 name="victim-mobile-number"
@@ -67,8 +76,8 @@
           </div>
         </div>
         <div class="flex items-center space-x-10">
-          <div class="" id="gender">Victim's Gender :</div>
-          <div class="flex space-x-20 items-center">
+          <div class="">Victim's Gender :</div>
+          <div class="flex space-x-20 items-center" id="gender">
             <div>
               <label for="male">
                 <input type="radio" id="male" name="gender" />
@@ -97,7 +106,7 @@
                 type="email"
                 id="victim-email"
                 placeholder="Victim's Email"
-                name="victim-name"
+                name="victim-email"
                 class="w-full my-2 px-3 py-2 outline-none border rounded focus-visible:border-gray-500"
               />
             </label>
@@ -138,7 +147,7 @@
             <label for="college-code">
               College Pin Code<span class="text-red-500 text-lg">*</span>
               <input
-                type="text"
+                type="number"
                 id="college-code"
                 placeholder="College Pin Code"
                 name="college-code"
@@ -148,7 +157,7 @@
           </div>
         </div>
         <div class="">
-          <div>Victim's Address<span class="text-red-500 text-lg">*</span></div>
+          Victim's Address
           <textarea
             name="victim-address"
             id="victim-address"
@@ -181,13 +190,54 @@
           <button
             type="submit"
             class="px-6 py-3 bg-red-500 text-white rounded font-semibold hover:bg-red-600"
-            id="btn"
           >
             Complaint
           </button>
         </div>
+        <div class="my-3 text-center">
+          <button
+            type="button"
+            id="complaintDetails"
+            class="px-6 py-3 bg-green-500 text-white font-semibold rounded hover:cursor-pointer hover:bg-green-600 transition hidden"
+          >
+            View Complaint Details
+          </button>
+        </div>
       </form>
     </div>
+
+    <div
+      class="mx-20 my-14 px-10 py-10 space-y-8 bg-gray-50 rounded shadow-md transition hidden"
+      id="complaintDetailsTable"
+    >
+      <div class="my-2 text-red-500 font-semibold text-center text-xl">
+        <h2>Complaint Data</h2>
+      </div>
+      <table class="table table-fixed border w-full text-center">
+        <tr>
+          <th class="px-3 py-2 border w-14">S.No</th>
+          <th class="px-3 py-2 border">Complain Category</th>
+          <th class="px-3 py-2 border">Victim Name</th>
+          <th class="px-3 py-2 border">Victim Mobile no.</th>
+          <th class="px-3 py-2 border">Victim College Name</th>
+          <th class="px-3 py-2 border">College Pin Code</th>
+          <th class="px-2 py-1 border w-20"></th>
+        </tr>
+        <tbody id="complaintDataTable"></tbody>
+      </table>
+    </div>
+
+    <footer class="py-3 text-center text-gray-600 bg-gray-50 font-semibold">
+      <p>
+        Designed by
+        <a
+          href="https://github.com/danielace1"
+          target="_blank"
+          class="text-red-500"
+          >@Sudharsan</a
+        >
+      </p>
+    </footer>
     <script type="module" src="./assets/js/main.js"></script>
   </body>
 </html>

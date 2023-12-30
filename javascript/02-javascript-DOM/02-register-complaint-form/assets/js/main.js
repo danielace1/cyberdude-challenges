@@ -176,7 +176,7 @@ validateForm.onSuccess(() => {
       complaintDetailsShow.textContent = "Hide Complaint Details";
       complaintDetails.classList.remove("hidden");
       complaintDetailsShow.className =
-        "px-6 py-3 bg-green-500 text-white font-semibold rounded hover:cursor-pointer hover:bg-green-600 transition";
+        "px-3 py-2 text-sm sm:text-[16px] sm:px-6 sm:py-3 bg-green-500 text-white font-semibold rounded hover:cursor-pointer hover:bg-green-600 transition";
     } else {
       complaintDetailsShow.textContent = "View Complaint Details";
       complaintDetails.classList.add("hidden");

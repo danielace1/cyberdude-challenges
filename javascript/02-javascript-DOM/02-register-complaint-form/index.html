@@ -10,31 +10,41 @@
   </head>
   <body>
     <div
-      class="text-zinc-700 text-center bg-gray-100 pt-8 pb-10 flex justify-center items-center"
+      class="flex text-zinc-700 text-center items-center bg-gray-100 pt-4 pb-5 space-x-8 sm:space-x-64 sm:pt-8 sm:pb-10"
     >
-      <div class="mx-28 flex-1">
-        <img
-          src="./public/images/logo.png"
-          alt="antiragging"
-          class="w-16 h-12"
-        />
-        <div class="relative font-semibold">
-          <p class="font-semibold text-gray-500">
+      <div class="mx-8 sm:mx-28">
+        <a href="./index.html">
+          <img
+            src="./public/images/logo.png"
+            alt="antiragging"
+            class="w-8 h-6 sm:w-16 sm:h-12"
+          />
+        </a>
+      </div>
+      <div class="font-semibold relative">
+        <div class="">
+          <p
+            class="font-semibold text-gray-500 text-[10px] sm:text-[16px] sm:pb-0.5"
+          >
             Stand Up, Speak Out, Stop Ragging.
           </p>
-          <h1 class="text-3xl">REGISTER COMPLAINT</h1>
-          <div class="w-16 h-1 bg-red-500 absolute left-[650px] top-14"></div>
+          <h1 class="text-xl sm:text-3xl">REGISTER COMPLAINT</h1>
+          <span
+            class="w-10 h-0.5 sm:w-16 sm:h-1 bg-red-500 absolute left-[70px] top-12 sm:left-[110px] sm:top-20"
+          ></span>
         </div>
       </div>
     </div>
     <div>
-      <div class="my-5 text-red-500 font-semibold text-center text-xl">
+      <div
+        class="my-2 sm:my-5 text-red-500 font-semibold text-center text-lg sm:text-xl"
+      >
         <h2>Register Your Complaint Here</h2>
       </div>
 
       <form
         action=""
-        class="mx-20 my-14 px-10 py-10 space-y-8 bg-gray-50 rounded shadow-md"
+        class="mx-2 my-5 p-5 space-y-4 sm:mx-20 sm:my-10 sm:p-10 sm:space-y-8 bg-gray-50 rounded shadow-md"
         id="complaint-form"
       >
         <div>
@@ -49,7 +59,7 @@
             />
           </label>
         </div>
-        <div class="flex space-x-10">
+        <div class="grid space-y-3 sm:flex sm:space-x-10 sm:space-y-0">
           <div class="w-full">
             <label for="victim-name">
               Victim Name<span class="text-red-500 text-lg">*</span>
@@ -75,9 +85,11 @@
             </label>
           </div>
         </div>
-        <div class="flex items-center space-x-10">
+        <div
+          class="grid sm:flex items-center space-y-3 sm:space-x-10 sm:space-y-0"
+        >
           <div class="">Victim's Gender :</div>
-          <div class="flex space-x-20 items-center" id="gender">
+          <div class="flex space-x-10 sm:space-x-20 items-center" id="gender">
             <div>
               <label for="male">
                 <input type="radio" id="male" name="gender" />
@@ -98,7 +110,7 @@
             </div>
           </div>
         </div>
-        <div class="flex space-x-10">
+        <div class="grid sm:flex space-y-3 sm:space-x-10 sm:space-y-0">
           <div class="w-full">
             <label for="victim-email">
               Victim Email
@@ -130,7 +142,7 @@
             </label>
           </div>
         </div>
-        <div class="flex space-x-10">
+        <div class="grid sm:flex space-y-3 sm:space-x-10 sm:space-y-0">
           <div class="w-full">
             <label for="victim-college-name">
               Victim College Name<span class="text-red-500 text-lg">*</span>
@@ -179,7 +191,7 @@
           ></textarea>
         </div>
         <div>
-          <p class="font-semibold text-gray-800 text-lg">
+          <p class="font-semibold text-gray-800 text-sm sm:text-lg">
             If You have any evidence, Kindly Mail them to
             <a href="#" class="text-red-500">helpline@antiragging.in</a> with
             the same email id you are using here. And Do not forget to mention
@@ -189,7 +201,7 @@
         <div class="text-center">
           <button
             type="submit"
-            class="px-6 py-3 bg-red-500 text-white rounded font-semibold hover:bg-red-600"
+            class="px-4 py-2 text-sm sm:text-[16px] sm:px-6 sm:py-3 bg-red-500 text-white rounded font-semibold hover:bg-red-600"
           >
             Complaint
           </button>
@@ -198,7 +210,7 @@
           <button
             type="button"
             id="complaintDetails"
-            class="px-6 py-3 bg-green-500 text-white font-semibold rounded hover:cursor-pointer hover:bg-green-600 transition hidden"
+            class="px-3 py-2 text-sm sm:text-[16px] sm:px-6 sm:py-3 bg-green-500 text-white font-semibold rounded hover:cursor-pointer hover:bg-green-600 transition hidden"
           >
             View Complaint Details
           </button>

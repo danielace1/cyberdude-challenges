@@ -1,4 +1,6 @@
 import Justvalidate from "just-validate";
+import { v4 as uuidv4 } from "uuid";
+
 const formEl = document.getElementById("complaint-form");
 
 const localStorageKey = "complaintData";
@@ -143,7 +145,8 @@ validateForm.addField(
 validateForm.onSuccess(() => {
   const formData = new FormData(formEl);
 
-  // formData.append("id", uuidv4());
+  formData.append("id", uuidv4());
+
   const formValueObj = Object.fromEntries(formData.entries());
 
   // Getting existing data from localstorage
@@ -176,7 +179,7 @@ validateForm.onSuccess(() => {
       complaintDetailsShow.textContent = "Hide Complaint Details";
       complaintDetails.classList.remove("hidden");
       complaintDetailsShow.className =
-        "px-3 py-2 text-sm sm:text-[16px] sm:px-6 sm:py-3 bg-green-500 text-white font-semibold rounded hover:cursor-pointer hover:bg-green-600 transition";
+        "px-3 py-2 text-sm lg:text-[16px] lg:px-6 lg:py-3 bg-green-500 text-white font-semibold rounded hover:cursor-pointer hover:bg-green-600 transition";
     } else {
       complaintDetailsShow.textContent = "View Complaint Details";
       complaintDetails.classList.add("hidden");
@@ -192,100 +195,92 @@ function getAllComplaintDatas() {
   const complaintData = localStorage.getItem(localStorageKey);
   const complaintDataArr = JSON.parse(complaintData);
 
-  if (complaintDataArr && complaintDataArr.length > 0) {
-    // Save the data in complaintData file
-    const tableEl = document.querySelector("#complaintDataTable");
+  // Save the data in complaintData file
+  const tableEl = document.querySelector("#complaintDataTable");
 
-    tableEl.innerHTML = "";
+  tableEl.innerHTML = "";
 
-    const finalValue = [];
+  const finalValue = [];
 
-    complaintDataArr.map((complaintData, index) => {
-      const trEl = document.createElement("tr");
-      const complainCategoryEl = document.createElement("td");
-      const tdComplaintNo = document.createElement("td");
-      const victimNameEl = document.createElement("td");
-      const victimMobileNo = document.createElement("td");
-      const victimCollegeNameEl = document.createElement("td");
-      const collegeCodeEl = document.createElement("td");
-      const td6El = document.createElement("td");
-      const deleteBtnEl = document.createElement("button");
+  complaintDataArr.map((complaintData, index) => {
+    const trEl = document.createElement("tr");
+    const complainCategoryEl = document.createElement("td");
+    const tdComplaintNo = document.createElement("td");
+    const victimNameEl = document.createElement("td");
+    const victimMobileNo = document.createElement("td");
+    const victimCollegeNameEl = document.createElement("td");
+    const collegeCodeEl = document.createElement("td");
+    const td6El = document.createElement("td");
+    const deleteBtnEl = document.createElement("button");
 
-      tdComplaintNo.classList.add(
-        "px-3",
-        "py-2",
-        "border",
-        "whitespace-nowrap"
-      );
-      tdComplaintNo.textContent = index + 1;
+    tdComplaintNo.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
+    tdComplaintNo.textContent = index + 1;
 
-      complainCategoryEl.classList.add(
-        "px-3",
-        "py-2",
-        "border",
-        "whitespace-nowrap"
-      );
-      complainCategoryEl.textContent = complaintData["complain-category"];
+    complainCategoryEl.classList.add(
+      "px-3",
+      "py-2",
+      "border",
+      "whitespace-nowrap"
+    );
+    complainCategoryEl.textContent = complaintData["complain-category"];
 
-      victimNameEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
-      victimNameEl.textContent = complaintData["victim-name"];
+    victimNameEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
+    victimNameEl.textContent = complaintData["victim-name"];
 
-      victimMobileNo.classList.add(
-        "px-3",
-        "py-2",
-        "border",
-        "whitespace-nowrap"
-      );
-      victimMobileNo.textContent = complaintData["victim-mobile-number"];
+    victimMobileNo.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
+    victimMobileNo.textContent = complaintData["victim-mobile-number"];
 
-      victimCollegeNameEl.classList.add(
-        "px-3",
-        "py-2",
-        "border",
-        "whitespace-nowrap"
-      );
-      victimCollegeNameEl.textContent = complaintData["victim-college-name"];
+    victimCollegeNameEl.classList.add(
+      "px-3",
+      "py-2",
+      "border",
+      "whitespace-nowrap"
+    );
+    victimCollegeNameEl.textContent = complaintData["victim-college-name"];
 
-      collegeCodeEl.classList.add(
-        "px-3",
-        "py-2",
-        "border",
-        "whitespace-nowrap"
-      );
-      collegeCodeEl.textContent = complaintData["college-code"];
+    collegeCodeEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
+    collegeCodeEl.textContent = complaintData["college-code"];
 
-      deleteBtnEl.className =
-        "px-2 py-1 rounded bg-red-500 hover:bg-red-600 text-white text-sm";
-      deleteBtnEl.textContent = "Delete";
+    const deleteIcon = `   <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="30"
+      height="30"
+      viewBox="0 0 24 24"
+      class="fill-current text-red-600 hover:cursor-pointer hover:text-red-700 lg:w-8 lg:h-8 md:w-6 md:h-6"
+    >
+      <path
+        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"
+      />
+    </svg>`;
 
-      deleteBtnEl.addEventListener("click", () => {
-        deleteComplaintData(complaintData);
-      });
+    deleteBtnEl.innerHTML = deleteIcon;
 
-      td6El.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
-      td6El.append(deleteBtnEl);
-
-      trEl.append(
-        tdComplaintNo,
-        complainCategoryEl,
-        victimNameEl,
-        victimMobileNo,
-        victimCollegeNameEl,
-        collegeCodeEl,
-        td6El
-      );
-
-      finalValue.push(trEl);
+    deleteBtnEl.addEventListener("click", () => {
+      deleteComplaintData(complaintData);
     });
 
-    finalValue.forEach((el) => tableEl.append(el));
-  } else {
-  }
+    td6El.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
+    td6El.append(deleteBtnEl);
+
+    trEl.append(
+      tdComplaintNo,
+      complainCategoryEl,
+      victimNameEl,
+      victimMobileNo,
+      victimCollegeNameEl,
+      collegeCodeEl,
+      td6El
+    );
+
+    finalValue.push(trEl);
+  });
+
+  finalValue.forEach((el) => tableEl.append(el));
 }
 
-function deleteComplaintData(complaintData) {
+function deleteComplaintData(deleteComplaintData) {
   const confirmation = confirm(
-    `Do you want to delete '${complaintData["victim-name"]}' complaint?`
+    `Do you want to delete '${deleteComplaintData["victim-name"]}' complaint?`
   );
 
   if (confirmation) {
@@ -294,9 +289,10 @@ function deleteComplaintData(complaintData) {
     const existingDataObj = JSON.parse(existingData);
 
     const otherComplaints = existingDataObj.filter(
-      (complaints) => complaints.id != complaintData["id"]
+      (complaints) => complaints.id != deleteComplaintData["id"]
     );
 
+    console.log(otherComplaints);
     // Delete the data from localstorage
     localStorage.setItem(localStorageKey, JSON.stringify(otherComplaints));
 

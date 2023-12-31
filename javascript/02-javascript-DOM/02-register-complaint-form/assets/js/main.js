@@ -142,7 +142,14 @@ validateForm.addField(
   }
 );
 
+const evidenceCheckBox = document.getElementById("evidence");
+
 validateForm.onSuccess(() => {
+  if (!evidenceCheckBox.checked) {
+    alert("kindly, tick the checkbox");
+    return;
+  }
+
   const formData = new FormData(formEl);
 
   formData.append("id", uuidv4());
@@ -227,21 +234,25 @@ function getAllComplaintDatas() {
     victimNameEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
     victimNameEl.textContent = complaintData["victim-name"];
 
-    victimMobileNo.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
-    victimMobileNo.textContent = complaintData["victim-mobile-number"];
-
-    victimCollegeNameEl.classList.add(
+    victimMobileNo.classList.add(
       "px-3",
       "py-2",
       "border",
-      "whitespace-nowrap"
+      "whitespace-nowrap",
+      "text-center"
     );
+
+    const mobileNumber = complaintData["victim-mobile-number"];
+    const callMobileNo = `<a href="tel:${mobileNumber}" class="text-blue-500">${mobileNumber}</a>`;
+    victimMobileNo.innerHTML += callMobileNo;
+
+    victimCollegeNameEl.classList.add("px-3", "py-2", "border");
     victimCollegeNameEl.textContent = complaintData["victim-college-name"];
 
     collegeCodeEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
     collegeCodeEl.textContent = complaintData["college-code"];
 
-    const deleteIcon = `   <svg
+    const deleteIcon = `<svg
       xmlns="http://www.w3.org/2000/svg"
       width="30"
       height="30"

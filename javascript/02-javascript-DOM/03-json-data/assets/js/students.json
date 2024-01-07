@@ -1,0 +1,58 @@
+[
+  {
+    "image": "./images/avatar.png",
+    "roll.no": "23CS851",
+    "name": "Santhosh",
+    "age": 18,
+    "isMajor": true
+  },
+  {
+    "image": "./images/avatar.png",
+    "roll.no": "23CS852",
+    "name": "Rahul",
+    "age": 18,
+    "isMajor": true
+  },
+  {
+    "image": "./images/girl.png",
+    "roll.no": "23CS853",
+    "name": "Shiny",
+    "age": 17,
+    "isMajor": false
+  },
+  {
+    "image": "./images/avatar.png",
+    "roll.no": "23CS854",
+    "name": "Siva",
+    "age": 18,
+    "isMajor": true
+  },
+  {
+    "image": "./images/avatar.png",
+    "roll.no": "23CS855",
+    "name": "Harish",
+    "age": 17,
+    "isMajor": false
+  },
+  {
+    "image": "./images/girl.png",
+    "roll.no": "23CS856",
+    "name": "Rose",
+    "age": 18,
+    "isMajor": true
+  },
+  {
+    "image": "./images/avatar.png",
+    "roll.no": "23CS857",
+    "name": "Sudharsan",
+    "age": 18,
+    "isMajor": true
+  },
+  {
+    "image": "./images/girl.png",
+    "roll.no": "23CS859",
+    "name": "Shally",
+    "age": 18,
+    "isMajor": true
+  }
+]

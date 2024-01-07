@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.each-student {
+  @apply p-3 my-3 font-mono font-semibold  bg-slate-500 rounded;
+}

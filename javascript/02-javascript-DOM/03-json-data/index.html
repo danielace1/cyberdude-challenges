@@ -3,13 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JSON Data</title>
+    <title>CSE Students</title>
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
-  <body>
-    <div id="app"></div>
+  <body class="mx-auto bg-slate-900 text-white p-10">
+    <div class="">
+      <a href="./index.html">
+        <img
+          src="./public/images/collegename.png"
+          class="w-full rounded"
+          alt="collegename"
+        />
+      </a>
+    </div>
+    <div class="bg-slate-700 rounded p-10 w-full text-center">
+      <span class="bg-blue-500 p-4 w-2 h-2 rounded-full font-semibold"
+        >Computer Science Department</span
+      >
+      <h1 class="m-5 text-4xl font-bold tracking-wider">Students</h1>
+
+      <div id="students" class="grid grid-cols-4 gap-8 text-center"></div>
+    </div>
+    <footer class="text-center mt-10">
+      <p>
+        <span class="text-gray-500">Copyright 2023</span> GCE - Dept of CSE |
+        All Rights Reserved.
+      </p>
+    </footer>
     <script type="module" src="./assets/js/main.js"></script>
   </body>
 </html>

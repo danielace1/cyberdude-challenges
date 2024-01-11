@@ -78,7 +78,7 @@ console.log("delete: ", items);
 
 ### Live link:
 
-[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/04-array-crud/)
+[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/01-vanilla-js/04-array-crud/)
 
 ## Acknowledgement:
 

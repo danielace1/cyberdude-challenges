@@ -36,7 +36,7 @@ while (true) {
 
 ### Live link:
 
-[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/01-if-else/)
+[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/01-vanilla-js/01-if-else/)
 
 ## Acknowledgement:
 

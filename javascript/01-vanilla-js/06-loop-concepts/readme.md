@@ -56,7 +56,7 @@ do {
 
 ### Live link:
 
-[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/06-loop-concepts/)
+[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/01-vanilla-js/06-loop-concepts/)
 
 ## Acknowledgement:
 

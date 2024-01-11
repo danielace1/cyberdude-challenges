@@ -54,7 +54,7 @@ console.log("delete:", personDetails);
 
 ### Live link:
 
-[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/03-objects-crud/)
+[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/01-vanilla-js/03-objects-crud/)
 
 ## Acknowledgement:
 

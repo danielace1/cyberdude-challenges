@@ -38,7 +38,7 @@ console.log(`Today is ${day}`);
 
 ### Live link:
 
-[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/02-switch-case/)
+[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/01-vanilla-js/02-switch-case/)
 
 ## Acknowledgement:
 

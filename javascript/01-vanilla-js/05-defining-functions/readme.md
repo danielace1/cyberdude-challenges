@@ -88,7 +88,7 @@ console.log(result2);
 
 ### Live link:
 
-[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/05-defining-functions/)
+[Live Link](https://danielace1.github.io/cyberdude-challenges/javascript/01-vanilla-js/05-defining-functions/)
 
 ## Acknowledgement:
 

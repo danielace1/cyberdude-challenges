@@ -21,8 +21,20 @@ urlFormEl.addEventListener("submit", (e) => {
   } else if (urlInputElVal === validUrl || urlInputElVal === validUrl2) {
     thumbnailImgEl.src = getUrl;
     thumbnailImgEl.alt = videoId;
-    thumbnailImgEl.classList.remove("hidden", "w-10", "h-10", "mx-auto");
-    thumbnailImgEl.classList.add("px-40", "py-3", "rounded");
+    thumbnailImgEl.classList.remove(
+      "hidden",
+      "w-8",
+      "lg:w-10",
+      "lg:h-10",
+      "lg:mx-auto"
+    );
+    thumbnailImgEl.classList.add(
+      "px-5",
+      "py-1",
+      "lg:px-40",
+      "lg:py-3",
+      "rounded"
+    );
   } else {
     alert("Enter Youtube video URL only!");
   }

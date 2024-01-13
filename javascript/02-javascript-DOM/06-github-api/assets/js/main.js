@@ -23,7 +23,7 @@ const interns = [
 ];
 
 const accessToken =
-  "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";
+  "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";
 
 interns.forEach((intern) => {
   let xhr = new XMLHttpRequest();

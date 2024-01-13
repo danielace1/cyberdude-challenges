@@ -23,7 +23,7 @@ const interns = [
 ];
 
 const accessToken =
-  "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";
+  "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";
 
 interns.forEach((intern) => {
   let xhr = new XMLHttpRequest();
@@ -33,8 +33,6 @@ interns.forEach((intern) => {
       console.log(responseData);
       const profileUrl = responseData.html_url;
       const repostries=`${profileUrl}?tab=repositories`
-
-
       
       profiles.innerHTML += `
       <div class="text-center py-5 bg-zinc-700 rounded">

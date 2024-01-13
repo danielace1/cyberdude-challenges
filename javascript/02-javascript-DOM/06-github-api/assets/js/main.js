@@ -22,8 +22,8 @@ const interns = [
   "muthukumarimoorthi",
 ];
 
-const accessToken =
-  "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";
+// const accessToken =
+//   "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";
 
 interns.forEach((intern) => {
   let xhr = new XMLHttpRequest();
@@ -63,7 +63,7 @@ interns.forEach((intern) => {
   };
 
   xhr.open("GET", `https://api.github.com/users/${intern}`);
-  xhr.setRequestHeader("Authorization", `Bearer ${accessToken}`);
+  // xhr.setRequestHeader("Authorization", `Bearer ${accessToken}`);
   xhr.send();
 });
 

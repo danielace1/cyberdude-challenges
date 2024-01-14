@@ -22,8 +22,8 @@ const interns = [
   "muthukumarimoorthi",
 ];
 
-const accessToken =
-  "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";
+// const accessToken =
+// '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'
 
 interns.forEach((intern) => {
   let xhr = new XMLHttpRequest();
@@ -63,9 +63,7 @@ interns.forEach((intern) => {
   };
 
   xhr.open("GET", `https://api.github.com/users/${intern}`);
-  xhr.setRequestHeader("Authorization", `Bearer ${accessToken}`);
+  // xhr.setRequestHeader("Authorization", `Bearer ${accessToken}`);
   xhr.send();
 });
-
-
 

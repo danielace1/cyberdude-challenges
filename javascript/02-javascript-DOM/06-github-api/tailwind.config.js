@@ -1,8 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./*.{html,js}", "./src/**/*.{html,js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./**/*.js",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        jakarta: 'Plus Jakarta Sans'
+      }
+    },
   },
   plugins: [],
-};
+}

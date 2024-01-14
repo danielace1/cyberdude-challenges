@@ -4,7 +4,7 @@ This challenge is part of free internship (Fullstack Engineer) offered by [Cyber
 
 > Project #5 : Display the Interns Github data using API
 
-This project is a simple web application that allows users to view the thumbnail of a YouTube video by pasting its URL. It provides a convenient way to preview video content before watching.
+GitHub - API is a web application designed to present key information about a GitHub intern in a clear and accessible manner. Utilizing the GitHub API, this project focuses on displaying the intern's repositories, followers, location, and name.
 
 ## Live Link:
 
@@ -12,14 +12,15 @@ This project is a simple web application that allows users to view the thumbnail
 
 ## Features
 
-- _Thumbnail Display_: Instantly view the thumbnail of a YouTube video by pasting its URL.
-- _User-Friendly Interface_: Intuitive design for a seamless user experience.
-- _Dynamic Fetching_: Retrieves the thumbnail dynamically from YouTube.
+- _Name Presentation_: Access the intern's name to personalize the GitHub experience.
+- _Repository Showcase_: View a comprehensive list of the intern's GitHub repositories, including repository names and descriptions.
+- _Followers Display_: Gain insights into the intern's GitHub community by displaying the number of followers.
+- _Location Information_: Explore the intern's location information as provided on GitHub.
 
 ## Usage
 
 - Clone the repository to your local machine.
-- Open the index.html file in your preferred web browser.
+- Open the `index.html` file in your preferred web browser.
 - Paste a YouTube video URL into the designated input field.
 - The UI will display the thumbnail of the provided YouTube video.
 

@@ -22,8 +22,6 @@ const interns = [
   "muthukumarimoorthi",
 ];
 
-// const accessToken =
-// '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'
 
 interns.forEach((intern) => {
   let xhr = new XMLHttpRequest();
@@ -54,8 +52,8 @@ interns.forEach((intern) => {
               </svg>
               <span class=''>Repositories: ${responseData.public_repos}</span>
             </div>
-            <div class='flex justify-center items-center rounded-full bg-zinc-900'>
-          <a href="${repostries}" target='_blank'><button class='px-5 py-2'>View All Repostries</button></a>
+            <div class='flex justify-center items-center rounded-full w-full gap-y-4'>
+                <a href="${repostries}" target='_blank'><button class='bg-zinc-900'>View All Repostries</button></a>
           </div>
         </a>
       </div>`;
@@ -63,7 +61,6 @@ interns.forEach((intern) => {
   };
 
   xhr.open("GET", `https://api.github.com/users/${intern}`);
-  // xhr.setRequestHeader("Authorization", `Bearer ${accessToken}`);
   xhr.send();
 });
 

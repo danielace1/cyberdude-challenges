@@ -1,4 +1,4 @@
-(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const a of t.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&i(a)}).observe(document,{childList:!0,subtree:!0});function s(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function i(e){if(e.ep)return;e.ep=!0;const t=s(e);fetch(e.href,t)}})();const c=document.getElementById("profiles"),n=["esakki2104prsnl","vk2401","suriyamassmsd","riyaz1000","hema-venkat3","yrd369","mushkir","bearcin46","dineshdevelope","jeya-rosini","swethadsalvatore","mshajid","muthuakalya","vedhatech002","danielace1","sharif-22","gayathrihg","kishorekumar-kp","muthukumarimoorthi"];n.forEach(o=>{let r=new XMLHttpRequest;r.onreadystatechange=function(){if(this.readyState===4&&this.status===200){const s=JSON.parse(this.responseText);console.log(s);const i=s.html_url,e=`${i}?tab=repositories`;c.innerHTML+=`
+(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const a of t.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&i(a)}).observe(document,{childList:!0,subtree:!0});function s(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function i(e){if(e.ep)return;e.ep=!0;const t=s(e);fetch(e.href,t)}})();const c=document.getElementById("profiles"),l=["esakki2104prsnl","vk2401","suriyamassmsd","riyaz1000","hema-venkat3","yrd369","mushkir","bearcin46","dineshdevelope","jeya-rosini","swethadsalvatore","mshajid","muthuakalya","vedhatech002","danielace1","sharif-22","gayathrihg","kishorekumar-kp","muthukumarimoorthi"];l.forEach(o=>{let r=new XMLHttpRequest;r.onreadystatechange=function(){if(this.readyState===4&&this.status===200){const s=JSON.parse(this.responseText);console.log(s);const i=s.html_url,e=`${i}?tab=repositories`;c.innerHTML+=`
       <div class="text-center py-5 bg-zinc-700 rounded">
         <a href="${i}" target='_blank' class='grid gap-3'>
           <div class="flex justify-center items-center">
@@ -18,8 +18,8 @@
               </svg>
               <span class=''>Repositories: ${s.public_repos}</span>
             </div>
-            <div class='flex justify-center items-center rounded-full bg-zinc-900'>
-          <a href="${e}" target='_blank'><button class='px-5 py-2'>View All Repostries</button></a>
+            <div class='flex justify-center items-center rounded-full w-full gap-y-4'>
+                <a href="${e}" target='_blank'><button class='bg-zinc-900'>View All Repostries</button></a>
           </div>
         </a>
       </div>`}},r.open("GET",`https://api.github.com/users/${o}`),r.send()});

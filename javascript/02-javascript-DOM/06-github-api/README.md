@@ -1,4 +1,4 @@
-# Github - API 
+# Github - API
 
 This challenge is part of free internship (Fullstack Engineer) offered by [CyberDude Networks Pvt. Ltd.](https://cyberdudenetworks.com)
 
@@ -20,9 +20,9 @@ GitHub - API is a web application designed to present key information about a Gi
 ## Usage
 
 - Clone the repository to your local machine.
-- Open the `index.html` file in your preferred web browser.
-- Paste a YouTube video URL into the designated input field.
-- The UI will display the thumbnail of the provided YouTube video.
+- Install Dependencies `npm install`
+- Run the App `npm run dev`
+- Open in your web browser.
 
 ## Contributions:
 

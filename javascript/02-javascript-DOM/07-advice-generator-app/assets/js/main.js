@@ -9,7 +9,7 @@ const quotesURL = "https://api.adviceslip.com/advice";
 generateBtnEl.style.display = "none";
 
 generateBtnEl.addEventListener("click", () => {
-  window.location.href = "/";
+  window.location.href = "./index.html";
 });
 
 // Using await and async

@@ -9,12 +9,34 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body class="bg-gradient-to-r from-blue-400 to-purple-500">
-    <main class="max-w-xl mx-auto">
-      <div class="m-10 px-10 py-5 bg-white rounded shadow-lg">
-        <h1 class="font-semibold text-blue-500 text-3xl text-center">
-          Login User
-        </h1>
-
+    <main
+      class="max-w-6xl mx-auto p-2 lg:p-0 lg:grid lg:grid-cols-2 justify-center items-center lg:mt-20"
+    >
+      <div class="hidden lg:flex">
+        <img
+          src="./public/images/login.avif"
+          alt="login"
+          class="my-5 rounded-s h-[416px]"
+        />
+      </div>
+      <form
+        class="my-5 px-5 lg:px-10 py-5 bg-white shadow-lg lg:shadow-none rounded lg:rounded-none lg:rounded-e lg:border-l-2 lg:border-violet-100"
+      >
+        <div class="flex justify-center items-center">
+          <!-- User Image -->
+          <div class="flex">
+            <img
+              src="./public/images/user.png"
+              alt="user-image"
+              class="w-10 h-10"
+            />
+          </div>
+          <h1
+            class="font-semibold text-blue-500 text-2xl lg:text-3xl text-center"
+          >
+            &nbsp;Login User
+          </h1>
+        </div>
         <div class="mt-8 space-y-5">
           <div>
             <label for="email"
@@ -23,7 +45,7 @@
                 type="email"
                 placeholder="you@awesome.com"
                 id="email"
-                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded"
+                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded focus:border focus:border-violet-500"
               />
             </label>
           </div>
@@ -34,7 +56,7 @@
                 type="password"
                 placeholder="Enter 6-8 characters"
                 id="password"
-                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded"
+                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded focus:border focus:border-violet-500"
               />
             </label>
 
@@ -81,7 +103,7 @@
             >
           </div>
         </div>
-      </div>
+      </form>
     </main>
 
     <!-- JS file -->

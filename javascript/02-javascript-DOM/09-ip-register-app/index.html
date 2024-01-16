@@ -10,12 +10,22 @@
   </head>
   <body class="bg-gradient-to-r from-blue-400 to-purple-500">
     <main class="max-w-6xl mx-auto">
-      <div class="m-5 lg:m-10 px-5 lg:px-10 py-5 bg-white rounded shadow-lg">
-        <h1
-          class="font-semibold text-blue-500 text-2xl lg:text-3xl text-center"
-        >
-          User Registeration
-        </h1>
+      <form class="m-5 lg:m-10 px-5 lg:px-10 py-5 bg-white rounded shadow-lg">
+        <!-- User Image -->
+        <div class="flex justify-center items-center">
+          <div class="flex">
+            <img
+              src="./public/images/user.png"
+              alt="user-image"
+              class="w-10 h-10"
+            />
+          </div>
+          <h1
+            class="font-semibold text-blue-500 text-2xl lg:text-3xl text-center"
+          >
+            &nbsp;User Registeration
+          </h1>
+        </div>
 
         <div class="mt-8 grid lg:grid-cols-2 gap-x-10 gap-y-4 lg:gap-y-7">
           <div>
@@ -25,7 +35,7 @@
                 type="text"
                 placeholder="First Name"
                 id="firstname"
-                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded"
+                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded focus:border focus:border-violet-500"
               />
             </label>
           </div>
@@ -36,7 +46,7 @@
                 type="text"
                 placeholder="Last Name"
                 id="lastname"
-                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded"
+                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded focus:border focus:border-violet-500"
               />
             </label>
           </div>
@@ -75,7 +85,7 @@
                 type="text"
                 placeholder="User Name"
                 id="username"
-                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded"
+                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded focus:border focus:border-violet-500"
               />
             </label>
           </div>
@@ -86,7 +96,7 @@
                 type="email"
                 placeholder="you@awesome.com"
                 id="email"
-                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded"
+                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded focus:border focus:border-violet-500"
               />
             </label>
           </div>
@@ -97,7 +107,7 @@
                 type="password"
                 placeholder="Enter 6-8 characters"
                 id="newpassword"
-                class="relative outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded"
+                class="relative outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded focus:border focus:border-violet-500"
               />
             </label>
 
@@ -136,7 +146,7 @@
                 type="password"
                 placeholder="Re-enter the password"
                 id="confirmpassword"
-                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded"
+                class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded focus:border focus:border-violet-500"
               />
             </label>
 
@@ -191,7 +201,7 @@
             >
           </div>
         </div>
-      </div>
+      </form>
     </main>
 
     <!-- JS file -->

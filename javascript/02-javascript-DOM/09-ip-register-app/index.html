@@ -10,7 +10,10 @@
   </head>
   <body class="bg-gradient-to-r from-blue-400 to-purple-500">
     <main class="max-w-6xl mx-auto">
-      <form class="m-5 lg:m-10 px-5 lg:px-10 py-5 bg-white rounded shadow-lg">
+      <form
+        class="m-5 lg:m-10 px-5 lg:px-10 py-5 bg-white rounded shadow-lg"
+        id="registerationForm"
+      >
         <!-- User Image -->
         <div class="flex justify-center items-center">
           <div class="flex">
@@ -50,30 +53,30 @@
               />
             </label>
           </div>
+        </div>
 
-          <div
-            class="flex space-x-10 lg:space-x-20 md:space-x-5 items-center"
-            id="gender"
-          >
-            <div class="flex">
-              <span class="mr-5">Gender : </span>
-              <label for="male">
-                <input type="radio" id="male" name="gender" />
-                Male
-              </label>
-            </div>
-            <div>
-              <label for="female">
-                <input type="radio" id="female" name="gender" />
-                Female
-              </label>
-            </div>
-            <div>
-              <label for="others">
-                <input type="radio" id="others" name="gender" />
-                Others
-              </label>
-            </div>
+        <div
+          class="grid space-y-3 lg:space-y-0 lg:flex lg:space-x-10 items-center mt-5"
+          id="gender"
+        >
+          <div class="grid lg:flex items-center">Gender :</div>
+          <div class="flex">
+            <label for="male">
+              <input type="radio" id="male" name="gender" />
+              Male
+            </label>
+          </div>
+          <div>
+            <label for="female">
+              <input type="radio" id="female" name="gender" />
+              Female
+            </label>
+          </div>
+          <div>
+            <label for="others">
+              <input type="radio" id="others" name="gender" />
+              Others
+            </label>
           </div>
         </div>
 
@@ -101,18 +104,18 @@
             </label>
           </div>
           <div class="relative">
-            <label for="newpassword"
+            <label for="newPassword"
               >Password
               <input
                 type="password"
                 placeholder="Enter 6-8 characters"
-                id="newpassword"
+                id="newPassword"
                 class="relative outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded focus:border focus:border-violet-500"
               />
             </label>
 
             <!-- Show / Hide Password -->
-            <div class="absolute top-[38px] right-3" id="showPassword">
+            <div class="absolute top-[38px] right-3 newshowPassword">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
@@ -125,7 +128,7 @@
                 />
               </svg>
             </div>
-            <div class="absolute top-[37px] right-3 hidden" id="hidePassword">
+            <div class="absolute top-[37px] right-3 hidden newhidePassword">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -151,7 +154,7 @@
             </label>
 
             <!-- Show / Hide Password -->
-            <div class="absolute top-[38px] right-3" id="showPassword">
+            <div class="absolute top-[38px] right-3 confirmshowPassword">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
@@ -164,7 +167,7 @@
                 />
               </svg>
             </div>
-            <div class="absolute top-[37px] right-3 hidden" id="hidePassword">
+            <div class="absolute top-[37px] right-3 hidden confirmhidePassword">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"

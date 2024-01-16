@@ -10,12 +10,14 @@
   </head>
   <body class="bg-gradient-to-r from-blue-400 to-purple-500">
     <main class="max-w-6xl mx-auto">
-      <div class="m-10 px-10 py-5 bg-white rounded shadow-lg">
-        <h1 class="font-semibold text-blue-500 text-3xl text-center">
+      <div class="m-5 lg:m-10 px-5 lg:px-10 py-5 bg-white rounded shadow-lg">
+        <h1
+          class="font-semibold text-blue-500 text-2xl lg:text-3xl text-center"
+        >
           User Registeration
         </h1>
 
-        <div class="mt-8 grid grid-cols-2 gap-x-10 gap-y-7">
+        <div class="mt-8 grid lg:grid-cols-2 gap-x-10 gap-y-4 lg:gap-y-7">
           <div>
             <label for="firstname"
               >FirstName
@@ -43,7 +45,7 @@
             class="flex space-x-10 lg:space-x-20 md:space-x-5 items-center"
             id="gender"
           >
-            <div>
+            <div class="flex">
               <span class="mr-5">Gender : </span>
               <label for="male">
                 <input type="radio" id="male" name="gender" />
@@ -65,7 +67,7 @@
           </div>
         </div>
 
-        <div class="mt-8 grid grid-cols-2 gap-x-10 gap-y-7">
+        <div class="mt-8 grid lg:grid-cols-2 gap-x-10 gap-y-4 lg:gap-y-7">
           <div>
             <label for="username"
               >UserName
@@ -98,13 +100,15 @@
                 class="relative outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded"
               />
             </label>
+
+            <!-- Show / Hide Password -->
             <div class="absolute top-[38px] right-3" id="showPassword">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
                 height="22"
                 viewBox="0 0 20 20"
-                class="fill-current text-gray-600 hover:cursor-pointer hover:text-gray-700"
+                class="fill-current text-gray-500 hover:cursor-pointer hover:text-gray-600"
               >
                 <path
                   d="M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10m9.8 4a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0-2a2 2 0 1 1 0-4a2 2 0 0 1 0 4"
@@ -117,7 +121,7 @@
                 width="25"
                 height="25"
                 viewBox="0 0 24 24"
-                class="fill-current text-gray-600 hover:cursor-pointer hover:text-gray-700"
+                class="fill-current text-gray-500 hover:cursor-pointer hover:text-gray-600"
               >
                 <path
                   d="M14.33 7.17A15.642 15.642 0 0 0 12 7c-4.97 0-9 2.239-9 5c0 1.44 1.096 2.738 2.85 3.65l2.362-2.362a4 4 0 0 1 5.076-5.076zm-3.1 8.756a4 4 0 0 0 4.695-4.695l2.648-2.647C20.078 9.478 21 10.68 21 12c0 2.761-4.03 5-9 5c-.598 0-1.183-.032-1.749-.094zm6.563-10.719a1 1 0 1 1 1.414 1.414L6.48 19.35a1 1 0 1 1-1.414-1.414z"
@@ -135,13 +139,15 @@
                 class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded"
               />
             </label>
+
+            <!-- Show / Hide Password -->
             <div class="absolute top-[38px] right-3" id="showPassword">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
                 height="22"
                 viewBox="0 0 20 20"
-                class="fill-current text-gray-600 hover:cursor-pointer hover:text-gray-700"
+                class="fill-current text-gray-500 hover:cursor-pointer hover:text-gray-600"
               >
                 <path
                   d="M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10m9.8 4a4 4 0 1 0 0-8a4 4 0 0 0 0 8m0-2a2 2 0 1 1 0-4a2 2 0 0 1 0 4"
@@ -154,7 +160,7 @@
                 width="25"
                 height="25"
                 viewBox="0 0 24 24"
-                class="fill-current text-gray-600 hover:cursor-pointer hover:text-gray-700"
+                class="fill-current text-gray-500 hover:cursor-pointer hover:text-gray-600"
               >
                 <path
                   d="M14.33 7.17A15.642 15.642 0 0 0 12 7c-4.97 0-9 2.239-9 5c0 1.44 1.096 2.738 2.85 3.65l2.362-2.362a4 4 0 0 1 5.076-5.076zm-3.1 8.756a4 4 0 0 0 4.695-4.695l2.648-2.647C20.078 9.478 21 10.68 21 12c0 2.761-4.03 5-9 5c-.598 0-1.183-.032-1.749-.094zm6.563-10.719a1 1 0 1 1 1.414 1.414L6.48 19.35a1 1 0 1 1-1.414-1.414z"

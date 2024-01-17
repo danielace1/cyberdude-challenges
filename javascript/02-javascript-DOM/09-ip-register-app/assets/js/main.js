@@ -223,16 +223,13 @@ dateAndTime.value = formattedDateAndTime;
 validateForm.onSuccess(() => {
   const formData = new FormData(formEl);
 
+  // Pushing the id, dataAndTime and IpAddress into the form
   formData.append("id", uuidv4());
+  formData.append("dateAndTime", dateAndTime.value);
+  formData.append("ipAddress", ipAddressPlaceholder.value);
 
   const formValueObj = Object.fromEntries(formData.entries());
 
-  // Saving the form data with IP address and timestamp
-  const userWithDateTime = {
-    ...formValueObj,
-    ipAddress: ipAddressPlaceholder.value,
-    dateAndTime: formattedDateAndTime,
-  };
   const existingData = localStorage.getItem(localStorageKey);
 
   // Parse the data
@@ -240,16 +237,11 @@ validateForm.onSuccess(() => {
   const newUser = [];
 
   if (existingDataArr) {
-    // push existing data into new array
-    existingDataArr.push(ipAddressPlaceholder.value);
-    existingDataArr.push(userWithDateTime);
+    // push existing data into new array;
     existingDataArr.push(formValueObj);
-
     localStorage.setItem(localStorageKey, JSON.stringify(existingDataArr));
   } else {
-    newUser.push(ipAddressPlaceholder.value);
     newUser.push(formValueObj);
-    newUser.push(formattedDateAndTime);
     localStorage.setItem(localStorageKey, JSON.stringify(newUser));
   }
 

@@ -5,74 +5,102 @@ const storedUserData = localStorage.getItem(localStorageKey);
 // Parse the JSON data
 const userData = storedUserData ? JSON.parse(storedUserData) : [];
 
-console.log(userData);
+console.log("userData", userData);
 
-// Save the data in from localStorage
-const tableEl = document.querySelector("#userDataTable");
+function getUserData() {
+  const tableEl = document.querySelector("#userDataTable");
+  tableEl.innerHTML = "";
 
-const finalValue = [];
+  const storedUserData = localStorage.getItem(localStorageKey);
 
-userData.map((userDetails, index) => {
-  const trEl = document.createElement("tr");
-  const idNoEl = document.createElement("td");
-  const fullNameEl = document.createElement("td");
-  const userNameEl = document.createElement("td");
-  const emailEl = document.createElement("td");
-  const ipAddressEl = document.createElement("td");
-  const registeredTimeEl = document.createElement("td");
-  const td6El = document.createElement("td");
-  const deleteBtnEl = document.createElement("button");
+  if (storedUserData) {
+    const userData = JSON.parse(storedUserData);
 
-  idNoEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
-  idNoEl.textContent = index + 1;
+    userData.forEach((userDetails, index) => {
+      const trEl = document.createElement("tr");
+      const idNoEl = document.createElement("td");
+      const fullNameEl = document.createElement("td");
+      const userNameEl = document.createElement("td");
+      const emailEl = document.createElement("td");
+      const ipAddressEl = document.createElement("td");
+      const registeredTimeEl = document.createElement("td");
+      const td6El = document.createElement("td");
+      const deleteBtnEl = document.createElement("button");
 
-  fullNameEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
-  fullNameEl.textContent = userData[1].firstname + " " + userData[1].lastname;
+      idNoEl.classList.add("px-3", "py-2", "border", "break-words");
+      idNoEl.textContent = index + 1;
 
-  userNameEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
-  userNameEl.textContent = userData[1].username;
+      fullNameEl.classList.add("px-3", "py-2", "border", "break-words");
+      fullNameEl.textContent =
+        userDetails.firstname + " " + userDetails.lastname;
 
-  emailEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
-  emailEl.textContent = userData[1].email;
+      userNameEl.classList.add("px-3", "py-2", "border", "break-words");
+      userNameEl.textContent = userDetails.username;
 
-  ipAddressEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
-  ipAddressEl.textContent = userData[0];
+      emailEl.classList.add("px-3", "py-2", "border", "break-words");
+      emailEl.textContent = userDetails.email;
 
-  registeredTimeEl.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
-  registeredTimeEl.textContent = userData[2];
+      ipAddressEl.classList.add("px-3", "py-2", "border", "break-words");
+      ipAddressEl.textContent = userDetails.ipAddress;
 
-  const deleteIcon = `<svg
+      registeredTimeEl.classList.add("px-3", "py-2", "border", "break-words");
+      registeredTimeEl.textContent = userDetails.dateAndTime;
+
+      const deleteIcon = `<svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
           height="30"
           viewBox="0 0 24 24"
-          class="fill-current text-red-600 hover:cursor-pointer hover:text-red-700 lg:w-8 lg:h-8 md:w-6 md:h-6"
+          class="fill-current text-blue-600 hover:cursor-pointer hover:text-blue-700 mt-1 w-6 h-6 lg:w-7 lg:h-7"
         >
           <path
             d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"
           />
         </svg>`;
 
-  deleteBtnEl.innerHTML = deleteIcon;
+      deleteBtnEl.innerHTML = deleteIcon;
 
-  deleteBtnEl.addEventListener("click", () => {
-    deleteComplaintData(complaintData);
-  });
+      deleteBtnEl.addEventListener("click", () => {
+        deleteUserData(userDetails);
+      });
 
-  td6El.classList.add("px-3", "py-2", "border", "whitespace-nowrap");
-  td6El.append(deleteBtnEl);
+      td6El.classList.add("px-3", "py-2", "border", "break-words");
+      td6El.append(deleteBtnEl);
 
-  trEl.append(
-    idNoEl,
-    fullNameEl,
-    userNameEl,
-    emailEl,
-    ipAddressEl,
-    registeredTimeEl,
-    deleteBtnEl
+      trEl.append(
+        idNoEl,
+        fullNameEl,
+        userNameEl,
+        emailEl,
+        ipAddressEl,
+        registeredTimeEl,
+        td6El
+      );
+
+      tableEl.append(trEl);
+    });
+  }
+}
+
+getUserData();
+
+function deleteUserData(deleteUserData) {
+  const confirmation = confirm(
+    `Do you want to delete '${deleteUserData.username}' registration?`
   );
 
-  finalValue.push(trEl);
-});
+  if (confirmation) {
+    const storedUserData = localStorage.getItem(localStorageKey);
 
-finalValue.forEach((el) => tableEl.append(el));
+    if (storedUserData) {
+      const userData = JSON.parse(storedUserData);
+
+      const updatedData = userData.filter(
+        (user) => user.id !== deleteUserData.id
+      );
+
+      localStorage.setItem(localStorageKey, JSON.stringify(updatedData));
+      getUserData(); // Update the UI after deletion
+    }
+  }
+}

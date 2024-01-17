@@ -5,6 +5,7 @@ export default {
     "./login.html",
     "./userData.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./**/*.js",
   ],
   theme: {
     extend: {},

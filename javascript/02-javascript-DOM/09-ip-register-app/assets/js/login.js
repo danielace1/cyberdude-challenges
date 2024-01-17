@@ -13,7 +13,7 @@ const storedUserData = localStorage.getItem(localStorageKey);
 // Parse the JSON data
 const userData = storedUserData ? JSON.parse(storedUserData) : [];
 
-console.log(userData);
+console.log("userData", userData);
 
 validateForm.addField(
   "#email",
@@ -78,11 +78,11 @@ hidePassword.addEventListener("click", () => {
 
 validateForm.onSuccess(() => {
   // Email
-  const userDataEmail = userData[1].email;
+  const userDataEmail = userData[0].email;
   const userEmailEl = document.querySelector("#email");
 
   //   Password
-  const userDataPassword = userData[1].confirmPassword;
+  const userDataPassword = userData[0].confirmPassword;
   const userPasswordEl = document.querySelector("#password");
 
   const loginBtnEl = document.querySelector("#loginBtn");

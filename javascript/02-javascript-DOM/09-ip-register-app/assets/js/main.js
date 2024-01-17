@@ -186,28 +186,66 @@ validateForm.addField(
   }
 );
 
+// IP - Address
+const ipAddressPlaceholder = document.getElementById("ipaddress");
+
+let xhr = new XMLHttpRequest();
+
+xhr.onreadystatechange = function () {
+  if (this.readyState === 4 && this.status === 200) {
+    const cleanedIpAddress = xhr.responseText.trim();
+    ipAddressPlaceholder.value = cleanedIpAddress;
+  }
+};
+
+xhr.open("GET", "https://ipv4.icanhazip.com/");
+xhr.send();
+
+// Time
+const dateAndTime = document.querySelector("#time");
+
+const newDate = new Date();
+
+const neededFormat = {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  hour12: true,
+};
+const formattedDateAndTime = newDate.toLocaleString("en-US", neededFormat);
+
+dateAndTime.value = formattedDateAndTime;
+
 validateForm.onSuccess(() => {
   const formData = new FormData(formEl);
 
   const formValueObj = Object.fromEntries(formData.entries());
 
-  console.log(formValueObj);
-
+  // Saving the form data with IP address and timestamp
+  const userWithDateTime = {
+    ...formValueObj,
+    ipAddress: ipAddressPlaceholder.value,
+    dateAndTime: formattedDateAndTime,
+  };
   const existingData = localStorage.getItem(localStorageKey);
 
   // Parse the data
   const existingDataArr = JSON.parse(existingData);
-
   const newUser = [];
 
   if (existingDataArr) {
     // push existing data into new array
+    existingDataArr.push(ipAddressPlaceholder.value);
+    existingDataArr.push(userWithDateTime);
     existingDataArr.push(formValueObj);
 
     localStorage.setItem(localStorageKey, JSON.stringify(existingDataArr));
   } else {
+    newUser.push(ipAddressPlaceholder.value);
     newUser.push(formValueObj);
-
+    newUser.push(formattedDateAndTime);
     localStorage.setItem(localStorageKey, JSON.stringify(newUser));
   }
 

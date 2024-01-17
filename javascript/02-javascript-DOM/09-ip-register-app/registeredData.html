@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IP - Registeration Data</title>
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="./public/images/user.png"
+      type="image/x-icon"
+    />
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body class="bg-gradient-to-r from-blue-400 to-purple-500">
+    <main class="max-w-6xl mx-auto">
+      <div
+        class="mx-2 my-10 p-5 space-y-3 lg:mx-20 lg:my-14 lg:p-10 lg:space-y-6 md:mx-4 md:p-6 bg-gray-50 rounded shadow-md transition hidden"
+        id="complaintDetailsTable"
+      >
+        <div class="text-red-500 font-semibold text-center text-xl">
+          <h2>User Data</h2>
+        </div>
+        <div class="overflow-auto rounded">
+          <table
+            class="table lg:table-fixed border w-full text-left lg:text-center"
+          >
+            <tr>
+              <th class="px-3 py-2 border tracking-wide w-14">S.No</th>
+              <th class="px-3 py-2 border tracking-wide">Complain Category</th>
+              <th class="px-3 py-2 border tracking-wide">Victim Name</th>
+              <th class="px-3 py-2 border tracking-wide">Victim Mobile no.</th>
+              <th class="px-3 py-2 border tracking-wide">
+                Victim College Name
+              </th>
+              <th class="px-3 py-2 border tracking-wide">College Pin Code</th>
+              <th class="px-2 py-1 border tracking-wide w-20"></th>
+            </tr>
+            <tbody id="complaintDataTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- JS file -->
+    <script type="module" src="./assets/js/registeredData.js"></script>
+  </body>
+</html>

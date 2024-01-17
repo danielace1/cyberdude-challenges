@@ -3,7 +3,7 @@ export default {
   content: [
     "./index.html",
     "./login.html",
-    "./registeredData.html",
+    "./userData.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {

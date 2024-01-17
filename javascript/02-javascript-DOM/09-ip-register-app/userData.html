@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IP - Registeration Data</title>
+    <title>IP - Registeration | User Data</title>
 
     <!-- Favicon -->
     <link
@@ -18,11 +18,13 @@
   <body class="bg-gradient-to-r from-blue-400 to-purple-500">
     <main class="max-w-6xl mx-auto">
       <div
-        class="mx-2 my-10 p-5 space-y-3 lg:mx-20 lg:my-14 lg:p-10 lg:space-y-6 md:mx-4 md:p-6 bg-gray-50 rounded shadow-md transition hidden"
-        id="complaintDetailsTable"
+        class="mx-2 my-10 p-5 space-y-3 lg:mx-20 lg:my-14 lg:p-10 lg:space-y-6 md:mx-4 md:p-6 bg-gray-50 rounded shadow-lg"
+        id="userDataTable"
       >
-        <div class="text-red-500 font-semibold text-center text-xl">
-          <h2>User Data</h2>
+        <div
+          class="text-blue-500 font-semibold text-center text-2xl lg:text-3xl"
+        >
+          <h1>User Data</h1>
         </div>
         <div class="overflow-auto rounded">
           <table
@@ -30,22 +32,20 @@
           >
             <tr>
               <th class="px-3 py-2 border tracking-wide w-14">S.No</th>
-              <th class="px-3 py-2 border tracking-wide">Complain Category</th>
-              <th class="px-3 py-2 border tracking-wide">Victim Name</th>
-              <th class="px-3 py-2 border tracking-wide">Victim Mobile no.</th>
-              <th class="px-3 py-2 border tracking-wide">
-                Victim College Name
-              </th>
-              <th class="px-3 py-2 border tracking-wide">College Pin Code</th>
+              <th class="px-3 py-2 border tracking-wide">FullName</th>
+              <th class="px-3 py-2 border tracking-wide">UserName</th>
+              <th class="px-3 py-2 border tracking-wide">Email ID</th>
+              <th class="px-3 py-2 border tracking-wide">IP Address</th>
+              <th class="px-3 py-2 border tracking-wide">Registered Time</th>
               <th class="px-2 py-1 border tracking-wide w-20"></th>
             </tr>
-            <tbody id="complaintDataTable"></tbody>
+            <tbody id="userDataTable"></tbody>
           </table>
         </div>
       </div>
     </main>
 
     <!-- JS file -->
-    <script type="module" src="./assets/js/registeredData.js"></script>
+    <script type="module" src="./assets/js/userData.js"></script>
   </body>
 </html>

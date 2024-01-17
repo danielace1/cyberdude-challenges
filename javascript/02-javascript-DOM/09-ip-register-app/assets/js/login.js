@@ -13,7 +13,6 @@ const storedUserData = localStorage.getItem(localStorageKey);
 // Parse the JSON data
 const userData = storedUserData ? JSON.parse(storedUserData) : [];
 
-// Now you can use the userData array as needed for your login functionality
 console.log(userData);
 
 validateForm.addField(
@@ -93,7 +92,7 @@ validateForm.onSuccess(() => {
     userDataPassword === userPasswordEl.value
   ) {
     loginBtnEl.addEventListener("click", () => {
-      window.location.href = "./registeredData.html";
+      window.location.href = "./userData.html";
     });
   } else {
     alert("Invalid email or password");

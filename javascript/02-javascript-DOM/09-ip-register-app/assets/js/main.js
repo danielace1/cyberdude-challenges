@@ -219,7 +219,7 @@ const formattedDateAndTime = newDate.toLocaleString("en-US", neededFormat);
 
 dateAndTime.value = formattedDateAndTime;
 
-// Registration
+// Validations
 validateForm.onSuccess(() => {
   const formData = new FormData(formEl);
 
@@ -246,6 +246,11 @@ validateForm.onSuccess(() => {
   }
 
   alert("You have Registered successfully!");
+
+  const registerBtnEl = document.querySelector("#registerBtn");
+  registerBtnEl.addEventListener("click", () => {
+    window.location.href = "./login.html";
+  });
 
   formEl.reset();
 });

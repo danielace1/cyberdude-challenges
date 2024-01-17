@@ -78,24 +78,28 @@ hidePassword.addEventListener("click", () => {
 
 validateForm.onSuccess(() => {
   // Email
-  const userDataEmail = userData[0].email;
   const userEmailEl = document.querySelector("#email");
 
-  //   Password
-  const userDataPassword = userData[0].confirmPassword;
+  // Password
   const userPasswordEl = document.querySelector("#password");
 
-  const loginBtnEl = document.querySelector("#loginBtn");
+  const matchedUser = userData.find(
+    (user) =>
+      user.email === userEmailEl.value &&
+      user.confirmPassword === userPasswordEl.value
+  );
 
-  if (
-    userDataEmail === userEmailEl.value &&
-    userDataPassword === userPasswordEl.value
-  ) {
+  console.log(matchedUser);
+
+  if (matchedUser) {
+    const loginBtnEl = document.querySelector("#loginBtn");
+
+    // Redirect to userData.html if there is a match
     loginBtnEl.addEventListener("click", () => {
       window.location.href = "./userData.html";
     });
   } else {
-    alert("Invalid email or password");
+    alert("Invalid Email or Password");
     formEl.reset();
   }
 });

@@ -122,7 +122,7 @@
             </label>
 
             <!-- Show / Hide Password -->
-            <div class="absolute top-[38px] right-3 newshowPassword">
+            <div class="absolute top-[38px] right-3" id="newshowPassword">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
@@ -135,7 +135,10 @@
                 />
               </svg>
             </div>
-            <div class="absolute top-[37px] right-3 hidden newhidePassword">
+            <div
+              class="absolute top-[37px] right-3 hidden"
+              id="newhidePassword"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -150,18 +153,18 @@
             </div>
           </div>
           <div class="relative">
-            <label for="confirmpassword"
+            <label for="confirmPassword"
               >Confrim Password
               <input
                 type="password"
                 placeholder="Re-enter the password"
-                id="confirmpassword"
+                id="confirmPassword"
                 class="outline-none w-full my-2 px-4 py-1 bg-gray-200 rounded focus:border focus:border-violet-500"
               />
             </label>
 
             <!-- Show / Hide Password -->
-            <div class="absolute top-[38px] right-3 confirmshowPassword">
+            <div class="absolute top-[38px] right-3" id="confirmshowPassword">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
@@ -174,7 +177,10 @@
                 />
               </svg>
             </div>
-            <div class="absolute top-[37px] right-3 hidden confirmhidePassword">
+            <div
+              class="absolute top-[37px] right-3 hidden"
+              id="confirmhidePassword"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -190,6 +196,7 @@
           </div>
         </div>
 
+        <!-- Terms and Conditions -->
         <div class="mt-5">
           <label for="terms">
             <input type="checkbox" name="terms" id="terms" />

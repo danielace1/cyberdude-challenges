@@ -107,6 +107,7 @@ validateForm.addField(
     {
       rule: "minLength",
       value: 8,
+      errorMessage: "Password must be at least 8 characters long",
     },
   ],
   {
@@ -114,47 +115,60 @@ validateForm.addField(
   }
 );
 
-// show/hide PasswordField
+validateForm.addField(
+  "#confirmPassword",
+  [
+    {
+      rule: "required",
+      errorMessage: "Confirm Password is required",
+    },
+    {
+      validator: (val) => {
+        const newPasswordValue = document.querySelector("#newPassword").value;
+        return val === newPasswordValue;
+      },
+      errorMessage: "Passwords should be the same",
+    },
+  ],
+  {
+    errorLabelCssClass: ["form-error"],
+  }
+);
 
-// new password
+// show/hide Password
+
+// New password
 const newPassword = document.querySelector("#newPassword");
+const newshowPassword = document.querySelector("#newshowPassword");
+const newhidePassword = document.querySelector("#newhidePassword");
 
-const newshowPassword = document.querySelectorAll(".newshowPassword");
-const newhidePassword = document.querySelectorAll(".newhidePassword");
-newshowPassword.forEach((btn, index) => {
-  btn.addEventListener("click", () => {
-    newhidePassword[index].classList.remove("hidden");
-    newPassword.type = "text";
-    newshowPassword[index].classList.add("hidden");
-  });
+newshowPassword.addEventListener("click", () => {
+  newhidePassword.classList.remove("hidden");
+  newPassword.type = "text";
+  newshowPassword.classList.add("hidden");
 });
 
-newhidePassword.forEach((btn, index) => {
-  btn.addEventListener("click", () => {
-    newshowPassword[index].classList.remove("hidden");
-    newPassword.type = "password";
-    newhidePassword[index].classList.add("hidden");
-  });
+newhidePassword.addEventListener("click", () => {
+  newshowPassword.classList.remove("hidden");
+  newPassword.type = "password";
+  newhidePassword.classList.add("hidden");
 });
 
-// confirm password
-const confirmPassword = document.querySelector("#confirmpassword");
-const confirmshowPassword = document.querySelectorAll(".confirmshowPassword");
-const confirmhidePassword = document.querySelectorAll(".confirmhidePassword");
-confirmshowPassword.forEach((btn, index) => {
-  btn.addEventListener("click", () => {
-    confirmhidePassword[index].classList.remove("hidden");
-    confirmPassword.type = "text";
-    confirmshowPassword[index].classList.add("hidden");
-  });
+// Confirm password
+const confirmPassword = document.querySelector("#confirmPassword");
+const confirmshowPassword = document.querySelector("#confirmshowPassword");
+const confirmhidePassword = document.querySelector("#confirmhidePassword");
+
+confirmshowPassword.addEventListener("click", () => {
+  confirmhidePassword.classList.remove("hidden");
+  confirmPassword.type = "text";
+  confirmshowPassword.classList.add("hidden");
 });
 
-confirmhidePassword.forEach((btn, index) => {
-  btn.addEventListener("click", () => {
-    confirmshowPassword[index].classList.remove("hidden");
-    confirmPassword.type = "password";
-    confirmhidePassword[index].classList.add("hidden");
-  });
+confirmhidePassword.addEventListener("click", () => {
+  confirmshowPassword.classList.remove("hidden");
+  confirmPassword.type = "password";
+  confirmhidePassword.classList.add("hidden");
 });
 
 validateForm.onSuccess(() => {});

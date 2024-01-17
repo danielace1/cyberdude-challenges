@@ -2,6 +2,8 @@ import Justvalidate from "just-validate";
 
 const formEl = document.getElementById("registerationForm");
 
+const localStorageKey = "userId";
+
 const validateForm = new Justvalidate(formEl, {
   validateBeforeSubmitting: true,
 });
@@ -171,4 +173,45 @@ confirmhidePassword.addEventListener("click", () => {
   confirmhidePassword.classList.add("hidden");
 });
 
-validateForm.onSuccess(() => {});
+validateForm.addField(
+  "#terms",
+  [
+    {
+      rule: "required",
+      errorMessage: "Please accept the Terms and Conditions.",
+    },
+  ],
+  {
+    errorLabelCssClass: ["form-error"],
+  }
+);
+
+validateForm.onSuccess(() => {
+  const formData = new FormData(formEl);
+
+  const formValueObj = Object.fromEntries(formData.entries());
+
+  console.log(formValueObj);
+
+  const existingData = localStorage.getItem(localStorageKey);
+
+  // Parse the data
+  const existingDataArr = JSON.parse(existingData);
+
+  const newUser = [];
+
+  if (existingDataArr) {
+    // push existing data into new array
+    existingDataArr.push(formValueObj);
+
+    localStorage.setItem(localStorageKey, JSON.stringify(existingDataArr));
+  } else {
+    newUser.push(formValueObj);
+
+    localStorage.setItem(localStorageKey, JSON.stringify(newUser));
+  }
+
+  alert("You have Registered successfully!");
+
+  formEl.reset();
+});

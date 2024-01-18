@@ -37,6 +37,26 @@ function getUserData() {
       userNameEl.classList.add("px-3", "py-2", "border", "break-words");
       userNameEl.textContent = userDetails.username;
 
+      //  Show welcome alert for logged-in user
+      const welcomeMessage = document.createElement("p");
+      welcomeMessage.textContent = `Welcome, ${userDetails.username}! Your registration details are displayed below.`;
+      welcomeMessage.classList.add(
+        "text-green-600",
+        "font-semibold",
+        "mt-2",
+        "text-center",
+        "text-md",
+        "md:text-lg",
+        "lg:text-xl"
+      );
+
+      document.body.insertBefore(welcomeMessage, document.body.firstChild);
+      document.querySelector("#welcomeMessage").append(welcomeMessage);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        alert(`Welcome ${userDetails.username}`);
+      });
+
       emailEl.classList.add("px-3", "py-2", "border", "break-words");
       emailEl.textContent = userDetails.email;
 

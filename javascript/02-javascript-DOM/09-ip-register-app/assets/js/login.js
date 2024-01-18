@@ -89,15 +89,10 @@ validateForm.onSuccess(() => {
       user.confirmPassword === userPasswordEl.value
   );
 
-  console.log(matchedUser);
+  // console.log(matchedUser);
 
   if (matchedUser) {
-    const loginBtnEl = document.querySelector("#loginBtn");
-
-    // Redirect to userData.html if there is a match
-    loginBtnEl.addEventListener("click", () => {
-      window.location.href = "./userData.html";
-    });
+    window.location.href = "./userData.html";
   } else {
     alert("Invalid Email or Password");
     formEl.reset();

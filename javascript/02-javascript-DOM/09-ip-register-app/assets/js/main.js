@@ -246,11 +246,7 @@ validateForm.onSuccess(() => {
   }
 
   alert("You have Registered successfully!");
-
-  const registerBtnEl = document.querySelector("#registerBtn");
-  registerBtnEl.addEventListener("click", () => {
-    window.location.href = "./login.html";
-  });
+  window.location.href = "./login.html";
 
   formEl.reset();
 });

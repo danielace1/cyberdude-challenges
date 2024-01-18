@@ -3,6 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="IP - Registeration App" />
+    <meta
+      property="og:description"
+      content="Secure IP Registration and Login App for streamlined access and management. Register and log in with ease."
+    />
+
+    <meta
+      property="og:image"
+      content="https://img.freepik.com/free-photo/3d-illustration-computer-monitor-login-screen_107791-16390.jpg?w=826&t=st=1705575664~exp=1705576264~hmac=15ce4ef253a4012e23422b8336777aa3e15618b2b761b8d2acbe85e85762b410"
+    />
+    <meta
+      property="og:url"
+      content="https://danielace1.github.io/cyberdude-challenges/javascript/02-javascript-DOM/09-ip-register-app/dist/"
+    />
+    <meta property="og:type" content="website" />
+
     <title>IP - Registeration | User Data</title>
 
     <!-- Favicon -->
@@ -18,14 +36,25 @@
   <body class="bg-gradient-to-r from-blue-400 to-purple-500">
     <main class="max-w-8xl mx-auto">
       <div
-        class="mx-2 my-10 p-5 space-y-3 lg:mx-10 lg:my-14 lg:p-10 lg:space-y-6 md:mx-4 md:p-6 bg-gray-50 rounded shadow-lg"
+        class="mx-2 my-10 p-5 space-y-3 lg:mx-24 lg:my-14 lg:p-10 lg:space-y-6 md:mx-4 md:p-6 bg-gray-50 rounded shadow-lg"
         id="userDetailsTable"
       >
-        <div
-          class="text-blue-500 font-semibold text-center text-2xl lg:text-3xl"
-        >
-          <h1>User Data</h1>
+        <!-- User Image -->
+        <div class="flex justify-center items-center">
+          <div class="flex">
+            <img
+              src="./public/images/user.png"
+              alt="user-image"
+              class="w-10 h-10"
+            />
+          </div>
+          <h1
+            class="font-semibold text-blue-500 text-2xl lg:text-3xl text-center"
+          >
+            &nbsp;User Data
+          </h1>
         </div>
+        <div id="welcomeMessage"></div>
         <div class="overflow-auto rounded">
           <table class="table lg:table-fixed border w-full text-center">
             <tr>
@@ -39,6 +68,17 @@
             </tr>
             <tbody id="userDataTable"></tbody>
           </table>
+
+          <div class="grid items-center justify-center mt-10 mb-4">
+            <a href="./login.html">
+              <button
+                id="loginBtn"
+                class="bg-gradient-to-r from-blue-400 to-purple-500 rounded-full px-10 py-2 text-white tracking-wider text-lg font-semibold hover:transition hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-400"
+              >
+                Log out
+              </button>
+            </a>
+          </div>
         </div>
       </div>
     </main>

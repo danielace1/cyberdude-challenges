@@ -1,7 +1,7 @@
 import Justvalidate from "just-validate";
 import { v4 as uuidv4 } from "uuid";
 
-const formEl = document.getElementById("registerationForm");
+const formEl = document.getElementById("registrationForm");
 
 const localStorageKey = "userId";
 

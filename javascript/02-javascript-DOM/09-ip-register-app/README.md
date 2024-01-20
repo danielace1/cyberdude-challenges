@@ -1,4 +1,4 @@
-# IP - Registeration and Login App
+# IP - Registration and Login App
 
 This challenge is part of free internship (Fullstack Engineer) offered by [CyberDude Networks Pvt. Ltd.](https://cyberdudenetworks.com)
 

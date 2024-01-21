@@ -37,10 +37,18 @@
     <main class="max-w-8xl mx-auto">
       <div
         class="mx-2 my-10 p-5 space-y-3 lg:mx-24 lg:my-14 lg:p-10 lg:space-y-6 md:mx-4 md:p-6 bg-gray-50 rounded shadow-lg"
-        id="userDetailsTable"
       >
+        <div class="flex justify-center">
+          <img
+            src="./public/images/noDataFound.png"
+            alt="noDataFoundImg"
+            class="hidden"
+            id="noDataFoundImg"
+          />
+        </div>
+
         <div id="welcomeMessage"></div>
-        <div class="overflow-auto rounded">
+        <div class="overflow-auto rounded" id="userDetailsTable">
           <table class="table lg:table-fixed border w-full text-center">
             <tr>
               <th class="px-3 py-2 border tracking-wide w-14">S.No</th>
@@ -48,7 +56,7 @@
               <th class="px-3 py-2 border tracking-wide">UserName</th>
               <th class="px-3 py-2 border tracking-wide">Email ID</th>
               <th class="px-3 py-2 border tracking-wide">IP Address</th>
-              <th class="px-3 py-2 border tracking-wide">Registered Time</th>
+              <th class="px-3 py-2 border tracking-wide">Login Time</th>
               <th class="px-2 py-1 border tracking-wide w-20"></th>
             </tr>
             <tbody id="userDataTable"></tbody>

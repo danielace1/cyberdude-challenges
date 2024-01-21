@@ -187,46 +187,12 @@ validateForm.addField(
   }
 );
 
-// IP - Address
-const ipAddressPlaceholder = document.getElementById("ipaddress");
-
-let xhr = new XMLHttpRequest();
-
-xhr.onreadystatechange = function () {
-  if (this.readyState === 4 && this.status === 200) {
-    const cleanedIpAddress = xhr.responseText.trim();
-    ipAddressPlaceholder.value = cleanedIpAddress;
-  }
-};
-
-xhr.open("GET", "https://ipv4.icanhazip.com/");
-xhr.send();
-
-// Time
-const dateAndTime = document.querySelector("#time");
-
-const newDate = new Date();
-
-const neededFormat = {
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-  hour: "numeric",
-  minute: "numeric",
-  hour12: true,
-};
-const formattedDateAndTime = newDate.toLocaleString("en-US", neededFormat);
-
-dateAndTime.value = formattedDateAndTime;
-
 // Validations
 validateForm.onSuccess(() => {
   const formData = new FormData(formEl);
 
   // Pushing the id, dataAndTime and IpAddress into the form
   formData.append("id", uuidv4());
-  formData.append("dateAndTime", dateAndTime.value);
-  formData.append("ipAddress", ipAddressPlaceholder.value);
 
   const formValueObj = Object.fromEntries(formData.entries());
 
@@ -245,7 +211,9 @@ validateForm.onSuccess(() => {
     localStorage.setItem(localStorageKey, JSON.stringify(newUser));
   }
 
-  alert("You have Registered successfully!");
+  const firstname = document.querySelector("#firstname");
+
+  alert(`Hey ${firstname.value}, You have Registered successfully!`);
   window.location.href = "./login.html";
 
   formEl.reset();

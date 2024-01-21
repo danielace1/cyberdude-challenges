@@ -7,6 +7,16 @@ const userData = storedUserData ? JSON.parse(storedUserData) : [];
 
 console.log("userData", userData);
 
+const userDetailsTableEl = document.querySelector("#userDetailsTable");
+
+if (userData.length === 0) {
+  const noDataFoundImg = document.querySelector("#noDataFoundImg");
+  noDataFoundImg.classList.remove("hidden");
+  userDetailsTableEl.classList.add("hidden");
+} else {
+  userDetailsTableEl.classList.remove("hidden");
+}
+
 function getUserData() {
   const tableEl = document.querySelector("#userDataTable");
   tableEl.innerHTML = "";
@@ -23,7 +33,7 @@ function getUserData() {
       const userNameEl = document.createElement("td");
       const emailEl = document.createElement("td");
       const ipAddressEl = document.createElement("td");
-      const registeredTimeEl = document.createElement("td");
+      const loginTimeEl = document.createElement("td");
       const td6El = document.createElement("td");
       const deleteBtnEl = document.createElement("button");
 
@@ -60,12 +70,37 @@ function getUserData() {
       emailEl.classList.add("px-3", "py-2", "border", "break-words");
       emailEl.textContent = userDetails.email;
 
+      // IP - Address
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          const cleanedIpAddress = xhr.responseText.trim();
+          ipAddressEl.textContent = cleanedIpAddress;
+        }
+      };
+      xhr.open("GET", "https://ipv4.icanhazip.com/");
+      xhr.send();
       ipAddressEl.classList.add("px-3", "py-2", "border", "break-words");
-      ipAddressEl.textContent = userDetails.ipAddress;
 
-      registeredTimeEl.classList.add("px-3", "py-2", "border", "break-words");
-      registeredTimeEl.textContent = userDetails.dateAndTime;
+      // Login Time
+      const dateAndTime = document.querySelector("#time");
+      const newDate = new Date();
+      const neededFormat = {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      };
+      const formattedDateAndTime = newDate.toLocaleString(
+        "en-US",
+        neededFormat
+      );
+      loginTimeEl.classList.add("px-3", "py-2", "border", "break-words");
+      loginTimeEl.textContent = formattedDateAndTime;
 
+      // Delete Btn
       const deleteIcon = `<svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -93,7 +128,7 @@ function getUserData() {
         userNameEl,
         emailEl,
         ipAddressEl,
-        registeredTimeEl,
+        loginTimeEl,
         td6El
       );
 

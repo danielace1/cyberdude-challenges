@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="IP - Registeration App" />
+    <meta property="og:title" content="IP - Registration App" />
     <meta
       property="og:description"
       content="Secure IP Registration and Login App for streamlined access and management. Register and log in with ease."
@@ -21,7 +21,7 @@
     />
     <meta property="og:type" content="website" />
 
-    <title>IP - Registeration | User Data</title>
+    <title>IP - Registration | User Data</title>
 
     <!-- Favicon -->
     <link
@@ -31,7 +31,7 @@
     />
 
     <!-- Tailwind CSS -->
-    <script type="module" crossorigin src="./assets/userData-W0sRGmiN.js"></script>
+    <script type="module" crossorigin src="./assets/userData-fRtLle2c.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/style-0MLRzMiK.js">
     <link rel="stylesheet" crossorigin href="./assets/style-UQmVDIPo.css">
   </head>
@@ -39,25 +39,18 @@
     <main class="max-w-8xl mx-auto">
       <div
         class="mx-2 my-10 p-5 space-y-3 lg:mx-24 lg:my-14 lg:p-10 lg:space-y-6 md:mx-4 md:p-6 bg-gray-50 rounded shadow-lg"
-        id="userDetailsTable"
       >
-        <!-- User Image -->
-        <div class="flex justify-center items-center">
-          <div class="flex">
-            <img
-              src="./assets/user-gEizPxEX.png"
-              alt="user-image"
-              class="w-10 h-10"
-            />
-          </div>
-          <h1
-            class="font-semibold text-blue-500 text-2xl lg:text-3xl text-center"
-          >
-            &nbsp;User Data
-          </h1>
+        <div class="flex justify-center">
+          <img
+            src="./assets/noDataFound-cTc5VuER.png"
+            alt="noDataFoundImg"
+            class="hidden"
+            id="noDataFoundImg"
+          />
         </div>
+
         <div id="welcomeMessage"></div>
-        <div class="overflow-auto rounded">
+        <div class="overflow-auto rounded" id="userDetailsTable">
           <table class="table lg:table-fixed border w-full text-center">
             <tr>
               <th class="px-3 py-2 border tracking-wide w-14">S.No</th>
@@ -65,7 +58,7 @@
               <th class="px-3 py-2 border tracking-wide">UserName</th>
               <th class="px-3 py-2 border tracking-wide">Email ID</th>
               <th class="px-3 py-2 border tracking-wide">IP Address</th>
-              <th class="px-3 py-2 border tracking-wide">Registered Time</th>
+              <th class="px-3 py-2 border tracking-wide">Login Time</th>
               <th class="px-2 py-1 border tracking-wide w-20"></th>
             </tr>
             <tbody id="userDataTable"></tbody>
@@ -89,7 +82,7 @@
     <footer
       class="absolute bottom-0 w-full md:flex md:justify-center items-center py-3 text-white text-center"
     >
-      &copy; 2024 IP - Registeration App. All Rights Reserved. | Developed
+      &copy; 2024 IP - Registration App. All Rights Reserved. | Developed
       by&nbsp;
       <a
         href="https://github.com/danielace1/cyberdude-challenges/tree/master/javascript/02-javascript-DOM/09-ip-register-app"

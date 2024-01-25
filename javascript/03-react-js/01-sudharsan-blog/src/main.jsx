@@ -1,7 +1,22 @@
-// import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import GuestLayout from "./layouts/Guest";
+import HomePage from "./pages/HomePage";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <GuestLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <h1 className="bg-red-100">Hello Im coming from React</h1>
+  <RouterProvider router={router} />
 );

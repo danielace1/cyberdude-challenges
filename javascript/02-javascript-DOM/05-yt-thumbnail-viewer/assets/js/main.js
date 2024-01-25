@@ -1,3 +1,8 @@
+// Youtube Links
+// Single Video - https://www.youtube.com/watch?v=Fh9YgIT1mPc
+// Playlist- https://www.youtube.com/watch?v=ZQkUYmaVwgs&list=RDCLAK5uy_ksEjgm3H_7zOJ_RHzRjN1wY-_FFcs7aAU
+// Live - https://www.youtube.com/watch?v=6CKoXhYOhXM&pp=ygUMbGl2ZSB2aWRlb3Mn
+
 const urlFormEl = document.querySelector("#urlForm");
 const thumbnailImgEl = document.querySelector("#thumbnailImg");
 
@@ -6,19 +11,16 @@ urlFormEl.addEventListener("submit", (e) => {
   const urlInputEl = document.querySelector("#urlInput");
   const urlInputElVal = urlInputEl.value;
 
-  // https://www.youtube.com/watch?v=Fh9YgIT1mPc
-  // https://www.youtube.com/watch?v=ZQkUYmaVwgs&list=RDCLAK5uy_ksEjgm3H_7zOJ_RHzRjN1wY-_FFcs7aAU
+  // Regular expression to extract video ID from YouTube URL
+  const regex =
+    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
 
-  const videoId = urlInputElVal.slice(32, 43);
-  const videoId2 = urlInputElVal.slice(49);
+  const match = urlInputElVal.match(regex);
 
-  const getUrl = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+  if (match) {
+    const videoId = match[1];
+    const getUrl = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
 
-  const validUrl = `https://www.youtube.com/watch?v=${videoId}`;
-  const validUrl2 = `https://www.youtube.com/watch?v=${videoId}&list=${videoId2}`;
-
-  if (urlInputEl === "") {
-  } else if (urlInputElVal === validUrl || urlInputElVal === validUrl2) {
     thumbnailImgEl.src = getUrl;
     thumbnailImgEl.alt = videoId;
     thumbnailImgEl.classList.remove(
@@ -36,6 +38,6 @@ urlFormEl.addEventListener("submit", (e) => {
       "rounded"
     );
   } else {
-    alert("Enter Youtube video URL only!");
+    alert("Enter a valid YouTube video URL!");
   }
 });

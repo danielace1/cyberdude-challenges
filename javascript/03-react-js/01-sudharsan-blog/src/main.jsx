@@ -3,6 +3,9 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import GuestLayout from "./layouts/Guest";
 import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import ErrorPage from "./pages/Error";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +16,16 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
+      {
+        path: "/about",
+        element: <AboutPage />,
+      },
+      {
+        path: "/contact",
+        element: <ContactPage />,
+      },
     ],
+    errorElement: <ErrorPage />,
   },
 ]);
 

@@ -1,27 +1,32 @@
+import { Link } from "react-router-dom";
+
 const TheNavbar = () => {
   return (
-    <div className="bg-darkBlue text-white flex items-center justify-between px-16 py-2">
+    <div className="bg-darkBlue text-white sm:flex items-center sm:justify-between sm:px-16 py-2">
       <div className="flex items-center">
         <div>
-          <img
-            src="\public/images/s-logo.png"
-            alt="s-logo"
-            className="w-32 relative"
-          />
+          <Link to="/">
+            <img
+              src="\public/images/s-logo.png"
+              alt="s-logo"
+              className="w-28 sm:w-32 relative"
+            />
+          </Link>
         </div>
-        <h4 className="font-semibold text-2xl absolute left-[165px] top-14">
+        <h4 className="font-semibold text-2xl absolute left-[85px] sm:left-[163px] top-12 sm:top-14">
+          {/* Logo */}
           udharsan&apos;s Blog
         </h4>
       </div>
-      <ul className="flex items-center mt-3 space-x-10 text-lg">
+      <ul className="flex items-center justify-start px-10 sm:px-0 mt-3 space-x-10 text-md sm:text-lg">
         <li className="hover:cursor-pointer hover:text-cyan hover:transition transition">
-          Home
+          <Link to="/">Home</Link>
         </li>
         <li className="hover:cursor-pointer hover:text-cyan hover:transition transition">
-          About
+          <Link to="/about">About</Link>
         </li>
-        <li className="bg-cyan text-darkBlue hover:cursor-pointer hover:text-white hover:transition transition  px-5 py-2 rounded-full">
-          Contact
+        <li className="bg-cyan text-darkBlue hover:cursor-pointer hover:text-white hover:transition transition  px-5 py-1 rounded-full">
+          <Link to="/contact">Contact</Link>
         </li>
       </ul>
     </div>

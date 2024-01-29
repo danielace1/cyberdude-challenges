@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <footer className="p-3 bg-darkBlue text-gray-200 text-center">
       <p>
-        &copy; 2024 All Rights Reserved | Developed by&nbsp;
+        &copy; 2024 All Rights Reserved. | Developed by&nbsp;
         <a
           href="https://github.com/danielace1"
           target="_blank"

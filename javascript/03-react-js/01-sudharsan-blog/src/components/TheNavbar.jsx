@@ -7,7 +7,7 @@ const TheNavbar = () => {
         <div>
           <Link to="/">
             <img
-              src="\public/images/s-logo.png"
+              src="/images/s-logo.png"
               alt="s-logo"
               className="w-28 sm:w-32 relative"
             />

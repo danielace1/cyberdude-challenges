@@ -1,12 +1,12 @@
 const AboutPage = () => {
   return (
     <div className="bg-backGround px-10 sm:px-32 py-10 sm:py-20 min-h-screen">
-      <div className="grid sm:flex space-y-5 sm:space-y-0 sm:space-x-10 items-center bg-darkBlue p-10 rounded">
-        <div className="w-full">
+      <div className="grid lg:flex space-y-8 lg:space-y-0 lg:space-x-10 items-center bg-darkBlue p-5 sm:p-10 rounded">
+        <div className="w-full flex justify-center">
           <img
-            src="../public/images/Sudharsan.jpg"
+            src="/images/Sudharsan.jpg"
             alt="Sudharsan"
-            className="w-64 h-64 sm:w-72 sm:h-72 rounded-full object-cover bg-gradient-to-tr from-cyan to-teal-300 p-0.5"
+            className="w-64 h-64 lg:w-72 lg:h-72 rounded-full object-cover bg-gradient-to-tr from-cyan to-teal-300 p-0.5"
           />
         </div>
         <div className="">

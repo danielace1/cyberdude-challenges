@@ -9,12 +9,14 @@ const BlogPostPage = () => {
   return (
     <div className="bg-backGround min-h-screen px-10 sm:px-24 py-10 ">
       <div className="bg-white text-darkBlue mt-10 w-full p-5 rounded border-dashed border-2 border-darkBlue">
-        <div className="grid sm:flex sm:space-x-8">
-          <img
-            src={post.image}
-            alt={post.title}
-            className="rounded w-full h-40 sm:w-96 sm:h-60"
-          />
+        <div className="grid lg:flex lg:space-x-8 space-y-5">
+          <div className="flex justify-center">
+            <img
+              src={post.image}
+              alt={post.title}
+              className="rounded w-full h-auto"
+            />
+          </div>
           <div className="flex flex-col  justify-center">
             <h1
               className="font-semibold text-xl sm:text-2xl mt-2 sm:mt-0 
@@ -27,7 +29,17 @@ const BlogPostPage = () => {
             </h1>
             <p className="mt-5">{post.desc}</p>
             <div className="grid sm:flex mt-5 sm:mt-8 justify-between items-center">
-              <span className="text-gray-500">Author: Sudharsan</span>
+              <span className="text-gray-500 flex items-center">
+                Author:&nbsp;
+                <div>
+                  <img
+                    src="/images/Sudharsan.jpg"
+                    alt="sudharsan"
+                    className="w-6 h-6 rounded-full object-cover"
+                  />
+                </div>
+                &nbsp;Sudharsan
+              </span>
               <span className="text-gray-500">{post.postedOn}</span>
             </div>
           </div>

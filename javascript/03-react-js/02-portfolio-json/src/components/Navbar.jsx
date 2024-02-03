@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <header className="flex items-center justify-between py-8 px-28">
+    <header className="grid gap-y-4 sm:flex items-center px-14 sm:justify-between py-8 sm:px-28">
       <Link to="/">
         <div className="text-3xl text-white font-bold hover:text-[#8678F9] transition">
           Sudharsan
@@ -15,6 +15,14 @@ const Navbar = () => {
             className="text-slate-400 transition-colors hover:text-white"
           >
             Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/about"
+            className="text-slate-400 transition-colors hover:text-white"
+          >
+            About
           </Link>
         </li>
         <li>

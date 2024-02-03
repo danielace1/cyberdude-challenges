@@ -1,11 +1,13 @@
+import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import HomePage from "./components/HomePage";
 
 const App = () => {
   return (
     <div className=" bg-black">
       <Navbar />
-      <HomePage />
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 };

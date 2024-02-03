@@ -1,6 +1,34 @@
 [
   {
+    "id": "1",
     "name": "Sudharsan",
-    "desc": "a full-stack engineer with a love for turning ideas into digital reality. From designing user-friendly interfaces to building robust backend solutions, I bring simplicity and creativity to the world of coding."
+    "desc": "a full-stack engineer with a love for turning ideas into digital reality. From designing user-friendly interfaces to building robust backend solutions, I bring simplicity and creativity to the world of coding.",
+    "aboutme": "Hello there! I'm Sudharsan, a first-year student at Anna University, majoring in Computer Science. My academic journey has allowed me to dive deep into Web-Development, and I'm incredibly passionate about leveraging technology to solve real-world problems. Being a student in today's dynamic digital era, I've had opportunities to work on exciting projects, some of which you can explore right here on my portfolio.",
+    "interests": [
+      {
+        "interest": "Gaming",
+        "logo": "https://api.iconify.design/maki:gaming.svg?color=%23888888"
+      },
+      {
+        "interest": "Music",
+        "logo": "https://api.iconify.design/mdi:music.svg?color=%23888888"
+      },
+      {
+        "interest": "Travel",
+        "logo": "https://api.iconify.design/material-symbols:travel.svg?color=%23888888"
+      },
+      {
+        "interest": "Movie",
+        "logo": "https://api.iconify.design/material-symbols:movie.svg?color=%23888888"
+      }
+    ],
+    "education": [
+      {
+        "id": "1",
+        "degree": "Bachelor of Engineering",
+        "institute": "Sudharsan Institute of Technology",
+        "passing_year": "2016"
+      }
+    ]
   }
 ]

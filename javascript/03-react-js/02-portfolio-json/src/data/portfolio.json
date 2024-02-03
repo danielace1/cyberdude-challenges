@@ -89,14 +89,14 @@
         "gitrepo": "https://github.com/danielace1/cyberdude-challenges/tree/master/javascript/02-javascript-DOM/09-ip-register-app"
       },
       {
-        "Img": "src/assets/images/gpay.png",
+        "Img": "/images/gpay.png",
         "title": "Google Pay UI Tailwind",
         "desc": "A clean and easy-to-use UI design inspired by Google Pay. Created to give users a comfortable view of their online transactions, blending simplicity with modern design touches.",
         "livelink": "https://danielace1.github.io/Google-Pay-UI-Tailwind/",
         "gitrepo": "https://github.com/danielace1/Google-Pay-UI-Tailwind"
       },
       {
-        "Img": "src/assets/images/instagram.png",
+        "Img": "/images/instagram.png",
         "title": "Instagram UI Tailwind",
         "desc": "A modern reimagining of the Instagram interface, crafted using Tailwind CSS. This UI captures the essence of Instagram's user-centric design while integrating the responsive and customizable utilities of Tailwind, offering a fresh and intuitive social media experience.",
         "livelink": "https://danielace1.github.io/Instagram-UI-Tailwind/",
@@ -110,7 +110,7 @@
         "gitrepo": "https://github.com/danielace1/cyberdude-challenges/tree/master/javascript/02-javascript-DOM/07-advice-generator-app"
       },
       {
-        "Img": "src/assets/images/blog.png",
+        "Img": "/images/blog.png",
         "title": "Sudharsan's Blog",
         "desc": "Explore a dynamic React-powered blog, seamlessly blending user-friendly design with engaging content. Dive into a personalized reading experience crafted with modern web technologies.",
         "livelink": "https://sudharsan-blog.netlify.app/",

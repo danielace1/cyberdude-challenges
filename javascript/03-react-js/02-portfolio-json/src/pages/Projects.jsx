@@ -1,4 +1,5 @@
 import portfolio from "../data/portfolio.json";
+import Animation from "../components/Animation.jsx";
 
 const Projects = () => {
   const projectData = portfolio.map((project, i) => {
@@ -7,6 +8,8 @@ const Projects = () => {
         className="bg-black min-h-screen px-8 sm:px-28 mt-6 sm:mt-10 pb-10"
         key={i}
       >
+        <Animation />
+
         {/* Project */}
         <div className="flex justify-center mt-10">
           <h1 className="text-4xl font-semibold text-white border-b-2 border-[#8678F9]">
@@ -16,7 +19,7 @@ const Projects = () => {
         <div className="grid lg:grid-cols-3 gap-x-10 gap-y-10 mt-10">
           {project.projects.map((work, i) => (
             <div
-              className="grid items-center space-y-5 text-white outline outline-1 outline-[#8678F9] border-[#8678F9] rounded p-4 lg:p-10"
+              className="grid items-center space-y-5 text-white outline outline-1 outline-[#8678F9] rounded p-4 lg:p-10"
               key={i}
             >
               <div>

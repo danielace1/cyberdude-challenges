@@ -1,10 +1,12 @@
 import portfolio from "../data/portfolio.json";
 import Sudharsan from "../assets/images/Sudharsan.jpg";
+import Animation from "../components/Animation.jsx";
 
 const HomePage = () => {
   const portfolioData = portfolio.map((value) => {
     return (
       <div className=" bg-black min-h-screen" key={value.id}>
+        <Animation />
         <section>
           <div className="px-14 pb-10 sm:pb-0 sm:px-28 grid sm:flex items-center gap-x-10 mt-10">
             <div className="mb-16">

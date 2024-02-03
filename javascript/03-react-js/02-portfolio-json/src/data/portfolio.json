@@ -22,12 +22,99 @@
         "logo": "https://api.iconify.design/material-symbols:movie.svg?color=%23888888"
       }
     ],
+    "skills": [
+      {
+        "stack": "HTML",
+        "logo": "https://api.iconify.design/devicon:html5.svg?color=%23888888"
+      },
+      {
+        "stack": "CSS",
+        "logo": "https://api.iconify.design/devicon:css3.svg?color=%23888888"
+      },
+      {
+        "stack": "JavaScript",
+        "logo": "https://api.iconify.design/devicon:javascript.svg?color=%23888888"
+      },
+      {
+        "stack": "Bootstrap",
+        "logo": "https://api.iconify.design/devicon:bootstrap.svg?color=%23888888"
+      },
+      {
+        "stack": "TailwindCSS",
+        "logo": "https://api.iconify.design/logos:tailwindcss-icon.svg?color=%23888888"
+      },
+      {
+        "stack": "Reactjs",
+        "logo": "https://api.iconify.design/devicon:react.svg?color=%23888888"
+      },
+      {
+        "stack": "Nodejs",
+        "logo": "https://api.iconify.design/devicon:nodejs.svg?color=%23888888"
+      },
+      {
+        "stack": "MongoDB",
+        "logo": "https://api.iconify.design/skill-icons:mongodb.svg?color=%23888888"
+      },
+      {
+        "stack": "Expressjs",
+        "logo": "https://api.iconify.design/simple-icons:express.svg?color=%23888888"
+      }
+    ],
     "education": [
       {
-        "id": "1",
-        "degree": "Bachelor of Engineering",
-        "institute": "Sudharsan Institute of Technology",
-        "passing_year": "2016"
+        "Img": "https://play-lh.googleusercontent.com/K_-SxUrxyAYAs_clNCjP8-xHWkNdEJtX6iNGLsYPz4hbeREfyr_XVn6PRPfOZcfKY6M=w600-h300-pc0xffffff-pd",
+        "location": "Cyberdude Networks Pvt. Ltd",
+        "degree": "Junior Full-Stack Engineer",
+        "duration": "2023 (Sep) - Present"
+      },
+      {
+        "Img": "https://cache.careers360.mobi/media/colleges/reviews/2020/8/4/137310/Header.jpg",
+        "location": "Government College of Engineering, Tirunelveli",
+        "degree": "B.E - Computer Science And Engineering",
+        "duration": "2023 - Present"
+      },
+      {
+        "Img": "https://www.rosemaryschools.com/images/653.png",
+        "location": "Rose Mary Matric. Hr. Sec. School",
+        "degree": "HIGHER SCHOOLING",
+        "duration": "2020 - 2023"
+      }
+    ],
+    "projects": [
+      {
+        "Img": "https://github.com/danielace1/cyberdude-challenges/raw/master/javascript/02-javascript-DOM/09-ip-register-app/public/screenshots/homepage.png",
+        "title": "IP - Registration and Login App",
+        "desc": "The IP Registration and Login App is a simple web application designed for user registration and login functionalities, enhanced with the ability to display the user's IP address. The app provides a streamlined process for account creation and secure access.",
+        "livelink": "https://danielace1.github.io/cyberdude-challenges/javascript/02-javascript-DOM/09-ip-register-app/dist/",
+        "gitrepo": "https://github.com/danielace1/cyberdude-challenges/tree/master/javascript/02-javascript-DOM/09-ip-register-app"
+      },
+      {
+        "Img": "src/assets/images/gpay.png",
+        "title": "Google Pay UI Tailwind",
+        "desc": "A clean and easy-to-use UI design inspired by Google Pay. Created to give users a comfortable view of their online transactions, blending simplicity with modern design touches.",
+        "livelink": "https://danielace1.github.io/Google-Pay-UI-Tailwind/",
+        "gitrepo": "https://github.com/danielace1/Google-Pay-UI-Tailwind"
+      },
+      {
+        "Img": "src/assets/images/instagram.png",
+        "title": "Instagram UI Tailwind",
+        "desc": "A modern reimagining of the Instagram interface, crafted using Tailwind CSS. This UI captures the essence of Instagram's user-centric design while integrating the responsive and customizable utilities of Tailwind, offering a fresh and intuitive social media experience.",
+        "livelink": "https://danielace1.github.io/Instagram-UI-Tailwind/",
+        "gitrepo": "https://github.com/danielace1/Instagram-UI-Tailwind"
+      },
+      {
+        "Img": "https://github.com/danielace1/cyberdude-challenges/raw/master/javascript/02-javascript-DOM/07-advice-generator-app/public/screenshots/glance.png",
+        "title": "Advice Generator App",
+        "desc": "The Advice Generator App is a simple application that fetches and displays random piece of advices. This app offers a user-friendly interface and a quick way to access helpful or entertaining advice.",
+        "livelink": "https://danielace1.github.io/cyberdude-challenges/javascript/02-javascript-DOM/07-advice-generator-app/dist/",
+        "gitrepo": "https://github.com/danielace1/cyberdude-challenges/tree/master/javascript/02-javascript-DOM/07-advice-generator-app"
+      },
+      {
+        "Img": "src/assets/images/blog.png",
+        "title": "Sudharsan's Blog",
+        "desc": "Explore a dynamic React-powered blog, seamlessly blending user-friendly design with engaging content. Dive into a personalized reading experience crafted with modern web technologies.",
+        "livelink": "https://sudharsan-blog.netlify.app/",
+        "gitrepo": "https://github.com/danielace1/cyberdude-challenges/tree/master/javascript/03-react-js/01-sudharsan-blog"
       }
     ]
   }

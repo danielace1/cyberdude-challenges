@@ -26,6 +26,14 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
+          <Link
+            to="/projects"
+            className="text-slate-400 transition-colors hover:text-white"
+          >
+            Projects
+          </Link>
+        </li>
+        <li>
           <a
             href="https://twitter.com/Ibelick"
             target="_blank"

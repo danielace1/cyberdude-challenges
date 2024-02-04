@@ -1,10 +1,12 @@
-import "./App.css";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/TheNavbar";
 
 const App = () => {
   return (
-    <>
-      <h1>Im react blog</h1>
-    </>
+    <div>
+      <Navbar />
+      <Outlet />
+    </div>
   );
 };
 

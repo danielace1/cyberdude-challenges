@@ -23,6 +23,17 @@ const RegisterForm = () => {
 
   const submitFormtoServer = (e) => {
     e.preventDefault();
+
+    alert(`Hey ${e.target.name.value}, You have registered Successfully!`);
+    setForm(() => {
+      return {
+        name: "",
+        username: "",
+        email: "",
+        password: "",
+        repeatPassword: "",
+      };
+    });
   };
 
   return (
@@ -44,7 +55,6 @@ const RegisterForm = () => {
             value={form.name}
             handleOnchange={handleInputs}
           />
-          {/* {formError.name ? <small>{formError.name}</small> : ""} */}
           <FormInput
             name={"username"}
             type="text"

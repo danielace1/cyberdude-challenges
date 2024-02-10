@@ -5,8 +5,11 @@ const App = () => {
   const [charge, setCharge] = useState("50");
   const [name, setName] = useState("Daniel");
   const [status, setStatus] = useState("online");
+  const [chatDate, setChatDate] = useState("Today");
   const [message1, setMessage1] = useState("Hello");
+  const [msg1ime, setMsg1Time] = useState("10:00 am");
   const [message2, setMessage2] = useState("Hi");
+  const [msg2ime, setMsg2Time] = useState("10:00 pm");
 
   const inputTime = (e) => {
     const stdTime = e.target.value;
@@ -16,7 +19,9 @@ const App = () => {
     const ampm = hours >= 12 ? "PM" : "AM";
     const formattedHours = hours % 12 || 12;
 
-    const formattedTime = `${formattedHours}:${minutes} ${ampm}`;
+    const formattedTime = `${
+      formattedHours < 10 ? "0" + formattedHours : formattedHours
+    }:${minutes} ${ampm}`;
 
     setTime(formattedTime);
   };
@@ -38,10 +43,7 @@ const App = () => {
   const inputName = (e) => {
     const inputValue = e.target.value;
 
-    const formattedValue =
-      inputValue.length < 3 || inputValue.length >= 15
-        ? "Give Valid Name"
-        : inputValue;
+    const formattedValue = inputValue.length >= 15 ? "" : inputValue;
 
     setName(formattedValue);
   };
@@ -57,12 +59,50 @@ const App = () => {
     setStatus(formattedValue);
   };
 
+  const inputChatDate = (e) => {
+    const inputValue = e.target.value;
+
+    const formattedValue = inputValue.length >= 20 ? "" : inputValue;
+
+    setChatDate(formattedValue);
+  };
+
   const inputMsg1 = (e) => {
     const inputValue = e.target.value;
 
     document.querySelector("#msgValue").classList.remove("w-1/4");
 
     setMessage1(inputValue);
+  };
+
+  const inputMsg1Time = (e) => {
+    const stdTime = e.target.value;
+
+    const [hours, minutes] = stdTime.split(":");
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedHours = hours % 12 || 12;
+
+    const formattedTime = `${
+      formattedHours < 10 ? "0" + formattedHours : formattedHours
+    }:${minutes} ${ampm}`;
+
+    setMsg1Time(formattedTime);
+  };
+
+  const inputMsg2Time = (e) => {
+    const stdTime = e.target.value;
+
+    const [hours, minutes] = stdTime.split(":");
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedHours = hours % 12 || 12;
+
+    const formattedTime = `${
+      formattedHours < 10 ? "0" + formattedHours : formattedHours
+    }:${minutes} ${ampm}`;
+
+    setMsg2Time(formattedTime);
   };
 
   const inputMsg2 = (e) => {
@@ -76,6 +116,7 @@ const App = () => {
     <div className="bg-emerald-400 min-h-screen p-10 grid grid-cols-2">
       <div className="space-y-5 max-w-lg bg-emerald-300 ml-32 rounded px-10 py-5">
         <h1 className="text-3xl font-semibold">Fake Chat Creator</h1>
+
         <div className="flex space-x-5">
           <div>
             <label htmlFor="time">Time:</label>
@@ -108,16 +149,30 @@ const App = () => {
             onChange={inputName}
           />
         </div>
-        <div>
-          <label htmlFor="status">Status:</label>
-          <input
-            type="text"
-            placeholder="last seen yesterday at 7:53 pm"
-            className="px-3 py-1 rounded outline-none w-full mt-2"
-            id="status"
-            onChange={inputStatus}
-          />
+
+        <div className="flex space-x-4">
+          <div>
+            <label htmlFor="status">Status:</label>
+            <input
+              type="text"
+              placeholder="last seen yesterday at 7:53 pm"
+              className="px-3 py-1 rounded outline-none w-full mt-2"
+              id="status"
+              onChange={inputStatus}
+            />
+          </div>
+          <div>
+            <label htmlFor="chatDate">Chat Date:</label>
+            <input
+              type="text"
+              placeholder="26 Jan 2024"
+              className="px-3 py-1 rounded outline-none w-full mt-2"
+              id="chatDate"
+              onChange={inputChatDate}
+            />
+          </div>
         </div>
+
         <div>
           <label htmlFor="msg1">Message 1:</label>
           <input
@@ -135,6 +190,7 @@ const App = () => {
             placeholder="Time"
             className="px-3 py-1 rounded outline-none w-full mt-2"
             id="msg1time"
+            onChange={inputMsg1Time}
           />
         </div>
         <div>
@@ -154,6 +210,7 @@ const App = () => {
             placeholder="Time"
             className="px-3 py-1 rounded outline-none w-full mt-2"
             id="msg2time"
+            onChange={inputMsg2Time}
           />
         </div>
 
@@ -164,8 +221,8 @@ const App = () => {
         </div>
       </div>
 
-      <div className="max-w-lg mt-10 rounded">
-        <div className="flex justify-between bg-gray-900 text-white px-5 py-1">
+      <div className="max-w-lg rounded">
+        <div className="flex justify-between bg-gray-900 rounded-tl rounded-tr text-white px-5 py-1">
           <div>{time}</div>
           <div className="flex space-x-2">
             <div className="flex items-center">
@@ -196,7 +253,7 @@ const App = () => {
             </div>
           </div>
         </div>
-        <div className="bg-slate-300">
+        <div className="bg-slate-300 rounded">
           <div className="bg-emerald-900 px-5 flex items-center justify-between space-x-2 py-3 text-white">
             <div className="flex space-x-3 items-center">
               <svg
@@ -250,23 +307,53 @@ const App = () => {
               </div>
             </div>
           </div>
-          <div className="bg-slate-300 h-96 relative">
+
+          <div className="text-center py-3">
+            <button className="px-3 py-1 text-gray-500 rounded-md bg-sky-200 text-xs cursor-auto">
+              {chatDate}
+            </button>
+          </div>
+
+          <div className="py-1 px-20">
+            <div className="text-gray-500 rounded-md bg-amber-100">
+              <div className="p-1.5 flex">
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    className="fill-current"
+                  >
+                    <path d="M4 22V8h3V6q0-2.075 1.463-3.538T12 1q2.075 0 3.538 1.463T17 6v2h3v14H4Zm8-5q.825 0 1.413-.588T14 15q0-.825-.588-1.413T12 13q-.825 0-1.413.588T10 15q0 .825.588 1.413T12 17ZM9 8h6V6q0-1.25-.875-2.125T12 3q-1.25 0-2.125.875T9 6v2Z"></path>
+                  </svg>
+                </div>
+                <div className="text-[10px] pr-1 text-center">
+                  Messages and calls are end-to-end encrypted. No one outside of
+                  this chat, not even WhatsApp, can read or listen to them. Tap
+                  to learn more.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-300 h-[500px] relative mt-5">
             <div
-              className="bg-green-300 absolute px-3 py-2 mt-2 ml-2 rounded-lg w-1/4 h-11"
+              className="bg-green-300 absolute px-3 py-2 mt-2 ml-2 rounded-lg w-1/4 h-12"
               id="msgValue"
             >
               {message1}
-              <span className="absolute mt-5 right-3 text-[10px]">
-                10:00 pm
+              <span className="absolute mt-6 right-3 text-[10px]">
+                {msg1ime}
               </span>
             </div>
             <div
-              className="bg-green-300 absolute px-3 py-2 mt-10 right-2 top-10 rounded-lg w-1/4 h-11"
+              className="bg-green-300 absolute px-3 py-2 mt-10 right-2 top-10 rounded-lg w-1/4 h-12"
               id="msgValue2"
             >
               {message2}
-              <span className="absolute mt-5 right-3 text-[10px]">
-                10:00 pm
+              <span className="absolute mt-6 right-3 text-[10px]">
+                {msg2ime}
               </span>
             </div>
           </div>

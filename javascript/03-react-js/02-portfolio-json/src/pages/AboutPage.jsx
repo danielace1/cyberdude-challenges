@@ -6,14 +6,14 @@ const AboutPage = () => {
   const AboutDetails = portfolio.map((about) => {
     return (
       <div
-        className="bg-black min-h-screen px-8 sm:px-28 mt-6 sm:mt-10 pb-10"
+        className="bg-black min-h-screen px-5 sm:px-28 mt-6 sm:mt-10 pb-10"
         key={about.id}
       >
         <Animation />
 
         {/* About */}
         <div className="grid lg:flex items-center sm:space-x-10 text-white outline outline-1 outline-[#8678F9] px-8 sm:px-20 py-10 rounded">
-          <div className="w-full">
+          <div className="w-full flex justify-center z-50">
             <img
               src={Sudharsan}
               alt="sudharsan"
@@ -51,14 +51,15 @@ const AboutPage = () => {
             Skills
           </h1>
         </div>
-        <div className="mt-10 flex space-x-2 lg:space-x-10 sm:p-10 justify-center">
+        <div className="mt-10 grid grid-cols-3 gap-3 lg:flex space-x-2 lg:space-x-10 sm:p-10 justify-center">
           {about.skills.map((skill, i) => (
-            <div className="flex items-center justify-center" key={i}>
+            <div className="flex flex-col items-center justify-center" key={i}>
               <img
-                className="size-20 lg:size-28"
+                className="size-14 md:size-16 lg:size-28"
                 src={skill.logo}
                 alt={skill.stack}
               />
+              <div className="text-white">{skill.stack}</div>
             </div>
           ))}
         </div>

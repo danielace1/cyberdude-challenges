@@ -5,13 +5,13 @@ const Projects = () => {
   const projectData = portfolio.map((project, i) => {
     return (
       <div
-        className="bg-black min-h-screen px-8 sm:px-28 mt-6 sm:mt-10 pb-10"
+        className="bg-black min-h-screen px-8 sm:px-28 pb-10 lg:mt-3 z-50"
         key={i}
       >
         <Animation />
 
         {/* Project */}
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center">
           <h1 className="text-4xl font-semibold text-white border-b-2 border-[#8678F9]">
             Projects
           </h1>

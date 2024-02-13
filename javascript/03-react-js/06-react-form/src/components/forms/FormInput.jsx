@@ -1,17 +1,21 @@
 import Proptypes from "prop-types";
 
-const FormInput = (props) => {
+const FormInput = ({ name, type = "text", placeholder, error, register }) => {
   return (
     <div>
       <input
-        name={props.name}
-        type={props.type}
-        placeholder={props.placeholder}
-        className="outline-none px-5 py-2 w-full rounded focus:border focus:border-gray-400"
-        value={props.value}
-        onChange={props.handleOnchange}
-        required
+        id={name}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        className={`outline-none px-5 py-2 w-full rounded focus:border focus:border-gray-400 ${
+          error ? "border  border-red-600" : ""
+        }`}
+        {...register}
       />
+      {error && (
+        <small className="text-red-600 text-sm border">{error.message}</small>
+      )}
     </div>
   );
 };
@@ -19,9 +23,9 @@ const FormInput = (props) => {
 FormInput.propTypes = {
   name: Proptypes.string,
   type: Proptypes.string,
-  value: Proptypes.string,
   placeholder: Proptypes.string,
-  handleOnchange: Proptypes.func,
+  error: Proptypes.object,
+  register: Proptypes.object,
 };
 
 export default FormInput;

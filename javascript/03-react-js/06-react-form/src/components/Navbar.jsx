@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="relative flex items-center justify-center px-20 bg-violet-500 text-center py-8 font-semibold text-xl text-white">
+    <nav className="relative flex items-center justify-center py-5 sm:px-20 bg-violet-500 text-center sm:py-8 font-semibold text-xl text-white">
       <Link to="/">
         <div className="flex space-x-2">
           <div>
@@ -13,7 +13,7 @@ const Navbar = () => {
         </div>
       </Link>
 
-      <div className="absolute right-16 bottom-9">
+      <div className="absolute right-8 sm:right-16 bottom-7 sm:bottom-10">
         <a
           href="https://github.com/danielace1/cyberdude-challenges/tree/master/javascript/03-react-js/06-react-form"
           target="_blank"

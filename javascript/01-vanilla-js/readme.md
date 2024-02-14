@@ -2,6 +2,8 @@
 
 In this directory, you'll find the core JavaScript code, utilizing fundamental vanilla JavaScript concepts.
 
+<img src="https://miro.medium.com/v2/resize:fit:800/1*bxEkHw1xewxOFjmGunb-Cw.png" />
+
 ## Topics Used and Learned
 
 | S.No | Topics Used & Learned                          |                                                                    YT review and explanation                                                                     |

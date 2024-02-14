@@ -2,6 +2,8 @@
 
 Discover various JavaScript DOM projects in this directory. They provide hands-on learning experiences to understand web development better.
 
+<img src="https://media.licdn.com/dms/image/D4D12AQF_pE4edl4ycA/article-cover_image-shrink_600_2000/0/1689574697691?e=2147483647&v=beta&t=udHmk5Qf-vfxRot9ovIonD3QvdicVIdcnRZXTwAIHMA" />
+
 | S.No | Projects                                                 |                                                                    YT review and explanation                                                                     |
 | :--- | :------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | 01   | [form](./01-form/)                                       | [<img width="100px" src="https://github.com/anburocky3/Javascript-DOM-in-Tamil/raw/main/supports/video-btn.png" />](https://www.youtube.com/watch?v=yPj_bcl4D2c) |

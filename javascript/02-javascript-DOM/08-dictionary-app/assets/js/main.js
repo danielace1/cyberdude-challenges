@@ -7,10 +7,13 @@ const searchWordEl = document.querySelector("#searchword");
 const phoneticsEl = document.querySelector("#phonetic");
 const audioEl = document.querySelector("audio");
 const playBtnEl = document.querySelector("#playBtn");
-const meaning = document.querySelector("#meaning");
-
 const partOfSpeech = document.getElementById("partOfSpeech");
-const definition = document.getElementById("definition");
+const definitionEl = document.getElementById("definition");
+
+const searchImg = document.querySelector("#searchImg");
+const notFoundImgEl = document.querySelector("#notFoundImg");
+
+const contentSection = document.querySelector("#content");
 
 const DICT_URL = `https://api.dictionaryapi.dev/api/v2/entries/en/`;
 
@@ -18,10 +21,24 @@ async function getDictionaryData(word) {
   try {
     // fetching data according to input search
     const dictionary = await fetch(`${DICT_URL}${word}`);
+
+    if (!dictionary.ok) {
+      throw new Error(`Word '${word}' not found`);
+    }
+
     const jsonData = await dictionary.json();
+    console.log(jsonData);
+
     return jsonData;
   } catch (error) {
-    console.error("Error in fetching dictionary data:", error);
+    if (error.message.includes("not found")) {
+      const notFoundImg = `<img src="https://img.freepik.com/premium-vector/search-result-find-illustration_585024-17.jpg" class='size-1/2' alt="notFoundImg" />`;
+      searchImg.classList.add("hidden");
+      notFoundImgEl.innerHTML = notFoundImg;
+      contentSection.classList.add("hidden"); // Hide the content section
+    } else {
+      throw error;
+    }
   }
 }
 
@@ -31,15 +48,20 @@ playBtnEl.addEventListener("click", () => {
   audioEl.play();
 });
 
+// Function to display error message
+function displayErrorMessage(msg) {
+  notFoundImgEl.innerHTML = `<img src="https://img.freepik.com/premium-vector/search-result-find-illustration_585024-17.jpg" class='sm:size-1/2' alt="notFoundImg" />`;
+}
+
 // unique set for partofSpeech recognition
 const seenPartOfSpeech = new Set();
 
-// Actions perform on search button
+// function for displayDicionary data
+function displayDictionaryData(dictionaryData) {
+  definitionEl.innerHTML = "";
 
-const handleSearch = async () => {
-  const word = inputSearchEl.value;
-  const dictionaryData = await getDictionaryData(word);
-  console.log(dictionaryData);
+  searchImg.classList.add("hidden");
+  contentSection.classList.remove("hidden");
 
   //   mapping the dictionary object
   dictionaryData.map((values) => {
@@ -51,6 +73,7 @@ const handleSearch = async () => {
     // looping the phonetic object
     for (let phonetic of values.phonetics) {
       phoneticsEl.textContent = phonetic.text;
+      // Exit the loop after finding the phonetic text
 
       // Remove the hidden & ml class from the word & play button
       searchWordEl.classList.remove("ml-2");
@@ -64,7 +87,6 @@ const handleSearch = async () => {
         break;
       }
     }
-
     // if there is no audio src then
     if (!audioFound) {
       searchWordEl.classList.add("ml-2");
@@ -91,35 +113,51 @@ const handleSearch = async () => {
         seenPartOfSpeech.add(partOfSpeech);
         partOfSpeechHTML += `<span class='font-normal'>${partOfSpeech}</span>`;
       }
+      // Append definitions
+      meaning.definitions.forEach((definition) => {
+        const listItem = document.createElement("li");
+        listItem.classList.add("font-italic", "ml-4");
+        listItem.innerHTML = definition.definition;
+        definitionEl.appendChild(listItem);
+      });
     });
 
     partOfSpeech.innerHTML += partOfSpeechHTML;
   });
-};
+}
+
+// Actions perform on search button
+async function handleSearch() {
+  const word = inputSearchEl.value.trim();
+  if (!word) return;
+
+  try {
+    const dictionaryData = await getDictionaryData(word);
+    if (dictionaryData.length === 0) {
+      displayErrorMessage("Word not found");
+      return;
+    }
+    // Hide the error message image
+    hideErrorMessage();
+    contentSection.classList.remove("hidden");
+    displayDictionaryData(dictionaryData);
+  } catch (error) {
+    displayErrorMessage("An error occurred while fetching data");
+  }
+}
+
+// Hide the error message image
+function hideErrorMessage() {
+  notFoundImgEl.innerHTML = "";
+}
 
 searchBtnEl.addEventListener("click", handleSearch);
 
-inputSearchEl.addEventListener("keydown", (e) => {
+// action perform on hit enter btn
+inputSearchEl.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
+    definitionEl.innerHTML = "";
     handleSearch();
   }
 });
-
-//   meaning.definitions.forEach((definition) => {
-//     definition.forEach((def) => {
-//       definition.textContent = def.definition;
-//     });
-//   });
-
-// values.meanings.forEach((meaning, index) => {
-//   const partOfSpeech = meaning.partOfSpeech;
-
-//   const uniqueWords = new Set();
-
-//   if (!uniqueWords.has(partOfSpeech)) {
-//     // If not, add it to the Set and include it in the HTML
-//     uniqueWords.add(partOfSpeech);
-//     partOfSpeechHTML += `<span class='ml-2'>${partOfSpeech}</span>`;
-//   }
-// });

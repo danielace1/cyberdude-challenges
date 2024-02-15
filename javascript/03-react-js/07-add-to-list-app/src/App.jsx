@@ -47,7 +47,7 @@ const App = () => {
         </div>
         <div>
           <a
-            href="https://github.com/danielace1/cyberdude-challenges/tree/master/javascript/03-react-js/06-react-form"
+            href="https://github.com/danielace1/cyberdude-challenges/tree/master/javascript/03-react-js/07-add-to-list-app"
             target="_blank"
             rel="noopener noreferrer"
           >

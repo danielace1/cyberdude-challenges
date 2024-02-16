@@ -14,19 +14,20 @@ const App = () => {
     setPrice(e.target.value);
   };
 
+  // add item functionality
   const handleAdd = () => {
     if (!item || !item.trim()) {
       alert("Please enter a thing to add.");
       return;
     }
 
-    if (item.length < 4) {
+    if (item.length < 3) {
       alert("Please enter at least 4 characters");
       return;
     }
 
     if (!price || !price.trim()) {
-      alert("Please enter a price");
+      alert("Please enter a price amount");
       return;
     }
 
@@ -37,8 +38,9 @@ const App = () => {
 
     const newItem = {
       name: item,
-      price: price,
+      price: price * quantity,
       quantity: quantity,
+      initialPrice: price,
     };
 
     setAddedItems([...addedItems, newItem]);
@@ -47,30 +49,46 @@ const App = () => {
     setQuantity(1);
   };
 
+  const handlekeyup = (e) => {
+    if (e.key === "Enter") {
+      handleAdd();
+    }
+  };
+
+  // increase quantity action
   const increaseQuantity = (index) => {
     const newItems = [...addedItems];
     newItems[index].quantity += 1;
+    newItems[index].price =
+      newItems[index].quantity * newItems[index].initialPrice;
     setAddedItems(newItems);
   };
 
+  // decrease quantity action
   const decreaseQuantity = (index) => {
     const newItems = [...addedItems];
     if (newItems[index].quantity > 1) {
       newItems[index].quantity -= 1;
+      newItems[index].price =
+        newItems[index].initialPrice * newItems[index].quantity;
       setAddedItems(newItems);
     }
   };
 
+  // Calculate total amount
+  const totalAmount = addedItems.reduce((total, item) => total + item.price, 0);
+
   return (
     <>
-      <nav className="flex justify-between items-center  px-10 py-5 bg-blue-500 ">
+      {/* navbar */}
+      <nav className="flex justify-between items-center  px-5 sm:px-10 py-5 bg-blue-500 ">
         <div className="flex items-center space-x-2">
           <img
             src="https://cdn-icons-png.flaticon.com/512/1649/1649603.png"
             alt="grocery bill calculator"
-            className="w-16"
+            className="w-8 sm:w-16"
           />
-          <h1 className="text-white font-semibold text-2xl">
+          <h1 className="text-white font-semibold text-xl sm:text-2xl">
             Groceries Bill Calculator
           </h1>
         </div>
@@ -99,8 +117,9 @@ const App = () => {
         </div>
       </nav>
 
-      <section className="bg-gray-300 min-h-screen p-10">
-        <div className="flex space-x-8">
+      {/* content */}
+      <section className="bg-gray-300 min-h-screen p-5 sm:p-10">
+        <div className="sm:flex space-y-3 sm:space-x-8 sm:space-y-0">
           {/* items */}
           <div className="w-full">
             <label htmlFor="items" className="mb-3 block">
@@ -128,6 +147,7 @@ const App = () => {
               placeholder="₹ 100"
               className="px-5 py-2 w-1/2 bg-gray-200 outline-none focus:border focus:border-gray-400 rounded"
               onChange={itemPrice}
+              onKeyUp={handlekeyup}
             />
 
             {/* Button */}
@@ -148,70 +168,87 @@ const App = () => {
           Your Groceries bill shown below :
         </h1>
         <div
-          className={`mt-5 rounded p-5 border border-gray-400 ${
+          className={`mt-5 overflow-auto rounded${
             addedItems.length === 0 ? "hidden" : ""
           }`}
         >
-          <div className={`space-y-3`}>
-            {addedItems.map((item, index) => (
-              <div key={index} className="flex justify-between items-center">
-                <h6 className="text-lg">
-                  <span className="text-sm">{index + 1}</span>. {item.name}
-                </h6>
+          <table
+            className={`table lg:table-fixed border border-gray-200  w-full text-left lg:text-center ${
+              addedItems.length === 0 ? "hidden" : ""
+            }`}
+          >
+            <thead className="text-lg px-2">
+              <tr>
+                <th className="px-3 py-2 tracking-wide w-14">S.No</th>
+                <th className="px-3 py-2 tracking-wide">Item</th>
+                <th className="px-3 py-2 tracking-wide">Quantity</th>
+                <th className="px-3 py-2 tracking-wide">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {addedItems.map((item, index) => (
+                <tr key={index} className="border-b">
+                  <td className="p-3">{index + 1}</td>
+                  <td className="py-2 text-[17px] capitalize">{item.name}</td>
+                  <td className="py-2">
+                    <div className="flex justify-center items-center">
+                      <div className="flex">
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="26"
+                            height="26"
+                            viewBox="0 0 256 256"
+                            className={`fill-current bg-blue-400 text-white rounded hover:cursor-pointer hover:bg-blue-500 ${
+                              item.quantity <= 1
+                                ? "hover:cursor-not-allowed"
+                                : ""
+                            }`}
+                            onClick={() => decreaseQuantity(index)}
+                          >
+                            <path d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12"></path>
+                          </svg>
+                        </span>
 
-                <div className="flex items-center">
-                  <div className="flex mr-20">
-                    <label htmlFor="quantity" className="block mr-2">
-                      Quantity :{" "}
-                    </label>
+                        <input
+                          type="number"
+                          id="quantity"
+                          className="w-20 pl-2 py-0.5 bg-gray-200 outline-none rounded text-center"
+                          min={1}
+                          value={item.quantity}
+                          readOnly
+                        />
 
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="26"
-                        height="26"
-                        viewBox="0 0 256 256"
-                        className="fill-current bg-blue-400 text-white rounded hover:cursor-pointer hover:bg-blue-500"
-                        onClick={() => decreaseQuantity(index)}
-                      >
-                        <path d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12"></path>
-                      </svg>
-                    </span>
-
-                    <input
-                      type="number"
-                      id="quantity"
-                      className="w-20 pl-2 py-0.5 bg-gray-200 outline-none rounded text-center"
-                      min={1}
-                      value={item.quantity}
-                      readOnly
-                    />
-
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="26"
-                        height="26"
-                        viewBox="0 0 24 24"
-                        className="fill-current bg-blue-600 text-white rounded hover:cursor-pointer hover:bg-blue-700"
-                        onClick={() => increaseQuantity(index)}
-                      >
-                        <path d="M11 13H6q-.425 0-.712-.288T5 12q0-.425.288-.712T6 11h5V6q0-.425.288-.712T12 5q.425 0 .713.288T13 6v5h5q.425 0 .713.288T19 12q0 .425-.288.713T18 13h-5v5q0 .425-.288.713T12 19q-.425 0-.712-.288T11 18z"></path>
-                      </svg>
-                    </span>
-                  </div>
-
-                  <div className="font-semibold text-lg">
-                    Price: ₹ <span>{item.price}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-
-            <div className="flex justify-end font-semibold text-xl">
-              Total Amount :
-            </div>
-          </div>
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="26"
+                            height="26"
+                            viewBox="0 0 24 24"
+                            className="fill-current bg-blue-600 text-white rounded hover:cursor-pointer hover:bg-blue-700"
+                            onClick={() => increaseQuantity(index)}
+                          >
+                            <path d="M11 13H6q-.425 0-.712-.288T5 12q0-.425.288-.712T6 11h5V6q0-.425.288-.712T12 5q.425 0 .713.288T13 6v5h5q.425 0 .713.288T19 12q0 .425-.288.713T18 13h-5v5q0 .425-.288.713T12 19q-.425 0-.712-.288T11 18z"></path>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-2">₹{item.price}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td
+                  colSpan="4"
+                  className="text-right font-semibold text-xl py-4 pr-36"
+                >
+                  Total Amount : ₹{Number(totalAmount).toFixed(2)}
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </section>
     </>

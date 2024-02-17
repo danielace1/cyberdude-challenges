@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <nav className="flex justify-between space-x-3 items-center bg-zinc-700 px-20 py-8 text-white font-semibold">
+    <nav className="flex justify-between space-x-3 items-center bg-zinc-700 px-5 sm:px-20 py-8 text-white font-semibold">
       <div className="flex items-center space-x-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"

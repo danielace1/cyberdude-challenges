@@ -1,19 +1,26 @@
 import PropTypes from "prop-types";
 
-const TripCheckbox = ({ label, name, type = "checkbox", error, register }) => {
+const TripCheckbox = ({
+  label,
+  id,
+  name,
+  type = "checkbox",
+  register,
+  errors,
+}) => {
   return (
     <div className="flex items-center mt-4">
-      <input id={name} type={type} {...register} className="mt-1 w-10 h-3.5" />
-      <label htmlFor={name} className="block -ml-1 ">
+      <input
+        id={id}
+        name={name}
+        type={type}
+        {...register}
+        className="mt-1 w-10 h-3.5"
+      />
+      <label htmlFor={id} className="block -ml-1 ">
         {label}
       </label>
-      <span>
-        {error && (
-          <small className="text-red-600 text-sm border" id={`${name}-error`}>
-            {error.message}
-          </small>
-        )}
-      </span>
+      {errors && <div className="text-red-600 text-sm">{errors.message}</div>}
     </div>
   );
 };
@@ -21,10 +28,10 @@ const TripCheckbox = ({ label, name, type = "checkbox", error, register }) => {
 TripCheckbox.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  id: PropTypes.string,
   type: PropTypes.string,
-  text: PropTypes.string,
-  error: PropTypes.object,
-  register: PropTypes.func,
+  register: PropTypes.object,
+  errors: PropTypes.object,
 };
 
 export default TripCheckbox;

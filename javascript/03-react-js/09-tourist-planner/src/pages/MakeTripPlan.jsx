@@ -4,8 +4,9 @@ import { z } from "zod";
 import { useState } from "react";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
+
 import MakeTripFormInput from "../components/forms/MakeTripForm.jsx";
-import TripCheckbox from "../components/forms/TripCheckbox.jsx";
 import TextArea from "../components/forms/TextArea.jsx";
 
 const Schema = z.object({
@@ -22,6 +23,26 @@ const Schema = z.object({
     .string()
     .min(10, { message: "Phone number must be at least 10 digits" })
     .max(10, { message: "Phone number must be at most 10 digits" }),
+  destination: z.string().min(3, {
+    message: "Please enter a destination with a minimum of 20 characters.",
+  }),
+
+  image: z
+    .any()
+    .refine(
+      (files) => files?.length >= 1,
+      "Attach a image of your destination"
+    ),
+
+  transportation: z
+    .string()
+    .min(3, { message: "Transportation must contain at least 3 characters" }),
+
+  persons: z
+    .string()
+    .min(1, { message: "Atleast 1 Person should be on the trip" }),
+
+  budget: z.string().min(4, { message: "Amount must be at least 4 digits" }),
 });
 
 const MaketripPlan = () => {
@@ -32,16 +53,27 @@ const MaketripPlan = () => {
     reset,
   } = useForm({ resolver: zodResolver(Schema) });
 
-  const MakeTripPlan = (e) => {
-    console.log(e);
-    alert(`Hey ${e.username}, you have registered Successfully!`);
+  const MakeTripPlan = (data) => {
+    console.log(data);
+    alert(`Hey ${data.firstname}, you have registered Successfully!`);
     reset();
   };
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [startDate, setDepartureDate] = useState(null);
+  const [returnDate, setReturnDate] = useState(null);
+  const [minReturnDate, setMinReturnDate] = useState(null);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleDepartureDateChange = (date) => {
+    setDepartureDate(date);
+    // If a departure date is selected then, return date must after departure date
+    if (date) {
+      const nextDay = new Date(date);
+      nextDay.setDate(nextDay.getDate() + 1);
+      setReturnDate(null); // Reset return date when departure date changes
+      setMinReturnDate(nextDay);
+    } else {
+      setMinReturnDate(null);
+    }
   };
 
   return (
@@ -100,28 +132,50 @@ const MaketripPlan = () => {
           </div>
         </div>
 
-        <div className="flex space-x-10">
+        <div className="flex items-center space-x-10">
           <div className="w-full">
             <label htmlFor="departureDate" className="block mb-3">
               Departure Date :
             </label>
             <DatePicker
-              selected={selectedDate}
-              onChange={handleDateChange}
+              tabIndex="0"
+              name="departureDate"
+              type="date"
+              selected={startDate}
+              value={startDate}
+              onChange={handleDepartureDateChange}
               minDate={new Date()}
-              className={`py-2 px-5
-               w-full bg-blue-200 outline-none rounded}`}
-              {...register}
+              dayPlaceholder="DD"
+              monthPlaceholder="MM"
+              yearPlaceholder="YYYY"
+              format="dd / MM / yyyy"
+              className="py-1.5 px-3 rounded w-full bg-blue-200 outline-none"
+              // {...register("departureDate")}
+              required
             />
+            {/* {errors.departureDate && (
+              <div className="text-red-600 text-sm border">
+                {errors.departureDate.message}
+              </div>
+            )} */}
           </div>
           <div className="w-full">
-            <MakeTripFormInput
-              label="Return Date"
+            <label htmlFor="returnDate" className="block mb-3">
+              Return Date :
+            </label>
+            <DatePicker
               name="returnDate"
               type="date"
-              placeholder="DD-MM-YYYY"
-              register={register("returnDate")}
-              error={errors.returnDate}
+              selected={returnDate}
+              value={returnDate}
+              onChange={(date) => setReturnDate(date)}
+              minDate={minReturnDate || new Date()}
+              dayPlaceholder="DD"
+              monthPlaceholder="MM"
+              yearPlaceholder="YYYY"
+              format="dd / MM / yyyy"
+              className="py-1.5 px-3 rounded w-full bg-blue-200 outline-none"
+              required
             />
           </div>
         </div>
@@ -149,39 +203,13 @@ const MaketripPlan = () => {
         </div>
 
         <div>
-          <span>Mode of Transportation:</span>
-          <div className="flex space-x-3 items-center">
-            <TripCheckbox
-              label="Train"
-              name="train"
-              register={register("train")}
-              error={errors.train}
-            />
-            <TripCheckbox
-              label="Air"
-              name="air"
-              register={register("air")}
-              error={errors.air}
-            />
-            <TripCheckbox
-              label="Car"
-              name="car"
-              register={register("car")}
-              error={errors.car}
-            />
-            <TripCheckbox
-              label="Bus"
-              name="bus"
-              register={register("bus")}
-              error={errors.bus}
-            />
-            <TripCheckbox
-              label="other"
-              name="other"
-              register={register("other")}
-              error={errors.other}
-            />
-          </div>
+          <MakeTripFormInput
+            label="Mode of Transportation"
+            name="transportation"
+            placeholder="Train, Bus, Car, ..."
+            register={register("transportation")}
+            error={errors.transportation}
+          />
         </div>
 
         <div className="flex items-center space-x-10">
@@ -200,7 +228,7 @@ const MaketripPlan = () => {
               label="Estimated budget for your Trip"
               name="budget"
               type="number"
-              placeholder="Enter your budget"
+              placeholder="₹ 100000"
               register={register("budget")}
               error={errors.budget}
             />

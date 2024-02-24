@@ -1,10 +1,16 @@
 import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useState } from "react";
+
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
+
+import { collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
+import { db, storage } from "../firebase/";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import MakeTripFormInput from "../components/forms/MakeTripForm.jsx";
 import TextArea from "../components/forms/TextArea.jsx";
@@ -53,10 +59,12 @@ const MaketripPlan = () => {
     reset,
   } = useForm({ resolver: zodResolver(Schema) });
 
-  const MakeTripPlan = (data) => {
-    console.log(data);
-    alert(`Hey ${data.firstname}, you have registered Successfully!`);
-    reset();
+  const COLLECTION_NAME = "users";
+
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
   const [startDate, setDepartureDate] = useState(null);
@@ -73,6 +81,122 @@ const MaketripPlan = () => {
       setMinReturnDate(nextDay);
     } else {
       setMinReturnDate(null);
+    }
+  };
+
+  const saveDownloadUrlToDatabase = async (downloadURL) => {
+    try {
+      // Perform database operation to save the download URL
+      await setDoc(doc(db, "your_collection", "your_document"), {
+        downloadURL: downloadURL,
+      });
+      console.log("Download URL saved to the database");
+    } catch (error) {
+      console.error("Error saving download URL to the database: ", error);
+    }
+  };
+
+  // Define getDataFromFirebase function outside of useEffect
+  const getDataFromFirebase = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, COLLECTION_NAME));
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
+      });
+
+      if (querySnapshot.empty) {
+        console.log("No plans have been made");
+      }
+    } catch (error) {
+      console.error("Error getting documents: ", error);
+    }
+  };
+
+  useEffect(() => {
+    if (file) {
+      const storageRef = ref(storage, file.name);
+
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          // Handle unsuccessful uploads
+          console.error("Upload error: " + error);
+        },
+        async () => {
+          // Handle successful uploads on complete
+          try {
+            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+            console.log("File available at", downloadURL);
+
+            // Once you have the download URL, you can perform any additional actions,
+            // such as storing it in your database.
+            saveDownloadUrlToDatabase(downloadURL);
+          } catch (error) {
+            console.error("Error getting download URL: ", error);
+          }
+        }
+      );
+    }
+    if (file) {
+      getDataFromFirebase();
+    }
+  }, [file]); // Make sure to include any dependencies, such as 'file', in the dependency array
+
+  const MakeTripPlan = async (data) => {
+    try {
+      let imageData = data.image;
+
+      // Check if data.image is a File object
+      if (data.image instanceof File) {
+        // If it's a File object, upload it to Firebase Storage
+        const storageRef = ref(storage, data.image.name);
+        const uploadTask = uploadBytesResumable(storageRef, data.image);
+        await uploadTask;
+
+        // Once uploaded, get the download URL
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+
+        // Update the imageData with the download URL
+        imageData = downloadURL;
+      }
+
+      // Clone the data object to avoid modifying the original object
+      const newData = { ...data, image: imageData };
+
+      const docRef = await addDoc(collection(db, COLLECTION_NAME), newData);
+      // Add the new data to Firestore
+      await addDoc(this.docRef, {
+        title: this.settitle || null,
+        posttext: this.setposttext || null,
+      });
+      console.log("Document written with ID: ", docRef.id);
+
+      console.log(newData);
+      // Save the download URL to the database
+      await saveDownloadUrlToDatabase(data.img);
+
+      console.log(newData);
+      alert(`Hey ${data.firstname}, you have planned your trip Successfully!`);
+      reset();
+      setDepartureDate(null);
+      setReturnDate(null);
+    } catch (e) {
+      console.error("Error adding document: ", e);
     }
   };
 
@@ -150,14 +274,8 @@ const MaketripPlan = () => {
               yearPlaceholder="YYYY"
               format="dd / MM / yyyy"
               className="py-1.5 px-3 rounded w-full bg-blue-200 outline-none"
-              // {...register("departureDate")}
               required
             />
-            {/* {errors.departureDate && (
-              <div className="text-red-600 text-sm border">
-                {errors.departureDate.message}
-              </div>
-            )} */}
           </div>
           <div className="w-full">
             <label htmlFor="returnDate" className="block mb-3">
@@ -198,6 +316,7 @@ const MaketripPlan = () => {
               placeholder=" Upload a image of your destination"
               register={register("image")}
               error={errors.image}
+              onChange={handleFileChange}
             />
           </div>
         </div>

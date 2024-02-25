@@ -37,10 +37,9 @@ const ViewTripPlan = () => {
             key={trip.id}
             className="rounded border bg-blue-200 w-[400px] pb-5"
           >
-            {console.log("Image URL:", trip.image)}
             <div>
               <img
-                src={trip.image}
+                src={trip.img}
                 alt={trip.destination}
                 className="rounded-tl rounded-tr w-[400px] h-[200px] object-cover"
               />

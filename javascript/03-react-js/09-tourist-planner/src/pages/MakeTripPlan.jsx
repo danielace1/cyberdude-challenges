@@ -34,12 +34,12 @@ const Schema = z.object({
     message: "Please enter a destination with a minimum of 20 characters.",
   }),
 
-  image: z
-    .any()
-    .refine(
-      (files) => files?.length >= 1,
-      "Attach a image of your destination"
-    ),
+  // places: z
+  //   .any()
+  //   .refine(
+  //     (files) => files?.length >= 1,
+  //     "Attach a image of your destination"
+  //   ),
 
   transportation: z
     .string()
@@ -71,13 +71,14 @@ const MaketripPlan = () => {
   };
 
   const Navigate = useNavigate();
-  const [data, setData] = useState({});
+  const [dataImg, setDataImg] = useState({});
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(null);
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  // const handleFileChange = (e) => {
+  //   console.log(e);
+  //   setFile(e.target.files[0]);
+  // };
 
   const {
     register,
@@ -117,7 +118,7 @@ const MaketripPlan = () => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setData((prev) => ({ ...prev, img: downloadURL }));
+            setDataImg((prev) => ({ ...prev, img: downloadURL }));
           });
         }
       );
@@ -126,47 +127,20 @@ const MaketripPlan = () => {
   }, [file]);
 
   const sendInfoToDB = async (value) => {
-    try {
-      // Upload file if it exists and get download URL
-      let imageUrl = null;
-      if (file) {
-        const name = new Date().getTime() + file.name;
-        const storageRef = ref(storage, name);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-        await new Promise((resolve, reject) => {
-          uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-              console.log("Upload is paused", snapshot);
-            },
-            (error) => {
-              console.log(error);
-              reject(error);
-            },
-            () => {
-              // Upload completed successfully, get download URL
-              getDownloadURL(uploadTask.snapshot.ref)
-                .then((downloadURL) => {
-                  imageUrl = downloadURL;
-                  resolve();
-                })
-                .catch((error) => {
-                  console.error("Error getting download URL: ", error);
-                  reject(error);
-                });
-            }
-          );
-        });
-      }
+    const data = {
+      ...value,
+      // ...dataImg,
+      img: dataImg.img,
+    };
 
+    console.log(data);
+
+    try {
       // Construct data object for Firestore document
-      const data = {
-        ...value,
-        image: imageUrl, // Store download URL in Firestore
-      };
 
       // Add document to Firestore collection
       const docRef = await addDoc(collection(db, "users"), data);
+      console.log(data);
       console.log("Document written with ID: ", docRef.id);
 
       // Reset form and navigate after successful submission
@@ -286,6 +260,21 @@ const MaketripPlan = () => {
             />
           </div>
           <div className="w-full">
+            <input
+              type="file"
+              name="places"
+              {...register("image")}
+              onChange={(e) => {
+                console.log(e);
+                setFile(e.target.files[0]);
+              }}
+            />
+            {errors?.image && (
+              <small className="text-red-600 text-sm border">
+                {errors.image.message}
+              </small>
+            )}
+            {/* 
             <MakeTripFormInput
               label="Upload a Image of your destination"
               name="image"
@@ -293,8 +282,11 @@ const MaketripPlan = () => {
               placeholder=" Upload a image of your destination"
               register={register("image")}
               error={errors.image}
-              onChange={handleFileChange}
-            />
+              onChange={(e) => {
+                console.log(e);
+                setFile(e.target.files[0]);
+              }} */}
+            {/* /> */}
           </div>
         </div>
 
@@ -339,11 +331,8 @@ const MaketripPlan = () => {
 
         <div className="flex justify-center pt-10">
           <button
-            className={`px-8 py-3  hover:cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded ${
-              progress !== null && progress < 100
-                ? "bg-blue-500 hover:bg-blue-600"
-                : "bg-blue-400"
-            }`}
+            disabled={progress !== null && progress < 100}
+            className={`px-8 py-3 hover:cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded`}
           >
             Make my Plan
           </button>

@@ -7,6 +7,7 @@ const MakeTripFormInput = ({
   placeholder,
   error,
   register,
+  handleOnChange,
 }) => {
   return (
     <div>
@@ -17,6 +18,7 @@ const MakeTripFormInput = ({
         id={name}
         type={type}
         placeholder={placeholder}
+        onChange={type === "file" && handleOnChange}
         className={`py-2 ${
           type === "file" ? "text-sm px-4 " : "px-5"
         } w-full bg-blue-200 outline-none rounded focus:border focus:border-gray-400 ${
@@ -38,6 +40,7 @@ MakeTripFormInput.propTypes = {
   placeholder: Proptypes.string,
   error: Proptypes.object,
   register: Proptypes.object,
+  handleOnChange: Proptypes.func,
 };
 
 export default MakeTripFormInput;

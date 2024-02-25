@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -8,7 +9,7 @@ import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 
-import { collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../firebase/";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -52,21 +53,6 @@ const Schema = z.object({
 });
 
 const MaketripPlan = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({ resolver: zodResolver(Schema) });
-
-  const COLLECTION_NAME = "users";
-
-  const [file, setFile] = useState(null);
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
   const [startDate, setDepartureDate] = useState(null);
   const [returnDate, setReturnDate] = useState(null);
   const [minReturnDate, setMinReturnDate] = useState(null);
@@ -84,38 +70,29 @@ const MaketripPlan = () => {
     }
   };
 
-  const saveDownloadUrlToDatabase = async (downloadURL) => {
-    try {
-      // Perform database operation to save the download URL
-      await setDoc(doc(db, "your_collection", "your_document"), {
-        downloadURL: downloadURL,
-      });
-      console.log("Download URL saved to the database");
-    } catch (error) {
-      console.error("Error saving download URL to the database: ", error);
-    }
+  const Navigate = useNavigate();
+  const [data, setData] = useState({});
+  const [file, setFile] = useState(null);
+  const [progress, setProgress] = useState(null);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
-  // Define getDataFromFirebase function outside of useEffect
-  const getDataFromFirebase = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, COLLECTION_NAME));
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-      });
-
-      if (querySnapshot.empty) {
-        console.log("No plans have been made");
-      }
-    } catch (error) {
-      console.error("Error getting documents: ", error);
-    }
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    reset,
+  } = useForm({ resolver: zodResolver(Schema) });
 
   useEffect(() => {
-    if (file) {
-      const storageRef = ref(storage, file.name);
+    const uploadFile = () => {
+      const name = new Date().getTime() + file.name;
 
+      console.log(name);
+      const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on(
@@ -124,6 +101,7 @@ const MaketripPlan = () => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
+          setProgress(progress);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -131,72 +109,72 @@ const MaketripPlan = () => {
             case "running":
               console.log("Upload is running");
               break;
+            default:
+              break;
           }
         },
         (error) => {
-          // Handle unsuccessful uploads
-          console.error("Upload error: " + error);
+          console.log(error);
         },
-        async () => {
-          // Handle successful uploads on complete
-          try {
-            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-            console.log("File available at", downloadURL);
-
-            // Once you have the download URL, you can perform any additional actions,
-            // such as storing it in your database.
-            saveDownloadUrlToDatabase(downloadURL);
-          } catch (error) {
-            console.error("Error getting download URL: ", error);
-          }
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setData((prev) => ({ ...prev, img: downloadURL }));
+          });
         }
       );
-    }
-    if (file) {
-      getDataFromFirebase();
-    }
-  }, [file]); // Make sure to include any dependencies, such as 'file', in the dependency array
+    };
+    file && uploadFile();
+  }, [file]);
 
-  const MakeTripPlan = async (data) => {
+  const sendInfoToDB = async (value) => {
     try {
-      let imageData = data.image;
-
-      // Check if data.image is a File object
-      if (data.image instanceof File) {
-        // If it's a File object, upload it to Firebase Storage
-        const storageRef = ref(storage, data.image.name);
-        const uploadTask = uploadBytesResumable(storageRef, data.image);
-        await uploadTask;
-
-        // Once uploaded, get the download URL
-        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-
-        // Update the imageData with the download URL
-        imageData = downloadURL;
+      // Upload file if it exists and get download URL
+      let imageUrl = null;
+      if (file) {
+        const name = new Date().getTime() + file.name;
+        const storageRef = ref(storage, name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        await new Promise((resolve, reject) => {
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              console.log("Upload is paused", snapshot);
+            },
+            (error) => {
+              console.log(error);
+              reject(error);
+            },
+            () => {
+              // Upload completed successfully, get download URL
+              getDownloadURL(uploadTask.snapshot.ref)
+                .then((downloadURL) => {
+                  imageUrl = downloadURL;
+                  resolve();
+                })
+                .catch((error) => {
+                  console.error("Error getting download URL: ", error);
+                  reject(error);
+                });
+            }
+          );
+        });
       }
 
-      // Clone the data object to avoid modifying the original object
-      const newData = { ...data, image: imageData };
+      // Construct data object for Firestore document
+      const data = {
+        ...value,
+        image: imageUrl, // Store download URL in Firestore
+      };
 
-      const docRef = await addDoc(collection(db, COLLECTION_NAME), newData);
-      // Add the new data to Firestore
-      await addDoc(this.docRef, {
-        title: this.settitle || null,
-        posttext: this.setposttext || null,
-      });
+      // Add document to Firestore collection
+      const docRef = await addDoc(collection(db, "users"), data);
       console.log("Document written with ID: ", docRef.id);
 
-      console.log(newData);
-      // Save the download URL to the database
-      await saveDownloadUrlToDatabase(data.img);
-
-      console.log(newData);
-      alert(`Hey ${data.firstname}, you have planned your trip Successfully!`);
+      // Reset form and navigate after successful submission
+      Navigate("/viewtripplan");
       reset();
-      setDepartureDate(null);
-      setReturnDate(null);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    } catch (error) {
+      console.error("Error adding document: ", error);
     }
   };
 
@@ -209,7 +187,7 @@ const MaketripPlan = () => {
       <form
         action=""
         className="mt-8 space-y-5 px-20 border border-blue-200 rounded py-10"
-        onSubmit={handleSubmit(MakeTripPlan)}
+        onSubmit={handleSubmit(sendInfoToDB)}
       >
         <div className="flex space-x-10">
           <div className="w-full">
@@ -361,7 +339,13 @@ const MaketripPlan = () => {
         />
 
         <div className="flex justify-center pt-10">
-          <button className="text-center px-8 py-3 bg-blue-500 hover:cursor-pointer hover:bg-blue-600  text-white font-semibold rounded">
+          <button
+            className={`px-8 py-3  hover:cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded ${
+              progress !== null && progress < 100
+                ? "bg-blue-500 hover:bg-blue-600"
+                : "bg-blue-400"
+            }`}
+          >
             Make my Plan
           </button>
         </div>

@@ -83,7 +83,6 @@ const MaketripPlan = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     reset,
   } = useForm({ resolver: zodResolver(Schema) });
 

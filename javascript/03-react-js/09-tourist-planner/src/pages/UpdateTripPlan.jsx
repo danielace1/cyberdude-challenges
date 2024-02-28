@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -9,9 +10,8 @@ import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 
-import { collection, addDoc } from "firebase/firestore";
-import { db, storage } from "../firebase/";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { db } from "../firebase/";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 
 import MakeTripFormInput from "../components/forms/MakeTripForm.jsx";
 import TextArea from "../components/forms/TextArea.jsx";
@@ -34,13 +34,6 @@ const Schema = z.object({
     message: "Please enter a destination with a minimum of 20 characters.",
   }),
 
-  places: z
-    .any()
-    .refine(
-      (files) => files?.length >= 1,
-      "Attach a image of your destination"
-    ),
-
   transportation: z
     .string()
     .min(3, { message: "Transportation must contain at least 3 characters" }),
@@ -52,7 +45,7 @@ const Schema = z.object({
   budget: z.string().min(4, { message: "Amount must be at least 4 digits" }),
 });
 
-const MaketripPlan = () => {
+const UpdateTripPlan = () => {
   const [startDate, setDepartureDate] = useState(null);
   const [returnDate, setReturnDate] = useState(null);
   const [minReturnDate, setMinReturnDate] = useState(null);
@@ -71,85 +64,80 @@ const MaketripPlan = () => {
   };
 
   const Navigate = useNavigate();
-  const [file, setFile] = useState(null);
-  const [data, setData] = useState({});
-  const [progress, setProgress] = useState(null);
+  const { id } = useParams();
+  const [currTripDetail, setCurrTripDetail] = useState({});
+
+  const getCardDetails = async () => {
+    // get existing data to user view
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+    const tripData = docSnap.data();
+    setCurrTripDetail(tripData);
+  };
+
+  useEffect(() => {
+    getCardDetails();
+  }, [id]);
+  console.log(currTripDetail);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(Schema) });
+  } = useForm({
+    resolver: zodResolver(Schema),
+    defaultValues: async () => {
+      // get existing data to user view
+      const docRef = doc(db, "users", id);
+      const docSnap = await getDoc(docRef);
+      const tripExistData = docSnap.data();
+      const defaultValues = {
+        firstname: tripExistData?.firstname,
+        lastname: tripExistData?.lastname,
+        email: tripExistData?.email,
+        phone: tripExistData?.phone,
+        departureDate: tripExistData?.departureDate,
+        returnDate: tripExistData?.returnDate,
+        destination: tripExistData?.destination,
+        budget: tripExistData?.budget,
+        persons: tripExistData?.persons,
+        transportation: tripExistData?.transportation,
+      };
+      return defaultValues;
+    },
+  });
 
-  useEffect(() => {
-    const uploadFile = () => {
-      const name = new Date().getTime() + file.name;
-
-      console.log(name);
-      const storageRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          setProgress(progress);
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-            default:
-              break;
-          }
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setData((prev) => ({ ...prev, img: downloadURL }));
-          });
-        }
-      );
-    };
-    file && uploadFile();
-  }, [file]);
-
-  const sendInfoToDB = (value) => {
+  const updateInfoToDB = async (value) => {
     console.log(value);
 
     const departureDateString = startDate.toLocaleDateString();
     const returnDateString = returnDate.toLocaleDateString();
 
-    const addFireStoreDoc = async () => {
-      console.log({ ...value, places: data });
-      await addDoc(collection(db, "users"), {
+    const updateData = async () => {
+      const updateRef = doc(db, "users", id);
+      await updateDoc(updateRef, {
         ...value,
         departureDate: departureDateString,
         returnDate: returnDateString,
-        places: data.img,
       });
     };
-    addFireStoreDoc();
-    alert("Your trip has been planned successfully!");
+    await updateData();
+    await getCardDetails();
     Navigate("/viewtripplan");
   };
 
   return (
     <div className="bg-blue-100 min-h-screen px-20 py-10">
       <div>
-        <h1 className="text-blue-500 font-bold text-2xl">PLAN YOUR TRIP</h1>
+        <h1 className="text-blue-500 font-bold text-2xl">
+          EDIT YOUR PLANNED TRIP
+        </h1>
       </div>
 
       <form
         action=""
         className="mt-8 space-y-5 px-20 border border-blue-200 rounded py-10"
-        onSubmit={handleSubmit(sendInfoToDB)}
+        onSubmit={handleSubmit(updateInfoToDB)}
       >
         <div className="flex space-x-10">
           <div className="w-full">
@@ -204,9 +192,9 @@ const MaketripPlan = () => {
             >
               Departure Date :
             </label>
+
             <DatePicker
               name="departureDate"
-              type="date"
               selected={startDate}
               value={startDate}
               onChange={handleDepartureDateChange}
@@ -214,7 +202,7 @@ const MaketripPlan = () => {
               dayPlaceholder="DD"
               monthPlaceholder="MM"
               yearPlaceholder="YYYY"
-              format="dd / MM / yyyy"
+              format="dd/ MM / yyyy"
               className="py-1.5 px-3 rounded w-full bg-blue-200 outline-none"
               required
             />
@@ -228,7 +216,6 @@ const MaketripPlan = () => {
             </label>
             <DatePicker
               name="returnDate"
-              type="date"
               selected={returnDate}
               value={returnDate}
               onChange={(date) => setReturnDate(date)}
@@ -254,41 +241,17 @@ const MaketripPlan = () => {
             />
           </div>
           <div className="w-full">
-            <label
-              htmlFor="places"
-              className="block mb-3 font-semibold text-blue-900"
-            >
-              Upload a Image of your destination :
-            </label>
-            <input
-              id="places"
-              type="file"
-              name="places"
-              className={`py-1.5 px-5 w-full bg-blue-200 outline-none rounded focus:border focus:border-gray-400 ${
-                errors.places ? "border  border-red-600" : ""
-              }`}
-              {...register("places")}
-              onChange={(e) => {
-                setFile(e.target.files[0]);
-              }}
+            <MakeTripFormInput
+              label="Mode of Transportation"
+              name="transportation"
+              placeholder="Train, Bus, Car, ..."
+              register={register("transportation")}
+              error={errors.transportation}
             />
-            {errors.places && (
-              <small className="text-red-600 text-sm border">
-                {errors.places.message}
-              </small>
-            )}
           </div>
         </div>
 
-        <div>
-          <MakeTripFormInput
-            label="Mode of Transportation"
-            name="transportation"
-            placeholder="Train, Bus, Car, ..."
-            register={register("transportation")}
-            error={errors.transportation}
-          />
-        </div>
+        <div></div>
 
         <div className="flex items-center space-x-10">
           <div className="w-full">
@@ -321,7 +284,7 @@ const MaketripPlan = () => {
 
         <div className="flex justify-center pt-10">
           <button
-            disabled={progress !== null && progress < 100}
+            type="submit"
             className={`px-8 py-3 hover:cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded`}
           >
             Make my Plan
@@ -332,4 +295,4 @@ const MaketripPlan = () => {
   );
 };
 
-export default MaketripPlan;
+export default UpdateTripPlan;

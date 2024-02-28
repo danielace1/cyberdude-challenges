@@ -18,6 +18,7 @@ const MakeTripFormInput = ({
         id={name}
         type={type}
         placeholder={placeholder}
+        min={1}
         onChange={type === "file" && handleOnChange}
         className={`py-2 ${
           type === "file" ? "text-sm px-4 " : "px-5"

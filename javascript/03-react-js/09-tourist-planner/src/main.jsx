@@ -5,6 +5,7 @@ import "./index.css";
 import HomePage from "./pages/HomePage.jsx";
 import MakeTripPlan from "./pages/MakeTripPlan.jsx";
 import ViewTripPlan from "./pages/ViewTripPlan.jsx";
+import UpdateTripPlan from "./pages/UpdateTripPlan.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/viewtripplan",
         element: <ViewTripPlan />,
+      },
+      {
+        path: "/updatetripplan/:id",
+        element: <UpdateTripPlan />,
       },
     ],
   },

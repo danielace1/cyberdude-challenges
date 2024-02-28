@@ -30,12 +30,12 @@ const ViewTripPlan = () => {
   }, []);
 
   return (
-    <div className="bg-blue-100 min-h-screen px-20 py-10">
+    <div className="bg-blue-100 min-h-screen px-5 sm:px-20 py-10">
       <div>
         <h1 className="text-blue-500 font-bold text-2xl">YOUR TRIP PLANS</h1>
       </div>
 
-      <div className="mt-7 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
+      <div className="mt-7 grid lg:grid-cols-3 grid-cols-1  gap-y-8 gap-x-2 sm:gap-8">
         {tripPlans.map((trip) => (
           <div
             key={trip.id}

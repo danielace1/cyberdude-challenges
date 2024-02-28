@@ -127,7 +127,7 @@ const UpdateTripPlan = () => {
   };
 
   return (
-    <div className="bg-blue-100 min-h-screen px-20 py-10">
+    <div className="bg-blue-100 min-h-screen px-7 lg:px-20 py-5 sm:py-10">
       <div>
         <h1 className="text-blue-500 font-bold text-2xl">
           EDIT YOUR PLANNED TRIP
@@ -136,10 +136,10 @@ const UpdateTripPlan = () => {
 
       <form
         action=""
-        className="mt-8 space-y-5 px-20 border border-blue-200 rounded py-10"
+        className="mt-5 sm:mt-8 space-y-5 px-5 lg:px-20 border border-blue-200 rounded py-10"
         onSubmit={handleSubmit(updateInfoToDB)}
       >
-        <div className="flex space-x-10">
+        <div className="sm:flex sm:space-x-10 space-y-5 sm:space-y-0">
           <div className="w-full">
             <MakeTripFormInput
               label="First Name"
@@ -161,7 +161,7 @@ const UpdateTripPlan = () => {
           </div>
         </div>
 
-        <div className="flex space-x-10">
+        <div className="sm:flex sm:space-x-10 space-y-5 sm:space-y-0">
           <div className="w-full">
             <MakeTripFormInput
               label="Email"
@@ -184,7 +184,7 @@ const UpdateTripPlan = () => {
           </div>
         </div>
 
-        <div className="flex items-center space-x-10">
+        <div className="sm:flex sm:space-x-10 space-y-5 sm:space-y-0">
           <div className="w-full">
             <label
               htmlFor="departureDate"
@@ -230,7 +230,7 @@ const UpdateTripPlan = () => {
           </div>
         </div>
 
-        <div className="flex space-x-10">
+        <div className="sm:flex sm:space-x-10 space-y-5 sm:space-y-0">
           <div className="w-full">
             <MakeTripFormInput
               label="Destination"
@@ -251,9 +251,7 @@ const UpdateTripPlan = () => {
           </div>
         </div>
 
-        <div></div>
-
-        <div className="flex items-center space-x-10">
+        <div className="sm:flex sm:space-x-10 space-y-5 sm:space-y-0">
           <div className="w-full">
             <MakeTripFormInput
               label="No. of Persons"
@@ -282,7 +280,7 @@ const UpdateTripPlan = () => {
           placeholder={"Enter your Additional Notes/Comments"}
         />
 
-        <div className="flex justify-center pt-10">
+        <div className="flex justify-center sm:pt-10">
           <button
             type="submit"
             className={`px-8 py-3 hover:cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded`}

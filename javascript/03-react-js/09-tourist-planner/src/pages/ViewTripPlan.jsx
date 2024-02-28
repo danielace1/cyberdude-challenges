@@ -31,7 +31,7 @@ const ViewTripPlan = () => {
         <h1 className="text-blue-500 font-bold text-2xl">YOUR TRIP PLANS</h1>
       </div>
 
-      <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
+      <div className="mt-7 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
         {tripPlans.map((trip) => (
           <div
             key={trip.id}
@@ -39,9 +39,9 @@ const ViewTripPlan = () => {
           >
             <div>
               <img
-                src={trip.img}
+                src={trip.places}
                 alt={trip.destination}
-                className="rounded-tl rounded-tr w-[400px] h-[200px] object-cover"
+                className="rounded-tl rounded-tr w-[500px] h-[300px] object-cover"
               />
             </div>
             <div className="px-4 mt-5">

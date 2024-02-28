@@ -11,7 +11,7 @@ const MakeTripFormInput = ({
 }) => {
   return (
     <div>
-      <label htmlFor={name} className="block mb-3">
+      <label htmlFor={name} className="block mb-3 font-semibold text-blue-900">
         {label} :
       </label>
       <input

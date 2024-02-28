@@ -34,12 +34,12 @@ const Schema = z.object({
     message: "Please enter a destination with a minimum of 20 characters.",
   }),
 
-  // places: z
-  //   .any()
-  //   .refine(
-  //     (files) => files?.length >= 1,
-  //     "Attach a image of your destination"
-  //   ),
+  places: z
+    .any()
+    .refine(
+      (files) => files?.length >= 1,
+      "Attach a image of your destination"
+    ),
 
   transportation: z
     .string()
@@ -71,14 +71,9 @@ const MaketripPlan = () => {
   };
 
   const Navigate = useNavigate();
-  const [dataImg, setDataImg] = useState({});
   const [file, setFile] = useState(null);
+  const [data, setData] = useState({});
   const [progress, setProgress] = useState(null);
-
-  // const handleFileChange = (e) => {
-  //   console.log(e);
-  //   setFile(e.target.files[0]);
-  // };
 
   const {
     register,
@@ -118,7 +113,7 @@ const MaketripPlan = () => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setDataImg((prev) => ({ ...prev, img: downloadURL }));
+            setData((prev) => ({ ...prev, img: downloadURL }));
           });
         }
       );
@@ -126,29 +121,19 @@ const MaketripPlan = () => {
     file && uploadFile();
   }, [file]);
 
-  const sendInfoToDB = async (value) => {
-    const data = {
-      ...value,
-      // ...dataImg,
-      img: dataImg.img,
+  const sendInfoToDB = (value) => {
+    console.log(value);
+    const addFireStoreDoc = async () => {
+      console.log({ ...value, places: data });
+      await addDoc(collection(db, "users"), {
+        ...value,
+        places: data.img,
+      });
     };
-
-    console.log(data);
-
-    try {
-      // Construct data object for Firestore document
-
-      // Add document to Firestore collection
-      const docRef = await addDoc(collection(db, "users"), data);
-      console.log(data);
-      console.log("Document written with ID: ", docRef.id);
-
-      // Reset form and navigate after successful submission
-      Navigate("/viewtripplan");
-      reset();
-    } catch (error) {
-      console.error("Error adding document: ", error);
-    }
+    addFireStoreDoc();
+    alert("Your trip has been planned successfully!");
+    Navigate("/viewtripplan");
+    reset();
   };
 
   return (
@@ -209,7 +194,10 @@ const MaketripPlan = () => {
 
         <div className="flex items-center space-x-10">
           <div className="w-full">
-            <label htmlFor="departureDate" className="block mb-3">
+            <label
+              htmlFor="departureDate"
+              className="block mb-3 font-semibold text-blue-900"
+            >
               Departure Date :
             </label>
             <DatePicker
@@ -229,7 +217,10 @@ const MaketripPlan = () => {
             />
           </div>
           <div className="w-full">
-            <label htmlFor="returnDate" className="block mb-3">
+            <label
+              htmlFor="returnDate"
+              className="block mb-3 font-semibold text-blue-900"
+            >
               Return Date :
             </label>
             <DatePicker
@@ -260,33 +251,29 @@ const MaketripPlan = () => {
             />
           </div>
           <div className="w-full">
+            <label
+              htmlFor="places"
+              className="block mb-3 font-semibold text-blue-900"
+            >
+              Upload a Image of your destination :
+            </label>
             <input
+              id="places"
               type="file"
               name="places"
-              {...register("image")}
+              className={`py-1.5 px-5 w-full bg-blue-200 outline-none rounded focus:border focus:border-gray-400 ${
+                errors.places ? "border  border-red-600" : ""
+              }`}
+              {...register("places")}
               onChange={(e) => {
-                console.log(e);
                 setFile(e.target.files[0]);
               }}
             />
-            {errors?.image && (
+            {errors.places && (
               <small className="text-red-600 text-sm border">
-                {errors.image.message}
+                {errors.places.message}
               </small>
             )}
-            {/* 
-            <MakeTripFormInput
-              label="Upload a Image of your destination"
-              name="image"
-              type="file"
-              placeholder=" Upload a image of your destination"
-              register={register("image")}
-              error={errors.image}
-              onChange={(e) => {
-                console.log(e);
-                setFile(e.target.files[0]);
-              }} */}
-            {/* /> */}
           </div>
         </div>
 
